@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Part 8: Pet's DER{% endblock %}
+0
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 8: Pet's DER</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 88%">88%</div>
+    </div>
+
+    <!-- Load in calcuated DER --> 
+    <div class="row">
+        {{ name }}'s Daily Energy Requirement (DER) is
+        {% if der_low_end != der_high_end %}
+            bewteen {{ der_low_end }} and 
+            {{ der_high_end }} 
+        {% else %}
+            {{ der }} 
+        {% endif %}
+        kcal per day. The DER is amount of calories that 
+        {{ name }} needs based on                         
+        {% if sex == 3 or sex == 4 %}
+            {{ possessive_pronoun }} 
+        {% else %}
+            {{ object_pronoun }} 
+        {% endif %} current life stage. This is {{ daily_amount_to_feed }}
+
+        {% if meals_per_day > 1 %}
+            or about {{ total_amount_per_meal }} per meal over 
+            {{ meals_per_day }} meals
+        {% endif %}
+        of 
+        <!-- If pet is male, use "his" instead of "him" -->
+        {% if sex == 3 or sex == 4 %}
+            {{ possessive_pronoun }} 
+        {% else %}
+            {{ object_pronoun }} 
+        {% endif %}
+        current diet. The following formula was used: 
+        <div class="formula">
+            {% if species == "Feline" and is_nursing == "y" %}
+                DER = {{ rer }} + 
+                {% if weeks_nursing <= 2 %}
+                    30% per kitten
+                {% elif weeks_nursing == 3 %}
+                    45% per kitten
+                {% elif weeks_nursing == 4 %}
+                    55% per kitten
+                {% elif weeks_nursing == 5 %}
+                    65% per kitten
+                {% elif weeks_nursing == 5 %}
+                    90% per kitten
+                {% endif %}
+                
+                <br>
+                DER = {{ name }}'s RER + DER Modifier
+
+            {% else %}
+                DER = {{ rer }} x {{ der_modifier }}
+
+                <br>
+                DER = {{ name }}'s RER x DER Modifier
+            {% endif %}
+            
+        </div>
+
+        {% if food_form == 1 %}
+            Please note: Cup amounts are provided based on an 8 oz measuring cup.
+        {% endif %}
+    </div>
+    <div class="button-container">
+        <a href="{{ url_for('rer', pet_id=pet_id) }}">
+            <button type="button" class="btn btn-secondary btn-lg">Go Back To Part 7: Pet's RER</button>
+        </a>
+
+        <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
+        
+        <div class="divider"></div>
+        <a href="{{ url_for('human_foods.search_human_foods', pet_id=pet_id) }}">
+            <button type="submit" id="search_hf" class="btn btn-secondary btn-lg">Calculate Treat Amounts for Human Food</button>
+        </a>
+
+        <a href="{{ url_for('completed_report', pet_id=pet_id) }}">
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Final Report</button>
+        </a>
+
+
+    </div>
+    
+
+</div>
+{% endblock %}

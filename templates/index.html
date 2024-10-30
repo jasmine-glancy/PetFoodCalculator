@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    {% if user %}
+    <p>
+        <h1>Welcome to the Pet Food Calculator, {{ user|capitalize }}!</h1>
+    </p>
+    {% else %}
+        <h1>Welcome to the Pet Food Calculator!</h1>
+    {% endif %}
+    <!-- Outputs messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <!-- TODO: modify success messages CSS -->
+                <p class="flash"> {{ message }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p>
+        This website will help you calculate the amount of food you need for your pet 
+        based on a varieity of factors, including weight, age, and activity level.
+    </p>
+    <p>
+        Please note, the amounts recommended by this calculator are based on general 
+        feeding guidelines set by the 
+        <a href="https://www.aaha.org/about-aaha/purpose-and-values/" title="View AAHA's purpose and values">
+            American Animal Hospital Association (AAHA)
+        </a>.
+        Always consult your veterinarian or a board-certified veterinary nutritionist 
+        before making any decisions.
+    </p>
+
+    {% if not session["user_id"] %}
+        <!-- Hide this information and these buttons once the user logs in -->
+
+        <a href="{{ url_for('login') }}"><button type="button" class="btn btn-secondary btn-lg">Log In</button></a>
+        <a href="{{ url_for('register' )}}"><button type="button" class="btn btn-secondary btn-lg">Register</button></a>
+        
+    {% else %}
+        <a href="{{ url_for('new_pet_calc') }}"><button type="button" class="btn btn-secondary btn-lg">Calculate For A New Pet</button></a>
+        <a href="{{ url_for('recalculate_pet') }}"><button type="button" class="btn btn-secondary btn-lg">Recalculate For An Existing Pet</button></a>
+        <a href="{{ url_for('logout') }}"><button type="button" class="btn btn-secondary btn-lg">Log Out</button></a>
+        
+    {% endif %}
+
+</div>
+{% endblock %}

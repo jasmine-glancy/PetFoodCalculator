@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 1.85: Pet Information{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 1.85: Pet Information: Lactation Status</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 18%">18%</div>
+    </div>
+
+    <!-- Load in Error messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Load in WTF Form --> 
+    <form action="{{ url_for('lactation_duration', pet_id=pet_id) }}" method="POST">
+        <div class="row">
+            <div class="col" id="weeks_lactating" title="Time Spent Nursing">
+                {{ repro.weeks_nursing.label }}
+            </div>
+            <div class="col" id="weeks_lactating" title="Time Spent Nursing Dropdown">
+                {{ repro.weeks_nursing }}
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('repro_status', pet_id=pet_id) }}">
+                <button type="button" class="btn btn-secondary btn-lg">Go Back To Part 1.25: Pet Information: Pregnancy Status</button>
+            </a>
+
+            <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
+            <div class="divider"></div>
+
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Next Part</button>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

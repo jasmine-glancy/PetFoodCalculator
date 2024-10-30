@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 2: Pet Information{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 2: Pet Information: Pregnancy Status</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 11%">11%</div>
+    </div>
+
+    <!-- Load in WTF Form --> 
+    <form action="{{ url_for('repro_status', pet_id=pet_id) }}" method="POST">
+        <div class="row">
+            <div class="col" id="repro_questions" title="Pet's Pregnancy Status">
+                {{ repro.pregnancy_status.label }}
+            </div>
+            <div class="col" id="repro_questions" title="Pregnancy Dropdown">
+                {{ repro.pregnancy_status }}
+            </div>
+
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('pet_info') }}">
+                <button type="button" class="btn btn-secondary btn-lg">Go Back To Part 1: Pet Information</button>
+            </a>
+
+            <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
+            <div class="divider"></div>
+
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Next Part</button>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

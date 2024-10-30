@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 1: Pet Information{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 1: Pet Information</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 0%">0%</div>
+      </div>
+
+
+    <form action="{{ url_for('pet_info', pet_id=pet_id) }}" method="POST">
+        <!-- Outputs error messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Load in WTF Form --> 
+        <div class="row">
+            <div class="col" title="Name" id="name">
+                {{ form.pet_name.label(class="columned-form-label") }} {{ form.pet_name }}
+            </div>
+            <div class="col" title="Species">
+                {{ form.pet_species.label(class="columned-form-label") }} {{ form.pet_species }}
+                </select>
+            </div>
+        </div>
+
+    
+        <div class="row">
+            <!-- Suggested by CoPilot -->
+            
+            <input type="hidden" name="pet_id" value="{{ pet_id }}">
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Next Part</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

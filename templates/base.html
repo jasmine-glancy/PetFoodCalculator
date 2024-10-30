@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    
+    {% block styles %}
+
+    <!-- Load Bootstrap-Flask CSS here -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Link to the styles.css here to apply styling to all the child templates. -->
+    <link
+      href="{{ url_for('static', filename='css/styles.css') }}"
+      rel="stylesheet"
+    />
+
+
+    <!-- Load in Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
+    
+    <!-- Load in favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.io') }}">
+
+    {% endblock %}
+
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+
+    <!-- img source: https://www.petfoodindustry.com/pet-food-market/news/15660852/united-petfood-acquires-de-haan-petfood -->
+    <img class="header-img" alt="a cat and dog nuzzling amongst several different bowls of food" src="/static/assets/img/dog-cat.png">
+    
+    <!--Add NavBar-->
+
+    {% if session["user_id"] %}
+    <nav id="navbar">
+      <!--Visible tabs for users that are logged in-->
+      <ul class="nav nav-tabs" id="tabList" role="tablist">
+        <li><a class="nav-link" id="nav-home-tab" href="{{ url_for('home') }}">Home</a></li>
+        <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('pet_info') }}">Pet Food Calculator</a></li>
+        <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('finished_reports') }}">Completed Reports</a></li>
+        <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('wip_reports') }}">In-Progress Reports</a></li>
+      </ul>
+    {% else %}
+    <!--Visible tabs for guests-->
+      <ul class="nav nav-tabs" id="tabList" role="tablist">
+        <li><a class="nav-link" id="nav-home-tab" href="{{ url_for('home') }}">Home</a></li>
+        <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('login') }}">Login</a></li>
+        <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('register') }}">Register</a></li>
+      </ul>
+    {% endif %}
+    </nav>
+    
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade" id="{{ url_for('home') }}" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">...</div>
+      <div class="tab-pane fade" id="{{ url_for('pet_info') }}" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
+      <div class="tab-pane fade" id="nav-pets" role="tabpanel" aria-labelledby="nav-pets-tab" tabindex="0">...</div>
+    </div>
+
+
+  </head>
+  <body>
+    {% block content %}
+    
+
+    
+    {% endblock %}
+
+  </body>
+</html>

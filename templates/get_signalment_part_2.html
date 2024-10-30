@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 1: Pet Information{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 1: Pet Information</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 5%">5%</div>
+      </div>
+
+    
+    <!-- Load in WTF Form --> 
+    <form action="{{ url_for('pet_info_continued', pet_id=pet_id) }}" method="POST">
+        <!-- Outputs error messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="row">
+            <div class="col" title="Breed">
+                Pet's Breed: 
+                <select name="pet_breed" id="pet_breed">
+                    <option value="default" disabled selected>
+                        Please make a selection
+                    </option> 
+                    {% for breed in pet_breed %}
+                        <option value="{{ breed.Breed }}">{{ breed.Breed }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col" title="Pet's Sex">
+                {{ form.pet_sex.label }} {{ form.pet_sex }}
+            </div>
+            <div class="col" title="Age in Years">
+                {{ form.pet_age.label }} {{ form.pet_age }}
+            </div>
+            <div class="col" title="Age in Months">
+                {{ form.pet_age_months.label }} {{ form.pet_age_months }}
+            </div>
+
+        </div>
+        <div class="row" id="info">
+            * If you aren't sure what breed your 
+            {% if species == "Feline" %}
+                cat is, please choose either "Domestic Shorthair", "Domestic Mediumhair", or "Domestic Longhair".
+            {% elif species == "Canine" %}
+                dog is, please choose from the "Mixed Breed" choices or the breed your dog shares the most physical
+                traits with.
+            {% endif %}
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('pet_info', pet_id=pet_id) }}">
+                <button type="button" class="btn btn-secondary btn-lg">Go Back To Part 1: Pet Information</button>
+            </a>
+
+            <!-- Divider solution suggested by Michael Allen on Stack Overflow-->
+            <div class="divider"></div>
+        
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Next Part</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

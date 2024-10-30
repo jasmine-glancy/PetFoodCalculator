@@ -1,0 +1,979 @@
+:root {
+    --white: #f1e4e9;
+    --pale_white_green: #c6f1d3;
+    --lighter_white_green: #d1f7dc;
+    --pale_sky_blue: #70abad;
+    --light_sky: #70c2c3;
+    --green_black: #091f19;
+    --deep_blue_green: #215342;
+    --light_lime: #7CFF6B;
+    --darker_lime_transparent: #568b3fe5;
+    --darker_lime: #527e3f;
+}
+br {
+    margin-top: 20px;
+}
+
+    .food_and_exercise br {
+        margin-top: 10px;
+    }
+
+
+body {
+    background-color: var(--pale_white_green);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    color: var(--deep_blue_green);
+    font-weight: 700;
+    padding-bottom: 1vw;
+}
+
+    h1, h2 {
+        color: var(--deep_blue_green);
+    }
+
+    h1, h2 {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-style: bold;
+        font-family: "Arvo", serif;
+    }
+
+    h2 {
+        display: inline-block;
+        padding: 5px;
+        padding-top: 25px;
+        font-weight: 600;
+        justify-content: center;
+    }
+
+    /* h3 {
+        line-height: 5vh;
+        font-size: 20px;
+    } */
+
+    
+    h4 {
+        display: inline-block;
+        justify-content: flex-end;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .fr_name {
+        top: 20px;
+        display:inline-block;
+        width: 45%;
+        word-wrap: break-word;
+    }
+
+.login {
+    margin: 2px;
+}
+
+/* Tables */
+.table {
+    font-size: 14.5px;
+    text-align: center;
+    border-bottom: 1px solid var(--deep_blue_green);
+    border: 1px solid var(--pale_sky_blue);
+    --bs-table-bg: var(--pale_white_green);
+    --bs-table-striped-color: var(--light_sky);
+    --bs-table-striped-bg: var(--pale_sky_blue);
+}
+
+    #pets {
+        margin-bottom: 10vw !important;
+    }
+
+    thead {
+        font-weight: 500;
+        --bs-table-bg: #84b893;
+        /* TODO: Change thead font colors */
+        color: var(--deep_blue_green);
+    }
+
+    .final_report_table {
+        width: 950px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    hr {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        color: var(--darker_lime);
+    }
+    
+    .big_table {    
+        height: 50vh; /* Set a fixed height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden;
+        width: 75%;
+        margin: 0 auto;
+        padding: 0;
+
+        /* Scroll Bar for Firefox */
+        scrollbar-width: thin; 
+
+        /* Color of the scrollbar thumb and track */
+        scrollbar-color: var(--deep_blue_green) var(--white); 
+    }
+
+        .big_table, .small_table {
+            margin-bottom: 1vh;
+        }
+
+        /* Scroll Bar Colors */
+        /* WebKit browsers (Chrome, Safari) */
+        .big_table::-webkit-scrollbar {
+            width: 12px; 
+        }
+
+        .big_table::-webkit-scrollbar-track {
+            /* Background of the scrollbar track */
+            background: var(--white); 
+        }
+
+        .big_table::-webkit-scrollbar-thumb {
+            /* Color of the scrollbar thumb */
+            background: var(--green_black); 
+            border-radius: 10px; 
+        }
+
+        .big_table::-webkit-scrollbar-thumb:hover {
+            /* Color of the scrollbar thumb on hover */
+            background: var(--deep_blue_green); 
+        }
+
+        /* Scrollbar thumb active state for Firefox */
+        .big_table::-moz-scrollbar-thumb:active {
+            background-color: var(--deep_blue_green); /* Replace with your desired color */
+        }
+    
+    .pet_signalment {
+        margin-top: 2.5vw;
+        margin-left: 2.5vw;
+    }
+
+        .table.table-sm td {
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Horizontally center the content */
+            text-align: center;
+        }
+
+    .human_food_container, .human_food {
+        margin-bottom: 1vw;
+    }
+        .human_food_container {
+            margin-left: 0;
+            margin-right: 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .human_food_container td {
+            padding: 10px; 
+        }
+
+        .human_food {
+            margin-bottom: 1vw;
+            width: 66%;
+        }
+
+        .hf_button {
+            width: 33%;
+            max-width: fit-content;
+        }
+
+        #search_hf {
+            max-width: 75%;
+            margin-left: 5vw;
+        }
+
+        #search_hf_fr {
+            max-width: fit-content;
+        }
+        
+        .even-row {
+            background-color: var(--pale_white_green);
+        }
+
+        .odd-row {
+            background-color: var(--lighter_white_green);
+        }
+        
+        .food_name {
+            font-weight: 500;
+        }
+
+            .food_name, .calorie_info {
+                padding-left: 2vw;
+            }
+
+        .calorie_info {
+            font-style: italic;
+        }
+
+    .table_info {
+        height: 200px;
+    }
+
+    .pet_table_info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        
+    }
+    
+    .signalment_info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .name_and_paws {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .age_sex_breed {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button_table_info {
+        height: 100%;
+    }
+
+        .treat_container {
+            padding-left: 5vw;
+            max-width: 95%;
+            margin-bottom: 0;
+        }
+
+        .cal_text {
+            padding-left: 7.5vw;
+        }
+
+        .sig_fr {
+            text-align: center;
+            padding-bottom: 5vh;
+        }
+
+    .transition {
+        font-size: 25px;
+        text-align: center;
+        border-bottom: 1px solid var(--deep_blue_green);
+        border: 1px solid var(--pale_sky_blue);
+        --bs-table-bg: var(--pale_white_green);
+        --bs-table-striped-color: var(--light_sky);
+        --bs-table-striped-bg: var(--pale_sky_blue);
+        margin-top: 2vw;
+        margin-bottom: 0vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .no_reports {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+/* Links */
+a {
+    color: var(--darker_lime);
+}
+
+a:hover {
+    color: var(--darker_lime_transparent);
+}
+
+
+/* Buttons */
+.btn {
+    background-color: var(--green_black);
+    border-color: var(--green_black);
+    --bs-btn-active-color: var(--deep_blue_green);
+    --bs-btn-active-border-color: var(--deep_blue_green);
+    --bs-btn-hover-bg: var(--deep_blue_green);
+    --bs-btn-hover-border-bg: var(--deep_blue_green);
+    color: var(--pale_white_green);
+    text-align: center;
+    margin: 5px;
+    position: relative;
+    margin-top: 1vw;
+}
+
+    .btn-sm {
+        color: #cdfcc7;
+        min-height: 75px;
+        font-weight: 500;
+        background-color: var(--darker_lime);
+        border-color: var(--darker_lime);
+        --bs-btn-active-color: var(--darker_lime_transparent);
+        --bs-btn-active-border-color: var(--darker_lime_transparent);
+        --bs-btn-hover-bg: var(--darker_lime_transparent);
+        --bs-btn-hover-border-bg: var(--darker_lime_transparent);
+    }
+
+    #treat_calc {
+        margin-left: 2vw;
+        margin-bottom: 1vw;
+        font-size: 1em;
+        padding: 1vw;
+        width: fit-content;
+    }
+
+    #hf_lookup {
+        margin-top: 2vw;
+    }
+
+    .button-container, .button-container-fr {
+        display: flex;
+        justify-content: center;
+    }
+        .button-container {
+            padding: 2vw;
+        }
+
+        .button-container-fr {
+            padding-bottom: 3vh;
+        }
+    
+        .button-container-fp {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            padding: 2px;
+            margin-top: 75px;
+            margin-bottom: 20px;
+            
+        }
+
+    /* Divider solution suggested by Michael Allen on Slack */
+
+    .divider, .smaller_divider {
+        display: inline-block;
+    }
+
+    .divider {
+        width: 25vw;
+        height: auto;
+    }
+
+    .smaller_divider {
+        width: 0vw;
+        height: auto;
+        flex-direction: row;
+    }
+
+    .spacer {
+        display: flex;
+        flex-direction: column;
+        height: 25vw;
+        width: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+/* Progress bar */
+.progress {
+    --bs-progress-bg: var(--pale_white_green);
+    --bs-progress-bar-bg: var(--darker_lime_transparent);
+    margin: 20px;
+}
+
+    .progress-bar {
+        color: var(--deep_blue_green);
+        font-weight: 700;
+    }
+
+.header-img {
+    margin-bottom: 10px;
+    border: 5px var(--deep_blue_green);
+    border-style: double;
+    width: 68.5vw;
+    height: 25vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-lg {
+    position: relative;
+    border: 5px var(--deep_blue_green);
+    border-style: double;
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 20px;
+    justify-content: space-between;
+
+}
+
+    .data {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 275px;
+        width: 85%;
+        margin-left: 60px;
+        margin-top: 0;
+        margin-bottom: -25px;
+        max-height: fit-content;
+    }
+
+/* Navigation bar */
+
+.nav {
+    margin-top: 1vw;
+}
+
+.nav.nav-tabs {
+    width: 68.5vw;
+    margin-left: auto;
+    margin-right: auto;
+    --bs-navbar-color: var(--deep_blue_green);
+}
+
+#nav-home-tab, #nav-pfc-tab, #nav-pets-tab {
+    background-color: var(--green_black);
+    color: var(--pale_white_green);
+}
+    #nav-home-tab:hover, #nav-pfc-tab:hover, #nav-pets-tab:hover {
+        background-color: var(--deep_blue_green);
+    }
+
+/* BCS dropdowns */
+.accordion {
+    --bs-accordion-border-color: var(--darker_lime);
+    --bs-accordion-btn-icon: 0;
+    --bs-accordion-btn-active-icon: 0;
+    --bs-accordion-active-bg: var(--darker_lime_transparent);
+    --bs-accordion-active-color: var(--pale_white_green);
+    --bs-accordion-btn-active-icon: #00e043;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem #568b3fa4;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+    .accordion-button {
+        --bs-accordion-active-color: var(--darker_lime_transparent);
+        --bs-accordion-active-color: var(--pale_white_green);
+    }
+
+.bcs {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cards for BCS */
+.card {
+    display: flex;
+    width: 15vw;
+    padding: 5px;
+    min-height: 20vw;
+}
+
+.card-img-top {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10vw;
+}
+
+.card-title {
+    text-align: center;
+    font-weight: 700;
+}
+
+.card-text {
+    flex: 1;
+    height: 17vw;
+    font-size: 15px;
+}
+
+/* Error messages */
+.flash {
+    text-align: center;
+    font-weight: 700;
+    color: #880F21;
+}
+
+/* Form formatting */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
+
+  #info {
+    padding: 10px;
+  }
+  
+  .col {
+    flex-basis: 40%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+    .form_divider {
+        padding-left: 2px;
+    }
+
+.form-group .form-label, .hf-form-label {
+    text-align: left !important;
+    padding-left: 1vw;
+}
+
+    .form-control {
+        margin-bottom: 1vw;
+    }
+
+    .columned-form-label {
+        padding-right: 1vw;
+    }
+
+    #name {
+        width: 20vw;
+        margin-left: 1vw;
+        margin-right: 0.5vw;
+        padding-left: 0.5vw;
+    }
+
+    .hf-form-label, .hf_input {
+        margin-top: 2vw;
+    }
+
+    #hf_submit {
+        margin-top: 0;
+    }
+
+    #hf_form {
+        margin-left: 16vw;
+        margin-bottom: 1vw;
+    }
+
+/* Formula formatting */
+.formula {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+
+    .final_formula {
+        position: absolute;
+        text-align: center;
+        top: 410px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: fit-content;
+        width: 480px;
+        word-wrap: break-word;
+    }
+
+    .final_formula_nursing {
+        position: absolute;
+        text-align: center;
+        top: 425px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .final_formula_fel {
+        position: absolute;
+        text-align: center;
+        top: 395px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 10px;
+    }
+
+/* Exercise and feeding alignment */
+.padding {
+    margin-top: 50px;
+}
+
+
+    .neg_padding {
+        margin-top: -25px;
+    }
+
+    .no_padding {
+        margin-top: 0px;
+    }
+
+    .tiny_padding {
+        display: block;
+        padding-top: 10px;
+    }
+
+    .smaller_padding {
+        margin-top: 10px;
+    }
+    
+    .quarter_padding {
+        margin-top: 25px;
+    }
+
+    .mid_padding {
+        margin-top: 40px;
+    }
+
+    .large_padding {
+        margin-top: 75px;
+    }
+
+    .xlarge_padding {
+        margin-top: 100px;
+    }
+
+    .xlargeplus_padding {
+        margin-top: 150px;
+    }
+
+    .dxl_padding {
+        margin-top: 250px;
+    }
+.food_and_exercise {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    justify-content: space-between;
+    width: 63%;
+    margin-left: 330px;
+    margin-right: 30px;
+    flex-wrap: wrap;
+    min-height: fit-content;
+    margin-top: 0px;
+}
+
+    .reduction, .small_reduction {
+        margin-left: 60px;
+    }
+
+    .reduction {
+        margin-top: 10px;
+        width: 90%;
+    }
+
+    .small_reduction {
+        margin-top: 5px;
+        width: 63%;
+        margin-left: 330px;
+        margin-right: 30px;
+    }
+
+.feeding {
+    padding-top: 25px;
+}
+
+.report_wrapper {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 100px;
+    max-height: fit-content;
+}
+
+.report_title {
+    position: absolute;
+    height: 10vw;
+    top: 95px;
+    margin-left: 15vw;
+
+}
+
+/* Container for the SVG */
+
+.report_img_fel {
+    display: flex;
+    align-items: flex-start;
+    position: sticky;
+    transform: translateY(-125px); /* Suggested by CoPilot */
+    top: 20px;
+    margin-left: 43vw;
+}
+
+    .report_img_k9 {
+        transform: translateY(-120px); /* Suggested by CoPilot */
+        top: 20px;
+        margin-left: 44vw;
+    }
+
+    /* Horizontal line styling */
+    .fel_line {
+        height: 9px; 
+        width: 73%;
+        background-color: var(--deep_blue_green);
+        position: absolute;
+        top: 172.5px; 
+    }
+
+    .k9_line {
+        height: 13.5px; 
+        width: 73%;
+        border-top: 1px solid var(--deep_blue_green);
+        border-bottom: 1px solid var(--deep_blue_green);
+        position: absolute;
+        top: 185px; 
+        margin-left: 20px;
+    }
+
+    .k9_line_shortened {
+        height: 8.5px; 
+        width: 68%;
+        border-top: 1px solid var(--deep_blue_green);
+        border-bottom: 1px solid var(--deep_blue_green);
+        position: absolute;
+        top: 185px; 
+        margin-left: 20px;
+    }
+
+        /* Pet SVG */
+        .final_pet_pic {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 250px;
+            max-height: 150px;
+        }
+
+        .pet_pic {
+            margin-left: 4vw;
+            margin-right: auto;
+            margin-top: 0.1vw;    
+        }
+
+        /* General pet SVGs */
+
+        .img_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: fit-content;
+            padding-top: 2vw;
+            gap: 3vw;
+        }
+
+        .general_pet_svg {
+            max-width: 8vw;
+            padding-bottom: 1vw;
+        }
+
+/* Puzzle feeder images */
+#final_report, #final_report_cat, #preg_fel_final_report, #preg_final_report, 
+ #final_report_obese, #final_report_young_obese, #final_report_active {
+    display: inline;
+    position: absolute;
+    margin-right: 44vw;
+    width: 250px;
+    height: fit-content;
+    border: 2px solid var(--deep_blue_green);
+    font-size: 15px;
+    overflow: auto;
+    color: var(--deep_blue_green);
+    margin-bottom: 150px;
+}
+    #preg_final_report {
+        margin-top: 10px;
+    }
+
+    #final_report_obese {
+        margin-top: 85px;
+    }
+
+    #final_report_young_obese {
+        margin-top: 125px;
+    }
+
+    #preg_fel_final_report {
+        margin-top: 125px;
+    }
+
+    #final_report {
+        margin-top: 60px;
+    }
+
+    #final_report_active {
+        margin-top: 125px;
+    }
+
+
+/* Images */
+.fr_bowl {
+    width: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .fr_paw {
+        width: 25px;
+        display: inline-block;
+    }
+
+    .bowl {
+        width: 75px;
+        display: inline-block;
+        padding: 10px;
+    }
+#fr {
+    width: 220px;  
+    margin-left: 5px;
+}
+
+ .card-title-fr {
+    font-size: 17px;
+ }
+
+ .card-text-fr {
+    margin-bottom: -2px;
+    padding: 2px;
+ }
+
+ .card-body-fr {
+    margin-left: 15px;
+    margin-bottom: 5px;
+ }
+
+
+.reproduction_recs, .wider_reproduction_recs, .supplements {
+    margin-top: 10px;
+    margin: 0; 
+    padding: 0; 
+    margin-bottom: 10px;
+}
+
+    .supplements, .wider_reproduction_recs {
+        margin-left: 60px;
+        width: 90%;
+    }
+
+.fp_link {
+    position: relative;
+    display: inline;
+}
+
+.exercise {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+    .feline_exercise, .kitten_exercise, .puppy_exercise {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+        margin-left: 60px;
+        width: 85%;
+    }
+
+    /* Feline obesity disclaimer formatting */
+    p {
+        margin-top: 15px;
+        position: relative;
+    }
+
+    .hf {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center; 
+    }
+
+.puppy_food_choice, .treats, .wider_treats, .preg_treats {
+    position: relative;
+    margin-top: 5px;
+    padding: 0;
+}
+    .wider_treats, .treats, .puppy_food_choice {
+        margin-left: 60px;
+        width: 85%;
+    }
+
+    .limit_treats, .senior_treats {
+        margin-left: 325px;
+    }
+
+     
+
+.feline_recs {
+    margin-top: 0;
+}
+
+
+/* Scroll to Top button suggested by 
+Lukas Web Development (https://www.youtube.com/watch?v=QwE_M2P3CRk) */
+
+.scroll_to_top {
+    /* all: unset; */
+    position: fixed;
+    z-index: 9999;
+    bottom: 1em;
+    right: 1em;
+    height: 2.75em;
+    width: 2.75em;
+    background-color: var(--deep_blue_green);
+    border: 0.15vw solid var(--darker_lime_transparent);
+    border-radius: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* The arrow inside the scroll to top button */
+.scroll_to_top .up {
+    width: 1em;
+    height: 1em;
+    border-left: 4px solid var(--darker_lime_transparent);
+    border-bottom: 4px solid var(--darker_lime_transparent);
+    transform: rotate(135deg);
+    margin-bottom: -0.5em;
+    pointer-events: none;
+}
+
+.obesity_trivia, .obesity_trivia.h3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: baseline; 
+    margin-top: 15px;
+    padding-left: 60px;
+    padding-right: 45px;
+}

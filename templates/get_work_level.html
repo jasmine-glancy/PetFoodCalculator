@@ -1,0 +1,86 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 4: Activity Level{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 4: Activity Level</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 44%">44%</div>
+      </div>
+
+    
+    <!-- Load in WTF Form --> 
+    <form action="{{ url_for('activity', pet_id=pet_id) }}" method="POST" >
+        <!-- Outputs error messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for error in messages %}
+                    <p class="flash">⚠️ {{ error }} ⚠️</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="row">
+            <p>
+                Please categorize your pet's activity below. Examples of light activity 
+                include walking on a leash or sniffing in the back yard. High impact activity
+                includes running off-leash, playing ball/fetch, playing off leash with other
+                dogs, or dog sports (i.e. sled racing, agility, et cetra).
+            </p>
+            <div class="col">
+                <p>
+                    {{ work.light_work_minutes.label }} 
+                    <div class="form_divider">
+                    {{ work.light_work_minutes }}
+                    </div>
+                </p>
+            </div>
+            
+            <div class="col">
+                <p>
+                    {{ work.light_work_hours.label }} 
+                    <div class="form_divider">
+                        {{ work.light_work_hours }}
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p>
+                    {{ work.heavy_work_minutes.label }} 
+                    <div class="form_divider">
+                    {{ work.heavy_work_minutes }}
+                    </div>
+                </p>
+            </div>
+            
+            <div class="col">
+                <p>
+                    {{ work.heavy_work_hours.label }} 
+                    <div class="form_divider">
+                        {{ work.heavy_work_hours }}
+                    </div>
+                </p>
+            </div>
+        </div>
+    
+        <div class="button-container">
+            <a href="{{ url_for('pet_condition', pet_id=pet_id) }}">
+                <button type="button" class="btn btn-secondary btn-lg">Go to Part 3: Weight and Body Condition</button>
+            </a>
+
+            <!-- Divider solution suggested by Michael Allen on Stack Overflow-->
+            <div class="divider"></div>
+
+            <button type="submit" class="btn btn-secondary btn-lg">Go to Part 5: Confirm Pet Information</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

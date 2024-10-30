@@ -1,0 +1,379 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Part 3: Pet Weight and Body Condition Score{% endblock %}
+
+{% block content %}
+
+<div class="container-lg">
+    <h1>Part 3: Pet Weight and Body Condition Score</h1>
+
+    <!-- Progress bar -->
+    <div class="progress" id="progress_with_text" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 33%">33%</div>
+    </div>
+    
+    <!-- Load in Error messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
+        {% endif %}
+    {% endwith %}
+        
+    <!-- Information about BCS --> 
+    <p>
+        When calculating a pet's food intake, it is important to know their
+        current weight and body condition score. Body condition score is commonly
+        measured on either a 5- or a 9-point scale. A body condition score is useful
+        because there could be two cats that both weigh 15 lb, but only one cat may be considered
+        obese according to their body condition score! A similar logic follows for our 
+        canine companions. 
+        <div class="smaller_padding">
+        For this calculator, we will be using a scale of 1-9. 
+    </p>
+    
+    <!-- Load in BCS accordians based on species --> 
+    {% if species == "Canine" %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Canine Body Condition Scores (Click to Show/Hide)
+                    </button>
+                </h5>
+            </div>
+              
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="bcs">
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_1.png') }}" alt="a dog with a body condition score of 1">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 1</h5>
+                                    <p class="card-text">You can easily see (on short-haired dogs) the ribs, spine, and bones of the pelvis from a distance.
+                                        <span class="tiny_padding"> </span>
+                                        You can also easily feel all of them.
+                                        <span class="tiny_padding"> </span>
+                                        You don't feel any fat on the ribs or spine. Significant muscle loss can be felt and/or
+                                        seen (on short-haired dogs) over bony areas such as the spine, ribs, head, and thigh bones.
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_1.png') }}" alt="a dog with a body condition score of 2">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 2</h5>
+                                    <p class="card-text">You can easily see (on short-haired dogs) and feel the ribs, spine, and bones of the pelvis.
+                                        <span class="tiny_padding"> </span>
+                                        You don't feel any fat on the ribs.
+                                        <span class="tiny_padding"> </span>
+                                        Some muscle loss can be felt and/or seen (on short-haired dogs) over bony
+                                        areas such as the spine, ribs, head, and thigh bones.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_3.png') }}" alt="a dog with a body condition score of 3">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 3</h5>
+                                    <p class="card-text">You can easily see (on short-haired dogs) and feel the ribs.
+                                        <span class="tiny_padding"> </span>
+                                        The tips of the spine and bones of the pelvis are prominent.
+                                        <span class="tiny_padding"> </span>
+                                        You don't feel any fat on the ribs or spine.
+                                        <span class="tiny_padding"> </span>
+                                        There is a waist with a belly tuck.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_3.png') }}" alt="a dog with a body condition score of 4">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 4</h5>
+                                    <p class="card-text">You can easily see (on short-haired dogs) and feel the ribs.
+                                        <span class="tiny_padding"> </span>
+                                        They have a bit of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        There is a waist with a belly tuck. The waist is easily seen when
+                                        looking down from above your dog.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_5.png') }}" alt="a dog with a body condition score of 5">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 5</h5>
+                                    <p class="card-text">
+                                        You can easily see (on short-haired dogs) and feel the ribs. They have a bit of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        There is a waist with a belly tuck.
+                                        <span class="tiny_padding"> </span>
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_7.png') }}" alt="a dog with a body condition score of 6">
+                                    <div class="card-body" style="height: 22.15vw;">
+                                    <h5 class="card-title">BCS 6</h5>
+                                    <p class="card-text">
+                                        You can feel the ribs and they have some fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        There is a belly tuck and a small waist when viewed from above.
+                                        <span class="tiny_padding"> </span>
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_7.png') }}" alt="a dog with a body condition score of 7">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 7</h5>
+                                    <p class="card-text">You can barely feel the ribs under a thick layer of fat.
+                                        <span class="tiny_padding"> </span>
+                                        There is also fat over the spine and where the spine meets the tail.
+                                        <span class="tiny_padding"> </span>
+                                        The belly tuck and waist may be absent or barely visible.
+                                        <span class="tiny_padding"> </span>
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_9.png') }}" alt="a dog with a body condition score of 8">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 8</h5>
+                                    <p class="card-text">You can barely feel the ribs under a thick layer of fat, or
+                                        you may need some pressure in order to feel the ribs.There is also 
+                                        significant fat over the spine and where the spine meets the tail.
+                                        <span class="tiny_padding"> </span>
+                                        There is no belly tuck or waist. The belly may look distended.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/canine_bcs_9.png') }}" alt="a dog with a body condition score of 9">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 9</h5>
+                                    <p class="card-text">You cannot feel the ribs under a thick layer of fat.
+                                        <span class="tiny_padding"> </span>
+                                        There is also significant fat over the spine and where the spine meets 
+                                        the tail, neck, and legs.
+                                        <span class="tiny_padding"> </span>
+                                        There is no belly tuck or waist. The belly is distended.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% elif species == "Feline" %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Feline Body Condition Scores (Click to Show/Hide)
+                    </button>
+                </h5>
+            </div>
+            
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="bcs">
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_1.png') }}" alt="a cat with a body condition score of 1">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 1</h5>
+                                    <p class="card-text">You can easily see (on short-haired cats) the ribs, spine, and bones of the pelvis from a distance.
+                                        You can also easily feel all of them.
+                                        <span class="tiny_padding"> </span>
+                                        You don't feel any fat on the ribs or spine. Severe belly tuck. 
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_1.png') }}" alt="a cat with a body condition score of 2">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 2</h5>
+                                    <p class="card-text">You can easily see the ribs and spine on short-haired cats.
+                                        <span class="tiny_padding"> </span>
+                                        Minimal muscle mass over the spine. You don't feel any fat on the ribs or spine. 
+                                        Pronounced belly tuck. 
+                                        <span class="tiny_padding"> </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_3.png') }}" alt="a cat with a body condition score of 3">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 3</h5>
+                                    <p class="card-text">You can easily feel the ribs.
+                                        They have a bit of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        You can see the spine on short-haired cats. There is an obvious waist behind the ribs.
+                                        There is minimal belly fat.
+                                        <span class="tiny_padding"> </span>
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_3.png') }}" alt="a cat with a body condition score of 4">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 4</h5>
+                                    <p class="card-text">You can feel the ribs.
+                                        They have a bit of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        There is a noticable waist behind the ribs with a slight belly tuck.
+                                        <span class="tiny_padding"> </span>
+                                        Abdominal fat pad absent.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_5.png') }}" alt="a cat with a body condition score of 5">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 5</h5>
+                                    <p class="card-text">
+                                        Well-proportioned. You can see a waist behind the ribs.
+                                        <span class="tiny_padding"> </span>
+                                        You can feel the ribs. They have a slight bit of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        Abdominal fat pad minimal.
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_7.png') }}" alt="a cat with a body condition score of 6">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 6</h5>
+                                    <p class="card-text">
+                                        The ribs can be felt with a slight excess of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        The waist and abdominal fat pad are distinguishable but not obvious.
+                                        <span class="tiny_padding"> </span>
+                                        Abdominal tuck absent.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_7.png') }}" alt="a cat with a body condition score of 7">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 7</h5>
+                                    <p class="card-text">You can barely feel the ribs under a moderate layer of fat.
+                                        <span class="tiny_padding"> </span>
+                                        The waist is poorly discernable, and there is an obvious rounding of the belly.
+                                        <span class="tiny_padding"> </span>
+                                        Moderate abdominal fat pad.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_9.png') }}" alt="a cat with a body condition score of 8">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 8</h5>
+                                    <p class="card-text">Ribs cannot be felt due to an excess of fat.
+                                        <span class="tiny_padding"> </span>
+                                        Absent waist and obvious round belly with a prominent abdominal fat pad.
+                                        <span class="tiny_padding"> </span>
+                                        Fat deposits are seen over the back.
+                                        <span class="tiny_padding"> </span>
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='assets/img/feline_bcs_9.png') }}" alt="a cat with a body condition score of 9">
+                                    <div class="card-body">
+                                    <h5 class="card-title">BCS 9</h5>
+                                    <p class="card-text">Ribs cannot be felt due to a heavy layer of fat covering them.
+                                        <span class="tiny_padding"> </span>
+                                        Distention of the belly with no waist and extensive abdominal fat deposits.
+                                        <span class="tiny_padding"> </span>
+                                        Heavy fat deposits are seen over the back, face and limbs.
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Load in WTF Form --> 
+    <form action="{{ url_for('pet_condition', pet_id=pet_id) }}" method="POST" >
+        <div class="row">
+            <div class="col">
+                {{ form.pet_bcs.label }}
+            </div>
+            <div class="col">
+                {{ form.pet_bcs }}
+            </div>
+            <div class="col">
+                {{ form.pet_weight.label }}  
+            </div>
+            <div class="col">
+                {{ form.pet_weight }} 
+            </div>
+            <div class="col">
+                {{ form.pet_units.label }}   
+            </div>
+            <div class="col">
+                {{ form.pet_units }}
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('pet_info', pet_id=pet_id) }}">
+                <button type="button" class="btn btn-secondary btn-lg">Go Back To Part 1: Pet Information</button>
+            </a>
+
+            <!-- Divider solution suggested by Michael Allen on Stack Overflow-->
+            <div class="divider"></div>
+
+            {% if species == "Canine" %}
+                <button type="submit" class="btn btn-secondary btn-lg">Go to Part 4: Activity Level</button>
+            {% elif species == "Feline" %}
+                <button type="submit" class="btn btn-secondary btn-lg">Go to Part 5: Confirm Pet Information</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}
