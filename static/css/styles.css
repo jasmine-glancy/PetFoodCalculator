@@ -877,9 +877,13 @@ a:hover {
     margin-bottom: 10px;
 }
 
-    .supplements, .wider_reproduction_recs {
+    .wider_reproduction_recs {
         margin-left: 60px;
         width: 90%;
+    }
+
+    .supplements {
+        margin-left: 325px;
     }
 
 .fp_link {

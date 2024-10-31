@@ -13,6 +13,25 @@ When changing your pet from one food to another, it is important to do a slow tr
 
 Please email [jasmine.glancy.vt@gmail.com](mailto:jasmine.glancy.vt@gmail.com) or submit a pull request if you would like to contribute. I'd love to collaborate. Thank you for your consideration!
 
+## Features
+
+- [X] Calculates Resting Energy Requirements (RER) and Daily Energy Requirements (DER) for dogs and cats
+  - [X] Assigns feeding recommendations based on the middle value of the DER first
+  - [X] Calculates maximum calories a dog or cat can receive from treats a day without unbalancing their diets (based on 8-10% of their RER)
+- [X] Provides information to users so they may make informed decisions about their pet's nutrition by providing resources and formulas that veterinarians trust
+  - [X] Including links to the American Animal Hospital Association (AAHA), Association of American Feed Control Officials (AAFCO), and World Small Animal Veterinary Association (WSAVA) so users may learn more without being swamped with misinformation
+- [X] Assigns recommendations for the following:
+  - [X] Dogs and cats with ideal body condition scores
+  - [X] Mildly obese (Body Condition Score [BCS] 6-7/9) dogs and cats
+  - [X] Obese (BCS 8+/9) dogs and cats
+  - [X] Pregnant dogs and cats
+  - [X] Nursing dogs and cats
+- [X] Provides exercise tips if pets are not already active
+
+### Needs Tweaking
+
+- [ ] Pediatric dogs and cats disclaimers
+
 ### Credits
 
 #### Images

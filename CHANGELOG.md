@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.0.2-beta] - 2024-10-31
+
+## Added
+
+- Feature: Add product features in README.
+
+## Fixed
+
+- Bug: Modified CSS for pregnant dogs within their last 21 days of gestation (text was clipping prior).
+- Bug: Fixed broken links.
+
+## Changed
+
+- Improvement: Modified conditional CSS for pregnant dogs.
+
 ## [2.0.1-beta] - 2024-10-30
 
 ### Added

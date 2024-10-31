@@ -1080,20 +1080,18 @@
     {% if pet_data[0].bcs >= 6 or pet_data[0].is_pediatric == "y" or
     pet_data[0].is_pregnant == "y" or pet_data[0].is_nursing == "y" %}
         {% if pet_data[0].bcs >= 6 or pet_data[0].is_pregnant == "y" %}
-            {% if pet_data[0].is_pregnant == "y" and pet_data[0].weeks_gestating == None or pet_data[0].bcs >= 6 or pet_data[0].weeks_gestating >= 6 %}
-                <div class="wider_treats">
-                    <!-- recommend treat amounts, |round|int suggested by CoPilot -->
-                    <h2>Treats</h2>
-                    <div class="smaller_padding"></div>
-                    {{ pet_data[0].name }} may receive up to {{ pet_data[0].rec_treat_kcal_per_day|round|int }} kcal per 
-                    day from treats. This is 8% of
-                    {% if pet_data[0].sex == 3 or pet_data[0].sex == 4 %}
-                        {{ possessive_pronoun }} 
-                    {% else %}
-                        {{ object_pronoun }} 
-                    {% endif %} RER.
-                </div>
-            {% endif %}
+            <div class="{% if pet_data[0].is_pregnant == "y" and pet_data[0].weeks_gestating == None or pet_data[0].bcs >= 6 or pet_data[0].weeks_gestating > 6 %}wider_treats{% else %}limit_treats{% endif %}">
+                <!-- recommend treat amounts, |round|int suggested by CoPilot -->
+                <h2>Treats</h2>
+                <div class="smaller_padding"></div>
+                {{ pet_data[0].name }} may receive up to {{ pet_data[0].rec_treat_kcal_per_day|round|int }} kcal per 
+                day from treats. This is 8% of
+                {% if pet_data[0].sex == 3 or pet_data[0].sex == 4 %}
+                    {{ possessive_pronoun }} 
+                {% else %}
+                    {{ object_pronoun }} 
+                {% endif %} RER.
+            </div>
         {% elif pet_data[0].is_pediatric == "y" %}
             <div class="treats"> 
                 <!-- recommend treat amounts, |round|int suggested by CoPilot -->
