@@ -8,6 +8,11 @@ Welcome to the Pet Food Calculator! This is an open source Flask web application
 
 When changing your pet from one food to another, it is important to do a slow transition over 5-14 days (the actual time depends on how sensitive your pet's stomach is, though generally, the transition period is 5-7 days).
 
+- [Project Structure](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md)
+- [Future Version Goals](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/TODO_README.md)
+
+Please email [jasmine.glancy.vt@gmail.com](mailto:jasmine.glancy.vt@gmail.com) or submit a pull request if you would like to contribute. I'd love to collaborate. Thank you for your consideration!
+
 ### Credits
 
 #### Images

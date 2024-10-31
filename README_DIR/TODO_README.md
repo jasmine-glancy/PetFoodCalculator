@@ -1,12 +1,12 @@
 [Home Page](https://github.com/jasmine-glancy/PetFoodCalculator)
 
-# Future TODOs
+# TODOs
 
 This is my personal TODO list for the Pet Food Calculator.
 
 ## Future version goals
 
-This was a project I had a lot of fun with, and I could work on it forever! This is version 2 of my final project, but I have the following goals for future versions:
+This was a project I had a lot of fun with, and I could work on it forever! I have the following goals for future versions:
 
 - [ ] Food transition calculator
 
@@ -24,3 +24,4 @@ This was a project I had a lot of fun with, and I could work on it forever! This
   - [ ] Show up to 3 types of treats
   - [ ] Calculate commercial pet treat amounts
 - [ ] Create dog and cat food and treat spreadsheets
+  - [ ] Allow users to pick their diet from a drop down that calls said spreadsheet's caloric information

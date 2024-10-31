@@ -12,10 +12,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Feature: Add subsections to README directory for easier reading.
 - Feature: Add links to README sections.
+- Added additional version goals.
 
 ### Changed
 
 - Improvement: Split README into sections depending on what topic was covered.
+- Improvement: Link to README subsections to main file.
 
 ## [2.0.0-beta] - 2024-09-03
 
