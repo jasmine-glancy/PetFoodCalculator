@@ -2,14 +2,13 @@
 
 # Contents
 
-- main
-- forms
-- calculate_food
-- find_food
-- helpers
-- HTML forms
-- Databases
-
+- [main](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#mainpy)
+- [forms](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#formspy)
+- [calculate_food](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#calculate_foodpy)
+- [find_info](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#find_infopy)
+- [helpers](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#find_infopy)
+- [HTML forms](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#find_infopy)
+- [Database](https://github.com/jasmine-glancy/PetFoodCalculator/blob/main/README_DIR/PROJECT_STRUCTURE_README.md#find_infopy)
 
 ## main.py
 
