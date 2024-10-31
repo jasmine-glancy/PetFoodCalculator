@@ -11,12 +11,6 @@ import os
 from nutrition_api import human_foods
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
-# Stick to 2 font types max, go for similar moods and time eras
-# # contrast the serif-ness and weights
-# Avoid Kristen, Comic Sans, Curlz, Viner, Papyrus
-# Reduce the number of font alignment points
-
 # Configure application
 app = Flask(__name__)
 
