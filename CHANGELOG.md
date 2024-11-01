@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
-## [2.0.2-beta] - 2024-10-31
+## [2.1.2-beta] - 2024-10-31
 
 ## Added
 
