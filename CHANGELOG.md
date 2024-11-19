@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.3-beta] - 2024-11-18
+
+## Added
+
+- Feature: Add a requirements.txt for easy start up
+
+## Fixed
+
+- Bug: Fixed quotation typo in main.py (#94)
+
 ## [2.1.2-beta] - 2024-10-31
 
 ## Added
