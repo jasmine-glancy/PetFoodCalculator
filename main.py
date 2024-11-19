@@ -91,7 +91,7 @@ def login():
             return redirect(url_for('login'))
         
         else:
-            flash(f"Logged in as {request.form.get("username")}!")
+            flash(f"Logged in as {request.form.get('username')}!")
             
             # Remember which user has logged in
             session["user_id"] = user_lookup[0]["id"]
