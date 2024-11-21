@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.4-beta] - 2024-11-21
+
+## Added
+
+- Feature: Add PROJECT_SETUP for a more detailed dependencies list
+- Feature: Added quick installation instructions with pip
+
+## Fixed
+
+- Refactor: Adjusted margins for the pet food bowl graphic on finished reports page
+
 ## [2.1.3-beta] - 2024-11-18
 
 ## Added

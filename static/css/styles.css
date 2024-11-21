@@ -66,7 +66,7 @@ h1 {
     }
 
     .fr_name {
-        top: 20px;
+        top: 5px;
         display:inline-block;
         width: 45%;
         word-wrap: break-word;
@@ -269,7 +269,7 @@ h1 {
 
         .sig_fr {
             text-align: center;
-            padding-bottom: 5vh;
+            padding-bottom: 2vh;
         }
 
     .transition {
