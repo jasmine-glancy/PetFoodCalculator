@@ -6,7 +6,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import re
 import pet_food_and_treats as pf
-import selenium as s
+import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -187,6 +187,8 @@ class JgWebScraper:
         # Find the product's form and verify species
         form_and_species = self.driver.find_element(By.XPATH, value=".//h2[@class='sc-bmzYkS cAMzIs' and @data-qa='product-category']")
         print(form_and_species.text)
+        
+        # TODO: Fix the "Unable to locate element" error 
 
         # Find the food's general life stage
         self.life_stage_id = pf.find_life_stage(self.food_name.text, form_and_species.text)
