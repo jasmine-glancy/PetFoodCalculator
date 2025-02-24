@@ -1,3 +1,27 @@
+/*OpenDyslexic normal font weight */
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url('/static/css/fonts/OpenDyslexic-Regular.eot'); 
+    src: url('/static/css/fonts/OpenDyslexic-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/static/css/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+         url('/static/css/fonts/OpenDyslexic-Regular.woff') format('woff'),
+         url('/static/css/fonts/OpenDyslexic-Regular.otf')  format('opentype');
+}
+
+/*OpenDyslexic bold font weight */
+
+@font-face {
+    font-family: "OpenDyslexicBold";
+    src: url('/static/css/fonts/OpenDyslexic-Bold.eot'); 
+    src: url('/static/css/fonts/OpenDyslexic-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/static/css/fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+         url('/static/css/fonts/OpenDyslexic-Bold.woff') format('woff'),
+         url('/static/css/fonts/OpenDyslexic-Bold.otf')  format('opentype');
+    font-style: bold;
+}
+
+
 :root {
     --white: #f1e4e9;
     --pale_white_green: #c6f1d3;
@@ -24,7 +48,13 @@ body {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+    font-family: "OpenDyslexic", "Arvo";
+    font-size: 2vh;
 }
+
+    p {
+        font-size: 3vh;
+    }
 
 h1 {
     color: var(--deep_blue_green);
@@ -41,7 +71,7 @@ h1 {
         margin-right: auto;
         text-align: center;
         font-style: bold;
-        font-family: "Arvo", serif;
+        font-family: "OpenDyslexicBold", "Arvo";
     }
 
     h2 {
@@ -291,6 +321,24 @@ h1 {
         margin-left: auto;
         margin-right: auto;
     }
+
+#species {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#pet_name {
+    width: 25vw;
+    margin-top: 10px;
+    height: 50px;
+    font-size: 20px;
+}
+
+#pet_breed, #sex {
+    font-size: 25px;
+}
+
 /* Links */
 a {
     color: var(--darker_lime);
@@ -422,11 +470,11 @@ a:hover {
     width: 75%;
     margin-bottom: 20px;
     background-color: var(--white);
-    font-family: "Dosis", sans-serif;
+    font-family: 'OpenDyslexic', 'Courier New';
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    font-size: 20px;
+    font-size: 50px;
     justify-content: space-between;
 
 }
@@ -517,7 +565,7 @@ a:hover {
 .flash {
     text-align: center;
     font-weight: 700;
-    color: #880F21;
+    color: var(--green_black);
 }
 
 /* Form formatting */
@@ -553,6 +601,7 @@ a:hover {
 
     .columned-form-label {
         padding-right: 1vw;
+        font-size: 23px;
     }
 
     #name {

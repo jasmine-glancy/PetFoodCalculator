@@ -16,7 +16,6 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
-                <!-- TODO: modify success messages CSS -->
                 <p class="flash"> {{ message }} </p>
             {% endfor %}
         {% endif %}

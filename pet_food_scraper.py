@@ -6,13 +6,13 @@ from datetime import datetime
 from dotenv import load_dotenv
 import re
 import pet_food_and_treats as pf
-import selenium
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-import selenium.common.exceptions as se
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+# import selenium
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.options import Options
+# import selenium.common.exceptions as se
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
 import time
 
 load_dotenv("D:/Python/EnvironmentVariables/.env")

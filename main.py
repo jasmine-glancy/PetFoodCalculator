@@ -44,6 +44,11 @@ def home():
         return render_template("index.html", user=username)
     return render_template("index.html")
 
+@app.route("/resources")
+def resources():
+    """A compilation of veterinary nutrition information for small animals"""
+    
+    return render_template("resource_list.html")
 
 @app.route("/calculate_new_pet")
 def new_pet_calc():
@@ -80,13 +85,12 @@ def login():
             "SELECT * FROM users WHERE username = ?", request.form.get("username")
         )
         
-        if user_lookup == None:
+        if not user_lookup:
             flash("Username not found.")
             return redirect(url_for('login'))
         
         # Ensure username exists and password is correct
-        elif not check_password_hash(user_lookup[0]["password"], 
-                                   request.form.get("password")):
+        elif not check_password_hash(user_lookup[0]["password"], request.form.get("password")):
             flash("Invalid password.")
             return redirect(url_for('login'))
         

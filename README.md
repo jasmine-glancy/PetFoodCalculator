@@ -13,6 +13,8 @@ When changing your pet from one food to another, it is important to do a slow tr
 
 Please email [jasmine.glancy.vt@gmail.com](mailto:jasmine.glancy.vt@gmail.com) or submit a pull request if you would like to contribute. I'd love to collaborate. Thank you for your consideration!
 
+OpenDyslexic font credit to [Abbie Gonzalez](https://github.com/antijingoist/opendyslexic)!
+
 ## Features
 
 - [X] Calculates Resting Energy Requirements (RER) and Daily Energy Requirements (DER) for dogs and cats

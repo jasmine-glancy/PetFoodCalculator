@@ -53,11 +53,13 @@
         <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('pet_info') }}">Pet Food Calculator</a></li>
         <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('finished_reports') }}">Completed Reports</a></li>
         <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('wip_reports') }}">In-Progress Reports</a></li>
+        <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('resources') }}">Resources</a></li>
       </ul>
     {% else %}
     <!--Visible tabs for guests-->
       <ul class="nav nav-tabs" id="tabList" role="tablist">
         <li><a class="nav-link" id="nav-home-tab" href="{{ url_for('home') }}">Home</a></li>
+        <li><a class="nav-link" id="nav-pets-tab" href="{{ url_for('resources') }}">Resources</a></li>
         <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('login') }}">Login</a></li>
         <li><a class="nav-link" id="nav-pfc-tab" href="{{ url_for('register') }}">Register</a></li>
       </ul>

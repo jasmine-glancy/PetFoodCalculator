@@ -8,7 +8,7 @@ This is my personal TODO list for the Pet Food Calculator.
 
 This was a project I had a lot of fun with, and I could work on it forever! I have the following goals for future versions:
 
-- [ ] Convert DB to MongoDB 
+- [ ] Convert DB to MongoDB
 - [ ] Reformat completed report page
   - [ ] Make SVGs more responsive
 - [ ] Recalculate food amounts for pets that have lost or gained weight based on the last recommendations
