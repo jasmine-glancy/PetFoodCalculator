@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.5-beta] - 2025-2-25
+
+## Added
+
+- UI: Add [OpenDyslexic](https://github.com/antijingoist/opendyslexic) font
+- Feature: Accordion for Worldwide and United States nutrition resources
+  - UI: Added link stylization and organization summary
+
+## Fixed
+
+- Refactor: Adjusted font size and placement on the page
+
+## Changed
+
+- Pathway: Add CHANGELOG.md to the README_DIR
+
 ## [2.1.4-beta] - 2024-11-21
 
 ## Added

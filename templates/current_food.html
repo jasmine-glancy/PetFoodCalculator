@@ -23,10 +23,10 @@
     <form action="{{ url_for('current_food', pet_id=pet_id) }}" method="POST">
         <div class="row">
             <div class="col" title="Current Food Calories">
-                {{ current_food.current_food_kcal.label }}
+                {{ current_food.current_food_kcal.label(class_="food_label") }}
             </div>
             <div class="col" title="Current Food Calorie Input">
-                {{ current_food.current_food_kcal }}
+                {{ current_food.current_food_kcal(class_="current_food_info") }}
             </div>
         </div>
         <div class="row">
@@ -36,18 +36,18 @@
         </div>
         <div class="row">
             <div class="col" title="Current Food Form">
-                {{ current_food.current_food_form.label }}
+                {{ current_food.current_food_form.label(class_="food_label") }}
             </div>
-            <div class="col" title="Current Food Form Dropdown">
-                {{ current_food.current_food_form }}
+            <div id="food_form_dropdown" class="col" title="Current Food Form Dropdown">
+                {{ current_food.current_food_form(class_="current_food_info") }}
             </div>
         </div>
         <div class="row">
             <div class="col" title="Meals Per Day">
-                {{ current_food.meals_per_day.label }}
+                {{ current_food.meals_per_day.label(class_="food_label") }}
             </div>
             <div class="col" title="Meals Per Day Input">
-                {{ current_food.meals_per_day }}
+                {{ current_food.meals_per_day(class_="current_food_info") }}
             </div>
         </div>
         <div class="row">

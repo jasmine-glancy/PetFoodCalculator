@@ -44,6 +44,7 @@
                                                 </div>
                                                 
                                                 <div class="sig_fr">
+                                                    
                                                     {% if pet.age_in_years == 0 and pet.age_in_months == 1 %}
                                                         {{ pet.age_in_months }} month old
                                                     {% elif pet.age_in_years == 0 and pet.age_in_months > 1 %}
@@ -61,17 +62,19 @@
                                                     {% elif pet.age_in_years > 1 and pet.age_in_months > 1 %}
                                                         {{ pet.age_in_years }} years {{ pet.age_in_months }} months old
                                                     {% endif %}
-                                                        
-                                                    {% if pet.sex == 1 %}
-                                                        Female (Intact)
-                                                    {% elif pet.sex == 2 %}
-                                                        Female (Spayed)
-                                                    {% elif pet.sex == 3 %}
-                                                        Male (Intact)
-                                                    {% elif pet.sex == 4 %}
-                                                        Male (Neutered)
-                                                    {% endif %}
-                                                    <br> 
+                                                    
+                                                    <div class="sig_sex">
+                                                        {% if pet.sex == 1 %}
+                                                            Female (Intact)
+                                                        {% elif pet.sex == 2 %}
+                                                            Female (Spayed)
+                                                        {% elif pet.sex == 3 %}
+                                                            Male (Intact)
+                                                        {% elif pet.sex == 4 %}
+                                                            Male (Neutered)
+                                                        {% endif %}
+                                                    </div>
+                                                    
                                                     {{ pet.breed }} ({{ pet.species }})
                                                 </div>   
                                                 

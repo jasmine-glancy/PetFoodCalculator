@@ -27,7 +27,7 @@
         <form method="POST" action="{{ url_for('human_foods.search_human_foods', pet_id=pet_id) }}">
             <div id="hf_form" class="form-group">
                 <label for="food_name" class="hf-form-label">Food name:</label>
-                <input type="text" id="name" name="food_name" class="hf_input" placeholder="Please type the name of a food to look up">
+                <input type="text" id="name" name="food_name" class="hf_input" placeholder="Enter a food to look up">
                 <input type="hidden" name="form_type" value="search">
                 <input type="submit" value="Search" id="hf_submit" class="btn btn-secondary btn-lg">
             </div>

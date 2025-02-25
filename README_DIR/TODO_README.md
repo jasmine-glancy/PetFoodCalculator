@@ -21,7 +21,6 @@ This was a project I had a lot of fun with, and I could work on it forever! I ha
   - [ ] Allow the user to upload several pictures of their pet (bird's eye, from the side, from the front) to attempt to determine the pet's body condition score
   - [ ] Program views the pet's photos and return recommended body condition scores with the option to allow the user to override the recommendations
 - [ ] Allow users to use the calculator without logging in
-- [ ] Integrate medical record software compatibility
 - [ ] Recommended treat types show in the final report
   - [ ] Show up to 3 types of treats
   - [ ] Calculate commercial pet treat amounts
