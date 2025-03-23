@@ -8,6 +8,9 @@ from forms import NewSignalment, GetWeight, ReproStatus, LoginForm, RegisterForm
 from find_info import FindInfo
 from helpers import clear_variable_list, login_required
 import os
+import pymongo
+from pymongo.server_api import ServerApi
+from urllib.parse import quote_plus
 from nutrition_api import human_foods
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -31,7 +34,8 @@ app.register_blueprint(human_foods)
 @app.route("/")
 def home():
     """Includes welcome and disclaimers along with login/register buttons"""
-    
+
+        
     user_id = session.get("user_id")
     if user_id:
         user = db.execute(
