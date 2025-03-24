@@ -80,6 +80,8 @@ h1 {
     color: var(--deep_blue_green);
     font-weight: 700;
     padding-bottom: 1vw;
+    width: 55%;
+    word-wrap: break-word;
 }
 
     h1, h2 {
@@ -691,6 +693,9 @@ a:hover {
     text-align: left !important;
     padding-left: 1vw;
 }
+    .form-label {
+        font-size: 25px;
+    }
 
     .hf-form-label {
         font-size: 30px;    

@@ -1,3 +1,5 @@
+#!/usr/bin/python313
+
 """Welcome to the Pet Food Calculator!"""
 
 from calculate_food import CalculateFood
@@ -8,9 +10,6 @@ from forms import NewSignalment, GetWeight, ReproStatus, LoginForm, RegisterForm
 from find_info import FindInfo
 from helpers import clear_variable_list, login_required
 import os
-import pymongo
-from pymongo.server_api import ServerApi
-from urllib.parse import quote_plus
 from nutrition_api import human_foods
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -23,7 +22,6 @@ Bootstrap(app)
 # Load environmental variables
 
 app.config['SECRET_KEY'] = os.environ.get('KEY')
-
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///pet_food_calculator.db")
