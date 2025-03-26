@@ -1,81 +1,71 @@
-{% extends 'base.html' %}
-
-{% block title %}Calculate Treat Amounts{% endblock %}
-0
+{% extends 'base.html' %} {% block title %}Calculate Treat Amounts{% endblock %}
 {% block content %}
 
-<div class="container-lg">
-    <h1>Calculate Treat Amounts</h1>
+<h1>Calculate Treat Amounts</h1>
 
-    <!-- Outputs error messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
-        {% endif %}
-    {% endwith %}
-    
-    <!-- Calculate treat amounts --> 
-    <div class="treat_container">
-        {% if pet_data and pet_data[0] and selected_food and treat_amounts %}
-            <table class="human_food_container">
-                <tr>
-                    <td class="human_food">
-                        You chose: {{ selected_food.food_name }} 
-                    </td>
-                    <td class="calorie_info">
-                        <div class="cal_text">
-                            {{ selected_food.num_calories }} calories {{ selected_food.serving_size_string|lower }}
-                        </div>
-                    </td>
-                </tr>
-            </table>
+<!-- Calculate treat amounts -->
+<div class="treat_container">
+  {% if pet_data and pet_data[0] and selected_food and treat_amounts %}
+  <table class="human_food_container">
+    <tr>
+      <td class="human_food">You chose: {{ selected_food.food_name }}</td>
+      <td class="calorie_info">
+        <div class="cal_text">
+          {{ selected_food.num_calories }} calories {{
+          selected_food.serving_size_string|lower }}
+        </div>
+      </td>
+    </tr>
+  </table>
 
-        <p>
-            {{ pet_data[0].name }} should receive no more than {{ max_treat_kcal }} calories from treats per day.  
-            This is {{ treat_amounts }} {{ serving_units }} of 
-            {{ selected_food.food_name|lower }}. 
-            
-        </p>
+  <p>
+    {{ pet_data[0].name }} should receive no more than {{ max_treat_kcal }}
+    calories from treats per day. This is {{ treat_amounts }} {{ serving_units
+    }} of {{ selected_food.food_name|lower }}.
+  </p>
 
-            {% if treat_amounts > 30 %}
-                <!-- If the pet can have a large amount (i.e. >1 cup) of 
+  {% if treat_amounts > 30 %}
+  <!-- If the pet can have a large amount (i.e. >1 cup) of 
                 a certain type of human food, provide disclaimers -->
 
-                <p>
-                    Please verify with {{ pet_data[0].name }}'s veterinarian
-                    that this amount and treat type is not expected to cause any health issues.
-                    For example, fatty meats may cause health issues such as 
-                    vomiting, diarrhea, or pancreatitis. 
-                </p>
+  <p>
+    Please verify with {{ pet_data[0].name }}'s veterinarian that this amount
+    and treat type is not expected to cause any health issues. For example,
+    fatty foods may cause health issues such as vomiting, diarrhea, or
+    pancreatitis.
+  </p>
 
-            {% endif %}
+  {% endif %}
 
-            <p>
-                Please be sure that there are no toxic ingredients
-                in the human foods you plan to feed {{ pet_data[0].name }}. For 
-                example, chocolate, onions, garlic, and xylitol/birch sugar (in low-sugar foods 
-                and even some peanut butters) are all toxic to dogs and cats. 
-            </p>
-        {% else %}
-            Pet data is not available.
+  <h2>
+    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+    WARNING!
+    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+  </h2>
 
-        {% endif %}
-    </div>
-    <div class="button-container">
-
-        <a href="{{ url_for('human_foods.search_human_foods', pet_id=pet_id) }}">
-            <button type="submit" id="search_hf_fr" class="btn btn-secondary btn-lg">Calculate Treat Amounts for Human Food</button>
-        </a>
-
-        <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
-        <div class="divider"></div>
-
-        <a href="{{ url_for('completed_report', pet_id=pet_id) }}">
-            <button type="submit" class="btn btn-secondary btn-lg">Go to Final Report</button>
-        </a>
-
-    </div>
-    
-
+  <p>
+    Please be sure that there are no toxic ingredients in the human foods you
+    plan to feed {{ pet_data[0].name }}. For example, chocolate, onions, garlic,
+    and xylitol/birch sugar (in low-sugar foods and even some peanut butters)
+    are all toxic to dogs and cats.
+  </p>
+  {% else %} Pet data is not available. {% endif %}
 </div>
+<div class="button-container">
+  <a href="{{ url_for('human_foods.search_human_foods', pet_id=pet_id) }}">
+    <button type="submit" id="search_hf_fr" class="btn btn-secondary btn-lg">
+      Calculate Treat Amounts for Human Food
+    </button>
+  </a>
+
+  <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
+  <div class="divider"></div>
+
+  <a href="{{ url_for('completed_report', pet_id=pet_id) }}">
+    <button type="submit" class="btn btn-secondary btn-lg">
+      Go to Final Report
+    </button>
+  </a>
+</div>
+
 {% endblock %}

@@ -4,135 +4,125 @@
 
 {% block content %}
 
-<div class="container-lg">
     <h1>Completed Reports</h1>
-
-    <!-- Load in Error messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
-        {% endif %}
-    {% endwith %}
 
     <!-- TODO v2: Cut vertical spacing and make more accessible, view spreadsheet format-->
     <!-- Load in completed reports --> 
-        <div class="row">
+    <div class="row">
 
-            {% if pet_list and pet_list.date_of_first_report != None %}
-                <table class="final_report_table">
-                    <tbody>
-                        {% for pet in pet_list %}
-                            {% if pet.date_of_first_report != None %}
-                                <tr class="table_info">
-                                    <td class="pet_table_info">
-                                        <div class="signalment_info">
-                                            <div class="name_and_paws">
-                                                {% if pet.species == "Canine" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/dogs/dog_paw.svg') }}" alt="A dog's pawprint" class="fr_paw">
-                                                {% elif pet.species == "Feline" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/cats/cat_paw.svg') }}" alt="A cat's pawprint" class="fr_paw">
+        {% if pet_list and pet_list.date_of_first_report != None %}
+            <table class="final_report_table">
+                <tbody>
+                    {% for pet in pet_list %}
+                        {% if pet.date_of_first_report != None %}
+                            <tr class="table_info">
+                                <td class="pet_table_info">
+                                    <div class="signalment_info">
+                                        <div class="name_and_paws">
+                                            {% if pet.species == "Canine" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/dogs/dog_paw.svg') }}" alt="A dog's pawprint" class="fr_paw">
+                                            {% elif pet.species == "Feline" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/cats/cat_paw.svg') }}" alt="A cat's pawprint" class="fr_paw">
+                                            {% endif %}
+
+                                            <h4>{{ pet.name }}</h4>
+
+                                            <!-- Pawprint SVG by RostoumArt on Etsy, https://www.etsy.com/shop/RostoumArt -->
+                                            {% if pet.species == "Canine" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/dogs/dog_paw.svg') }}" alt="A dog's pawprint" class="fr_paw">
+                                            {% elif pet.species == "Feline" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/cats/cat_paw.svg') }}" alt="A cat's pawprint" class="fr_paw">
+                                            {% endif %}
+                                            </div>
+                                            
+                                            <div class="sig_fr">
+                                                
+                                                {% if pet.age_in_years == 0 and pet.age_in_months == 1 %}
+                                                    {{ pet.age_in_months }} month old
+                                                {% elif pet.age_in_years == 0 and pet.age_in_months > 1 %}
+                                                    {{ pet.age_in_months }} months old
+                                                {% elif pet.age_in_years == 1 and pet.age_in_months == 0 %}
+                                                    {{ pet.age_in_years }} year old
+                                                {% elif pet.age_in_years == 1 and pet.age_in_months == 1 %}
+                                                    {{ pet.age_in_years }} year {{ pet.age_in_months }} month old
+                                                {% elif pet.age_in_years == 1 and pet.age_in_months > 1 %}
+                                                    {{ pet.age_in_years }} year {{ pet.age_in_months }} months old
+                                                {% elif pet.age_in_years > 1 and pet.age_in_months == 0 %}
+                                                    {{ pet.age_in_years }} years old
+                                                {% elif pet.age_in_years > 1 and pet.age_in_months == 1 %}
+                                                    {{ pet.age_in_years }} years {{ pet.age_in_months }} month old
+                                                {% elif pet.age_in_years > 1 and pet.age_in_months > 1 %}
+                                                    {{ pet.age_in_years }} years {{ pet.age_in_months }} months old
                                                 {% endif %}
-
-                                                <h4>{{ pet.name }}</h4>
-
-                                                <!-- Pawprint SVG by RostoumArt on Etsy, https://www.etsy.com/shop/RostoumArt -->
-                                                {% if pet.species == "Canine" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/dogs/dog_paw.svg') }}" alt="A dog's pawprint" class="fr_paw">
-                                                {% elif pet.species == "Feline" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/cats/cat_paw.svg') }}" alt="A cat's pawprint" class="fr_paw">
-                                                {% endif %}
+                                                
+                                                <div class="sig_sex">
+                                                    {% if pet.sex == 1 %}
+                                                        Female (Intact)
+                                                    {% elif pet.sex == 2 %}
+                                                        Female (Spayed)
+                                                    {% elif pet.sex == 3 %}
+                                                        Male (Intact)
+                                                    {% elif pet.sex == 4 %}
+                                                        Male (Neutered)
+                                                    {% endif %}
                                                 </div>
                                                 
-                                                <div class="sig_fr">
-                                                    
-                                                    {% if pet.age_in_years == 0 and pet.age_in_months == 1 %}
-                                                        {{ pet.age_in_months }} month old
-                                                    {% elif pet.age_in_years == 0 and pet.age_in_months > 1 %}
-                                                        {{ pet.age_in_months }} months old
-                                                    {% elif pet.age_in_years == 1 and pet.age_in_months == 0 %}
-                                                        {{ pet.age_in_years }} year old
-                                                    {% elif pet.age_in_years == 1 and pet.age_in_months == 1 %}
-                                                        {{ pet.age_in_years }} year {{ pet.age_in_months }} month old
-                                                    {% elif pet.age_in_years == 1 and pet.age_in_months > 1 %}
-                                                        {{ pet.age_in_years }} year {{ pet.age_in_months }} months old
-                                                    {% elif pet.age_in_years > 1 and pet.age_in_months == 0 %}
-                                                        {{ pet.age_in_years }} years old
-                                                    {% elif pet.age_in_years > 1 and pet.age_in_months == 1 %}
-                                                        {{ pet.age_in_years }} years {{ pet.age_in_months }} month old
-                                                    {% elif pet.age_in_years > 1 and pet.age_in_months > 1 %}
-                                                        {{ pet.age_in_years }} years {{ pet.age_in_months }} months old
-                                                    {% endif %}
-                                                    
-                                                    <div class="sig_sex">
-                                                        {% if pet.sex == 1 %}
-                                                            Female (Intact)
-                                                        {% elif pet.sex == 2 %}
-                                                            Female (Spayed)
-                                                        {% elif pet.sex == 3 %}
-                                                            Male (Intact)
-                                                        {% elif pet.sex == 4 %}
-                                                            Male (Neutered)
-                                                        {% endif %}
-                                                    </div>
-                                                    
-                                                    {{ pet.breed }} ({{ pet.species }})
-                                                </div>   
-                                                
-                                                <!-- Bowl SVG by RostoumArt on Etsy, https://www.etsy.com/shop/RostoumArt -->
+                                                {{ pet.breed }} ({{ pet.species }})
+                                            </div>   
+                                            
+                                            <!-- Bowl SVG by RostoumArt on Etsy, https://www.etsy.com/shop/RostoumArt -->
 
-                                                {% if pet.species == "Feline" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/food_bowl.svg') }}" alt="A bowl with a pawprint" class="fr_bowl">
-                                                {% elif pet.species == "Canine" %}
-                                                    <img src="{{ url_for('static', filename='assets/svg/dog_food_bowl.svg') }}" alt="A bowl with a bone" class="fr_bowl">
-                                                {% endif %}
-                                            </div>
+                                            {% if pet.species == "Feline" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/food_bowl.svg') }}" alt="A bowl with a pawprint" class="fr_bowl">
+                                            {% elif pet.species == "Canine" %}
+                                                <img src="{{ url_for('static', filename='assets/svg/dog_food_bowl.svg') }}" alt="A bowl with a bone" class="fr_bowl">
+                                            {% endif %}
                                         </div>
-                                    </td>
-                                    <td class="button_table_info">
-                                        <div class="button-container-fr">
-                                            <a href="{{ url_for('completed_report', pet_id=pet.pet_id) }}">
-                                                <button type="button" class="btn btn-secondary btn-sm">Go to Pet's Final Report</button>
-                                            </a> 
-                                        
-                                            <!-- Add modify capability -->
-                                            <a href="{{ url_for('edit_info', pet_id=pet.pet_id) }}">   
-                                                <button type="button" class="btn btn-secondary btn-sm">Modify Report</button>
-                                            </a>
+                                    </div>
+                                </td>
+                                <td class="button_table_info">
+                                    <div class="button-container-fr">
+                                        <a href="{{ url_for('completed_report', pet_id=pet.pet_id) }}">
+                                            <button type="button" class="btn btn-secondary btn-sm">Go to Pet's Final Report</button>
+                                        </a> 
+                                    
+                                        <!-- Add modify capability -->
+                                        <a href="{{ url_for('edit_info', pet_id=pet.pet_id) }}">   
+                                            <button type="button" class="btn btn-secondary btn-sm">Modify Report</button>
+                                        </a>
 
-                                            <a href="{{ url_for('human_foods.search_human_foods', pet_id=pet.pet_id) }}">   
-                                                <button type="button" class="btn btn-secondary btn-sm">Calculate Human Food Amounts</button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
+                                        <a href="{{ url_for('human_foods.search_human_foods', pet_id=pet.pet_id) }}">   
+                                            <button type="button" class="btn btn-secondary btn-sm">Calculate Human Food Amounts</button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
 
-                <h4>
-                    No reports have been completed yet. 
-                    They will show up here after you use 
-                    the pet food calculator!
-                </h4>
+            <h4>
+                No reports have been completed yet. 
+                They will show up here after you use 
+                the pet food calculator!
+            </h4>
 
-                <!-- SVGs credited to SVG repo via https://www.svgrepo.com/-->
-                <div class="img_container">
-                    <img src="{{ url_for('static', filename="assets/svg/cats/general_cat.svg")}}"
-                    alt="A cat lounging"
-                    class="general_pet_svg">
+            <!-- SVGs credited to SVG repo via https://www.svgrepo.com/-->
+            <div class="img_container">
+                <img src="{{ url_for('static', filename="assets/svg/cats/general_cat.svg")}}"
+                alt="A cat lounging"
+                class="general_pet_svg">
 
-                    <div class="smaller_divider"></div>
+                <div class="smaller_divider"></div>
 
-                    <img src="{{ url_for('static', filename="assets/svg/dogs/general_dog.svg")}}"
-                    alt="A dog sitting"
-                    class="general_pet_svg">
-                </div>
-            
-            {% endif %}
-        </div>
-    
+                <img src="{{ url_for('static', filename="assets/svg/dogs/general_dog.svg")}}"
+                alt="A dog sitting"
+                class="general_pet_svg">
+            </div>
+        
+        {% endif %}
+    </div>
 
-</div>
 {% endblock %}

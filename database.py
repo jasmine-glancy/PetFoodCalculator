@@ -18,3 +18,4 @@ try:
     client.close()
 except Exception as e:
     print(e)
+    

@@ -5,7 +5,6 @@
 
 {% block content %}
 
-<div class="container-lg">
     <h1>Part 5: Confirm Pet Info</h1>
 
     <!-- Progress bar -->
@@ -166,7 +165,7 @@
                     </a>
                 </td>
                 <td>
-                    {{ pet_data[0].weight }} {{ pet_data[0].units }} ({{ pet_data[0].converted_weight }} {{ pet_data[0].converted_weight_units }} )
+                    {{ pet_data[0].weight }} {{ pet_data[0].units }} ({{ pet_data[0].converted_weight }} {{ pet_data[0].converted_weight_units }})
 
                     <a href="{{ url_for('pet_condition', pet_id=pet_id) }}">
                         <button type="button" class="btn btn-secondary btn-sm">Edit</button>
@@ -292,6 +291,5 @@
             <button type="button" class="btn btn-secondary btn-lg">Go to Part 4: Current Food</button>
         </a>    
     </div>
-</div>
 
 {% endblock %}

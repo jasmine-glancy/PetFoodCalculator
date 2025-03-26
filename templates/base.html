@@ -76,11 +76,25 @@
 
   </head>
   <body>
-    {% block content %}
-    
+    <div class="container-lg">
+        <!-- Outputs error messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p class="flash">
+                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+                    {{ messages[-1] }}
+                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+                </p>
+            {% endif %}
+        {% endwith %}
+  
+        
+      {% block content %}
 
-    
-    {% endblock %}
+
+
+      {% endblock %}
+    </div>
 
   </body>
 </html>

@@ -6,7 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
-## [2.1.6-beta] - 2025-2-25
+## [2.1.7-beta] - 2025-3-25
+
+## Added
+
+- Feature: Added custom warning SVGs from SVG Repo to replace the warning emojis
+
+## Fix
+
+- Refactor: Adjusted formatting for HTML documents
+
+## Changed
+
+- UI: Added headings to RER page
+
+## [2.1.6-beta] - 2025-3-22
 
 ## Added
 
@@ -16,7 +30,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - UI: Adjust label size for login and register
   
-
 ## [2.1.5-beta] - 2025-2-25
 
 ## Added

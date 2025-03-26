@@ -1,66 +1,94 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block title %}Welcome{% endblock %} {% block
+content %}
+<h1>Nutrition Resources</h1>
 
-{% block title %}Welcome{% endblock %}
+<p>
+  In a world full of information, it's easy to get lost in the weeds. We've
+  compiled a list of resources to help guide you on your journey to
+  understanding your pet's needs better.
+</p>
 
-{% block content %}
-    <div class="container-lg">
-        <h1>Nutrition Resources</h1>
-        
-        <p>
-            In a world full of information, it's easy to get lost in the weeds. 
-            We've compiled a list of resources to help guide you on your journey 
-            to understanding your pet's needs better. 
-
-        </p>
-
-        <div class="accordion" id="ResourceAccordion">
-            <div class="resource-accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" id="resource-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Worldwide
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#ResourceAccordion">
-                <div class="accordion-body">
-                    <a href="https://wsava.org/global-guidelines/global-nutrition-guidelines/" title="World Small Animal Veterinary Association">
-                        World Small Animal Veterinary Association
-                    </a>
-                    <div class="resource_paragraph">
-                        Sets the standard for veterinary nutrition guidelines throughout the world.
-                        Their goal is to advance the health and welfare of companion animals.
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="resource-accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed"  id="resource-accordion-us" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  United States
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#ResourceAccordion">
-                <div class="accordion-body">
-                  <a href="https://www.aafco.org/" 
-                    title="American Feed Control Officials Homepage">
-                      American Feed Control Officials
-                  </a>
-                  <div class="resource_paragraph">
-                      An independant organization that guides state, federal, and international 
-                      standards for pet food and livestock feed. 
-                  </div>
-                  <a href="https://sites.tufts.edu/petfoodology/2023/06/21/whats-in-a-name-what-is-a-board-certified-veterinary-nutritionist-and-why-does-it-matter/" 
-                  title="What is a Board Certified Veterinary Nutritionist?">
-                      What is a Board Certified Veterinary Nutritionist?
-                  </a>
-                  <div class="resource_paragraph">
-                      Petfoodology is a blog run by the Nutrition Department of Tufts Cummings School of
-                      Veterinary Medicine. This article discusses what a Board Certified Veterinary Nutritionist 
-                      is, why they are important, and how you can find one.
-                  </div>                       
-                </div>
-              </div>
-            </div>
-            
-          </div>
+<div class="accordion" id="ResourceAccordion">
+  <div class="resource-accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        id="resource-accordion"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Worldwide
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingOne"
+      data-bs-parent="#ResourceAccordion"
+    >
+      <div class="accordion-body">
+        <a
+          href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
+          title="World Small Animal Veterinary Association"
+        >
+          World Small Animal Veterinary Association
+        </a>
+        <div class="resource_paragraph">
+          Sets the standard for veterinary nutrition guidelines throughout the
+          world. Their goal is to advance the health and welfare of companion
+          animals.
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="resource-accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button
+        class="accordion-button collapsed"
+        id="resource-accordion-us"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        United States
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#ResourceAccordion"
+    >
+      <div class="accordion-body">
+        <a
+          href="https://www.aafco.org/"
+          title="American Feed Control Officials Homepage"
+        >
+          American Feed Control Officials
+        </a>
+        <div class="resource_paragraph">
+          An independant organization that guides state, federal, and
+          international standards for pet food and livestock feed.
+        </div>
+        <a
+          href="https://sites.tufts.edu/petfoodology/2023/06/21/whats-in-a-name-what-is-a-board-certified-veterinary-nutritionist-and-why-does-it-matter/"
+          title="What is a Board Certified Veterinary Nutritionist?"
+        >
+          What is a Board Certified Veterinary Nutritionist?
+        </a>
+        <div class="resource_paragraph">
+          Petfoodology is a blog run by the Nutrition Department of Tufts
+          Cummings School of Veterinary Medicine. This article discusses what a
+          Board Certified Veterinary Nutritionist is, why they are important,
+          and how you can find one.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

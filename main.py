@@ -97,12 +97,13 @@ def login():
             return redirect(url_for('login'))
         
         else:
-            flash(f"Logged in as {request.form.get('username')}!")
             
+            username = request.form.get('username')
+                        
             # Remember which user has logged in
             session["user_id"] = user_lookup[0]["id"]
     
-        return render_template("index.html")
+        return render_template("index.html", user=username)
         
     
     return render_template("login.html", form=form)

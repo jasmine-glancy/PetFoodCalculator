@@ -5,7 +5,6 @@
 
 {% block content %}
 
-<div class="container-lg">
     <h1>Part 4: Activity Level</h1>
 
     <!-- Progress bar -->
@@ -16,14 +15,7 @@
     
     <!-- Load in WTF Form --> 
     <form action="{{ url_for('activity', pet_id=pet_id) }}" method="POST" >
-        <!-- Outputs error messages -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for error in messages %}
-                    <p class="flash">⚠️ {{ error }} ⚠️</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+
         <div class="row">
             <p>
                 Please categorize your pet's activity below. Examples of light activity 
@@ -81,6 +73,5 @@
             <button type="submit" class="btn btn-secondary btn-lg">Go to Part 5: Confirm Pet Information</button>
         </div>
     </form>
-</div>
 
 {% endblock %}

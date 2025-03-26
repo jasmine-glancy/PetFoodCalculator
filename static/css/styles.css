@@ -130,6 +130,10 @@ h1 {
     margin: 2px;
 }
 
+.warning {
+    width: 5%;
+}
+
 /* Tables */
 .table {
     font-size: 14.5px;
@@ -579,6 +583,10 @@ a:hover {
     .accordion-button {
         --bs-accordion-active-color: var(--darker_lime_transparent); 
         padding-left: 2vw;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: var(--lighter_white_green);
     }
 
     .accordion-body a {

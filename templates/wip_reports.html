@@ -1,18 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}Incomplete Reports{% endblock %}
-0
+
 {% block content %}
-
-<div class="container-lg">
     <h1>Incomplete Reports</h1>
-
-    <!-- Load in Error messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
-        {% endif %}
-    {% endwith %}
 
     <!-- Load in completed reports --> 
     <form action="/wip_reports" method="POST">
@@ -198,6 +189,4 @@
         </div>
     </form>
     
-
-</div>
 {% endblock %}

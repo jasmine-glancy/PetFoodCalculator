@@ -5,20 +5,12 @@
 
 {% block content %}
 
-<div class="container-lg">
     <h1>Part 3: Pet Weight and Body Condition Score</h1>
 
     <!-- Progress bar -->
     <div class="progress" id="progress_with_text" role="progressbar" aria-label="bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-bar" style="width: 33%">33%</div>
     </div>
-    
-    <!-- Load in Error messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <p class="flash">⚠️ {{ messages[-1] }} ⚠️</p>
-        {% endif %}
-    {% endwith %}
         
     <!-- Information about BCS --> 
     <p>
@@ -42,7 +34,7 @@
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Canine Body Condition Scores (Click to Show/Hide)
                     </button>
-                </h5>
+                </h3>
             </div>
               
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -75,7 +67,6 @@
                                         Some muscle loss can be felt and/or seen (on short-haired dogs) over bony
                                         areas such as the spine, ribs, head, and thigh bones.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -91,7 +82,6 @@
                                         <span class="tiny_padding"> </span>
                                         There is a waist with a belly tuck.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         <tr>
@@ -107,7 +97,6 @@
                                         There is a waist with a belly tuck. The waist is easily seen when
                                         looking down from above your dog.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -134,7 +123,6 @@
                                         There is a belly tuck and a small waist when viewed from above.
                                         <span class="tiny_padding"> </span>
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -151,7 +139,6 @@
                                         The belly tuck and waist may be absent or barely visible.
                                         <span class="tiny_padding"> </span>
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -165,7 +152,6 @@
                                         <span class="tiny_padding"> </span>
                                         There is no belly tuck or waist. The belly may look distended.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -180,7 +166,6 @@
                                         <span class="tiny_padding"> </span>
                                         There is no belly tuck or waist. The belly is distended.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -224,7 +209,6 @@
                                         Minimal muscle mass over the spine. You don't feel any fat on the ribs or spine. 
                                         Pronounced belly tuck. 
                                         <span class="tiny_padding"> </span>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -239,7 +223,6 @@
                                         There is minimal belly fat.
                                         <span class="tiny_padding"> </span>
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         <tr>
@@ -255,7 +238,6 @@
                                         <span class="tiny_padding"> </span>
                                         Abdominal fat pad absent.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -284,7 +266,6 @@
                                         <span class="tiny_padding"> </span>
                                         Abdominal tuck absent.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -300,7 +281,6 @@
                                         <span class="tiny_padding"> </span>
                                         Moderate abdominal fat pad.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -315,7 +295,6 @@
                                         Fat deposits are seen over the back.
                                         <span class="tiny_padding"> </span>
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -329,7 +308,6 @@
                                         <span class="tiny_padding"> </span>
                                         Heavy fat deposits are seen over the back, face and limbs.
                                     </p>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -377,5 +355,4 @@
             {% endif %}
         </div>
     </form>
-</div>
 {% endblock %}
