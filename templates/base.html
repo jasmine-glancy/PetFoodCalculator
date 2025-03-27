@@ -73,7 +73,8 @@
       <div class="tab-pane fade" id="nav-pets" role="tabpanel" aria-labelledby="nav-pets-tab" tabindex="0">...</div>
     </div>
 
-
+    <!-- Insert Javascript -->
+     <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
   </head>
   <body>
     <div class="container-lg">
@@ -81,9 +82,9 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <p class="flash">
-                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" alt="!" />
                     {{ messages[-1] }}
-                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" />
+                    <img src="{{ url_for('static', filename='assets/svg/warning.svg') }}" class="warning" alt="!" />
                 </p>
             {% endif %}
         {% endwith %}

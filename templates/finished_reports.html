@@ -8,14 +8,15 @@
 
     <!-- TODO v2: Cut vertical spacing and make more accessible, view spreadsheet format-->
     <!-- Load in completed reports --> 
-    <div class="row">
 
+    <div class="row">
         {% if pet_list and pet_list.date_of_first_report != None %}
             <table class="final_report_table">
                 <tbody>
                     {% for pet in pet_list %}
                         {% if pet.date_of_first_report != None %}
-                            <tr class="table_info">
+                        
+                            <tr class="table_info {% if loop.index0 % 2 == 0 %}even-row{% else %}odd-row{% endif %}">
                                 <td class="pet_table_info">
                                     <div class="signalment_info">
                                         <div class="name_and_paws">
@@ -97,6 +98,7 @@
                                     </div>
                                 </td>
                             </tr>
+
                         {% endif %}
                     {% endfor %}
                 </tbody>
@@ -123,6 +125,10 @@
             </div>
         
         {% endif %}
+        <button onclick="scrollToTop()" id="top" title="Go to Top">
+            <img src="{{ url_for('static', filename='assets/svg/arrow.svg') }}" class="arrow" alt="^"/>
+        </button>
+
     </div>
 
 {% endblock %}

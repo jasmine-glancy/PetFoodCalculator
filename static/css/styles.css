@@ -262,13 +262,17 @@ h1 {
             max-width: fit-content;
         }
         
-        .even-row {
+        .even-row, .table_info.even-row {
             background-color: var(--pale_white_green);
         }
 
         .odd-row {
             background-color: var(--lighter_white_green);
         }
+
+            .table_info.odd-row {
+                background-color: var(--white);
+            }
         
         .food_name {
             font-weight: 500;
@@ -284,6 +288,7 @@ h1 {
 
     .table_info {
         height: 200px;
+        border-bottom: 2px solid #568b3f50;
     }
 
     .pet_table_info {
@@ -305,6 +310,7 @@ h1 {
         flex-direction: row;
         margin-left: auto;
         margin-right: auto;
+        padding-top: 5%;
     }
 
     .age_sex_breed {
@@ -333,6 +339,7 @@ h1 {
             text-wrap: 500px;
             padding-bottom: 2vh;
             line-height: normal;
+            padding-left: 2%;
         }
 
     .transition {
@@ -445,6 +452,7 @@ a:hover {
 
         .button-container-fr {
             padding-bottom: 3vh;
+            padding-right: 2%;
         }
     
         .button-container-fp {
@@ -1009,6 +1017,7 @@ a:hover {
     width: 75px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 2%;
 }
 
     .fr_paw {
@@ -1154,3 +1163,27 @@ Lukas Web Development (https://www.youtube.com/watch?v=QwE_M2P3CRk) */
     padding-left: 60px;
     padding-right: 45px;
 }
+
+#top {
+    position: fixed;
+    width: 5%;
+    bottom: 5vh;
+    right: 5vw;
+    z-index: 99;
+    border: none;
+    outline: none;
+    color: var(--white);
+    background-color: var(--green_black);
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+    #top .arrow {
+        width: 50%;
+    }
+
+    #top:hover {
+        background-color: var(--deep_blue_green);
+    }

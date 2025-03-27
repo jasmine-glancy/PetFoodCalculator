@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Added
 
 - Feature: Added custom warning SVGs from SVG Repo to replace the warning emojis
+- Feature: Added scroll button to Pet Weight & Body Condition Score, RER, Completed Reports, Final Report, and Nutrition Resources pages
 
 ## Fix
 
@@ -19,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Changed
 
 - UI: Added headings to RER page
+- UI: Added different row colors for completed reports
 
 ## [2.1.6-beta] - 2025-3-22
 

@@ -1612,7 +1612,7 @@ def completed_report():
         print(f"Couldn't find ID, Exception: {e}")
     
             
-    print(f"user_id: {session['user_id']}, pet_id: {id}")     
+    # print(f"user_id: {session['user_id']}, pet_id: {id}")     
 
         
     pet_data = fi.pet_data_dictionary(session["user_id"], pet_id)
@@ -1620,16 +1620,16 @@ def completed_report():
     rer = int(pet_data[0]["rer"])
     der = pet_data[0]["der"]
         
-    print(der)
+    # print(der)
     object_pronoun = fi.find_pronouns(pet_data[0]["sex"])["object_pronoun"]
     subject_pronoun = fi.find_pronouns(pet_data[0]["sex"])["subject_pronoun"]
     possessive_pronoun = fi.find_pronouns(pet_data[0]["sex"])["possessive_pronoun"]
             
-    print(object_pronoun, subject_pronoun, possessive_pronoun)
+    # print(object_pronoun, subject_pronoun, possessive_pronoun)
         
     # Find breed ID
     breed_id = fi.find_breed_id()
-    print(breed_id)
+    # print(breed_id)
         
 
     # Find life stage, notes, and SVGs
@@ -1655,7 +1655,7 @@ def completed_report():
                 "SELECT life_stage, notes FROM feline_der_factors WHERE factor_id = ?",
                 pet_data[0]["feline_der_factor_id"]
             )
-    print(svg)                
+    # print(svg)                
     if life_stage_search:
         life_stage = life_stage_search[0]["life_stage"]
         notes = life_stage_search[0]["notes"]
@@ -1681,7 +1681,7 @@ def completed_report():
         der_low_end = float(fi.find_der_low_end(pet_data[0]["species"], pet_data[0]["canine_der_factor_id"]) * pet_data[0]["rer"])
         der_high_end = float(fi.find_der_high_end(pet_data[0]["species"], pet_data[0]["canine_der_factor_id"]) * pet_data[0]["rer"])
         
-        print(der_low_end, der_high_end)
+        # print(der_low_end, der_high_end)
     elif pet_data[0]["species"] == "Feline":
         
         # Find expected breed size
@@ -1696,128 +1696,11 @@ def completed_report():
             
         der_low_end = float(fi.find_der_low_end(pet_data[0]["species"], pet_data[0]["feline_der_factor_id"]))
         der_high_end = float(fi.find_der_high_end(pet_data[0]["species"], pet_data[0]["feline_der_factor_id"]))
-    print(f"Breed size category: {breed_size_category}")
+    # print(f"Breed size category: {breed_size_category}")
     # Convert to int for easier reading
-    der_low_end, der_high_end = int(der_low_end), int(der_high_end)
+    der_low_end, der_high_end = int(der_low_end), int(der_high_end) 
     
-    # Begin food transition table for pets switching their diet or who eat multiple diets a day
-    # cf = CalculateFood(session["user_id"], id)
-    # transitioning_food_amts_rec = cf.transition_food_calculator(pet_data[0]["der"])
-    # transitioning_food_amts_rec = None
-    # if pet_data[0]["transitioning_food_one_kcal"] != None:
-    #     cf = CalculateFood(session["user_id"], id)
-    #         # Loop over each day in transition period and calculate based on DER and percent of food feed
-
-    #     transitioning_food_amts_rec = cf.transition_food_calculator(pet_data[0]["der"])
-    #     print(transitioning_food_amts_rec)
-        # for day in trans_percents:
-        #     day_label = f"Day {day}"
-
-        #     old_food_total = (old_food_amt * trans_percents[day]["Old Food"]) / pet_data[0]["meals_per_day"]
-        #     old_food_whole_cans_or_cups = str(old_food_total).split(".")[0]
-        #     old_food_partial_amount = str(old_food_total).split(".")[1]
-
-        #     # Convert old food partial amount to volumetric
-        #     old_partial_volumetric = cf.convert_decimal_to_volumetric(old_food_partial_amount)
-        #     old_food_whole_cans_or_cups = int(old_food_whole_cans_or_cups)
-
-        #     is_pouch = cur_food_form == "pouch"
-        #     old_is_half_tablespoon = old_partial_volumetric == "1/2 tablespoon"
-        #     old_food_form_plural = f"{cur_food_form}{'es' if is_pouch else 's'}"
-
-        #     if old_partial_volumetric == "1":
-        #         # If partial volume is more than 0.86 cups add to whole volume
-        #         old_food_whole_cans_or_cups += 1
-        #         old_partial_volumetric = "0"
-
-        #     if old_food_whole_cans_or_cups == 1:
-        #         if old_is_half_tablespoon and old_partial_volumetric != "0":
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
-        #         elif not old_is_half_tablespoon and old_partial_volumetric != "0":
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
-        #         else:
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
-        #     elif old_food_whole_cans_or_cups >= 1:
-        #         if old_is_half_tablespoon and old_food_whole_cans_or_cups != "0":
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
-        #         elif not old_is_half_tablespoon and old_partial_volumetric != "0":
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
-        #         else:
-        #             old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
-        #     elif old_food_whole_cans_or_cups == 0 and old_partial_volumetric != "0":
-        #         if old_is_half_tablespoon:
-        #             old_food_amt_rec = f"{old_partial_volumetric}"
-        #         else:
-        #             old_food_amt_rec = f"{old_partial_volumetric} {cur_food_form}"
-        #     else:
-        #         # Under 1 whole can or cup amount
-        #         old_food_amt_rec = f"{old_partial_volumetric}"
-
-
-        #     # Suggested by CoPilot      
-        #     if old_food_amt_rec.startswith("0 and "):
-        #         old_food_amt_rec = old_food_amt_rec.replace("0 and ", "")
-        #     elif old_food_amt_rec.endswith(" and 0"):
-        #         old_food_amt_rec = old_food_amt_rec.replace(" and 0", "")
-
-
-        #     new_food_total = (new_food_amt * trans_percents[day]["New Food"]) / pet_data[0]["meals_per_day"]
-        #     new_food_whole_cans_or_cups = str(new_food_total).split(".")[0]
-        #     new_food_partial_amount = str(new_food_total).split(".")[1]
-
-        #     # Convert new food partial amount to volumetric
-        #     new_partial_volumetric = cf.convert_decimal_to_volumetric(new_food_partial_amount)
-        #     new_is_pouch = new_food_form == "pouch"
-        #     new_is_half_tablespoon = new_partial_volumetric == "1/2 tablespoon"
-        #     new_food_form_plural = f"{new_food_form}{'es' if new_is_pouch else 's'}"
-        #     new_food_whole_cans_or_cups = int(new_food_whole_cans_or_cups)
-
-        #     if new_partial_volumetric == "1":
-        #         # If partial volume is more than 0.86 cups add to whole volume
-        #         new_food_whole_cans_or_cups += 1
-        #         new_partial_volumetric = "0"
-
-        #     if new_food_whole_cans_or_cups == 1:
-        #         if new_is_half_tablespoon and new_partial_volumetric != "0":
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form} and {new_partial_volumetric}"
-        #         elif not new_is_half_tablespoon and new_partial_volumetric != "0":
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form}"
-        #         else:
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form}"
-        #     elif new_food_whole_cans_or_cups >= 1:
-        #         if new_is_half_tablespoon and new_partial_volumetric != "0":
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural} and {new_partial_volumetric}"
-        #         elif not new_is_half_tablespoon and new_partial_volumetric != "0":
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form_plural}"
-        #         else:
-        #             new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural}"
-        #     elif new_food_whole_cans_or_cups == 0 and new_partial_volumetric != "0":
-        #         if new_is_half_tablespoon:
-        #             new_food_amt_rec = f"{new_partial_volumetric}"
-        #         else:
-        #             new_food_amt_rec = f"{new_partial_volumetric} {new_food_form_plural}"
-        #     else:
-        #         # Under 1 whole can or cup amount
-        #         new_food_amt_rec = f"{new_partial_volumetric}"
-
-        #     # Suggested by CoPilot      
-        #     if new_food_amt_rec.startswith("0 and "):
-        #         new_food_amt_rec = new_food_amt_rec.replace("0 and ", "")
-        #     elif new_food_amt_rec.endswith(" and 0"):
-        #         new_food_amt_rec = new_food_amt_rec.replace(" and 0", "")
-
-            # transitioning_food_amts_rec[day_label] = {f"Old Food {int(trans_percents[day]['Old Food'] * 100)}%": old_food_amt_rec, 
-            #                                           f"New Food {int(trans_percents[day]['New Food'] * 100)}%": new_food_amt_rec}
-
-        # print(transitioning_food_amts_rec)
-
-        # for day in transitioning_food_amts_rec:
-        #     if day.startswith("Old Food"):
-        #     print(day, day["Old Food"], day["New Food")
-
-    # print(transitioning_food_amts_rec)    
-    
-    print(type(pet_data[0]["bcs"]))
+    # print(type(pet_data[0]["bcs"]))
     return render_template("complete_report.html",
                             pet_data=pet_data,
                             rer=rer,

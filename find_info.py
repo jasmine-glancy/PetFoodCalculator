@@ -215,7 +215,7 @@ class FindInfo():
                     user=user_id
                 )
             
-                print(pet_list)
+                # print(pet_list)
             except Exception as e:
                 flash(f"Couldn't find pet list. Exception: {e}")
         
