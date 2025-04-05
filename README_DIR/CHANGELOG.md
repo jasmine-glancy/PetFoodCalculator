@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.8-beta] - 2025-4-4
+
+## Added
+
+- Feature: Added new_food routing and setup
+
 ## [2.1.7-beta] - 2025-3-25
 
 ## Added

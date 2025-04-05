@@ -1226,6 +1226,8 @@ def current_food():
             session["current_food_form"] = int(current_food_form)
                 
 
+            # TODO: If the user wants a diet transition or to feed two different diets, redirect to new_food
+            
             # If user doesn't want a transition, calculate RER
             return redirect(url_for('rer', pet_id=pet_id))
         
@@ -1769,4 +1771,11 @@ def wip_reports():
     return render_template("wip_reports.html", wip_reports=wip_reports)
 
 
+@app.route("/new_food")
+@login_required
+def new_food():
+    """If the user wants to transition their pet to a new food or feed two diets, redirect to this page"""
     
+    pet_id = request.args.get('pet_id', type=int)
+    
+    return render_template("new_food.html", pet_id=pet_id)
