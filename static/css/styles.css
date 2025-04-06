@@ -80,7 +80,7 @@ h1 {
     color: var(--deep_blue_green);
     font-weight: 700;
     padding-bottom: 1vw;
-    width: 55%;
+    width: 80%;
     word-wrap: break-word;
 }
 
@@ -428,6 +428,19 @@ a:hover {
         --bs-btn-active-border-color: var(--darker_lime_transparent);
         --bs-btn-hover-bg: var(--darker_lime_transparent);
         --bs-btn-hover-border-bg: var(--darker_lime_transparent);
+    }
+
+    .button-homepage, .button-homepage-logged-in {
+        display: flex;
+    }
+
+    .button-homepage {
+        gap: 60%;
+        padding-left: 2%;
+    }
+
+    .button-homepage-logged-in {
+        gap: 5%;
     }
 
     #treat_calc {
