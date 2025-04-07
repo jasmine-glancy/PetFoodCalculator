@@ -509,14 +509,15 @@ a:hover {
     --bs-progress-bg: var(--pale_white_green);
     --bs-progress-bar-bg: var(--darker_lime_transparent);
     margin: 20px;
-    height: 3vh;
+    height: 5vh;
     margin: 2vh 3vh 3vh 2vh;
 }
 
     .progress-bar {
         color: var(--deep_blue_green);
         font-weight: 700;
-        font-size: 25px;
+        font-size: 20px;
+        padding: 1vh 0.25vh;
     }
 
 .header-img {
