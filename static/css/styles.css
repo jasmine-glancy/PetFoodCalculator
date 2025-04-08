@@ -617,7 +617,7 @@ a:hover {
         
     }
 
-        .accordion-body, .resource_paragraph {
+        .accordion-body {
             font-size: 30px;
         }
 
@@ -626,6 +626,7 @@ a:hover {
         }
 
         .resource_paragraph {
+            font-size: 20px;
             padding: 2vh 3vw;
             align-items: justify;
         }
