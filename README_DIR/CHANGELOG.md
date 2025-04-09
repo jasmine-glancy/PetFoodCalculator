@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.8-beta] - 2025-4-8
+
+## Added
+
+- Feature: WIP food transition calculator route logic
+  
 ## [2.1.8-beta] - 2025-4-4
 
 ## Added

@@ -110,147 +110,147 @@ class CalculateFood():
             
         return self.partial_volumetric
     
-    # def transition_food_calculator(self, der):
-    #     """Calculate how much of each food is needed if a pet is going to transition to a new food"""
+    def transition_food_calculator(self, der):
+        """Calculate how much of each food is needed if a pet is going to transition to a new food"""
         
-    #     if self.pet_data[0]["sensitive_stomach"] == "y":
-    #         # If pet has a sensitive stomach, transition over 10-14 days
-    #         trans_percents = {1: 0.05, 2: 0.15, 3: 0.25, 4: 0.30, 5: 0.40, 6: 0.45,
-    #                           7: 0.50, 8: 0.55, 9: 0.60, 10: 0.65, 11: 0.75, 12: 0.85,
-    #                           13: 0.95, 14: 1}
-    #     else:
-    #         # Otherwise, transition over 5-7 days
-    #         trans_percents = {1: 0.25, 2: 0.375, 3: 0.50, 4: 0.625, 
-    #                           5: 0.75, 6: 0.875, 7: 1}
+        if self.pet_data[0]["sensitive_stomach"] == "y":
+            # If pet has a sensitive stomach, transition over 10-14 days
+            trans_percents = {1: 0.05, 2: 0.15, 3: 0.25, 4: 0.30, 5: 0.40, 6: 0.45,
+                              7: 0.50, 8: 0.55, 9: 0.60, 10: 0.65, 11: 0.75, 12: 0.85,
+                              13: 0.95, 14: 1}
+        else:
+            # Otherwise, transition over 5-7 days
+            trans_percents = {1: 0.25, 2: 0.375, 3: 0.50, 4: 0.625, 
+                              5: 0.75, 6: 0.875, 7: 1}
         
-    #     if self.pet_data[0]["transitioning_food_two_kcal"] == 0:
-    #         # If the user doesn't want to transition to more than one diet
-    #         old_food_amt = round(der / self.pet_data[0]["current_food_kcal"], 2)
-    #         new_food_amt = round(der / self.pet_data[0]["transitioning_food_one_kcal"], 2)
+        if self.pet_data[0]["transitioning_food_two_kcal"] == 0:
+            # If the user doesn't want to transition to more than one diet
+            old_food_amt = round(der / self.pet_data[0]["current_food_kcal"], 2)
+            new_food_amt = round(der / self.pet_data[0]["transitioning_food_one_kcal"], 2)
             
-    #         transitioning_food_amts_rec = {}
+            transitioning_food_amts_rec = {}
             
-    #         cur_food_form = ""
-    #         if self.pet_data[0]["current_food_form"] == "dry":
-    #             cur_food_form = "cup"
-    #         elif self.pet_data[0]["current_food_form"] == "can":
-    #             cur_food_form = "can"
-    #         elif self.pet_data[0]["current_food_form"] == "pouch":
-    #             cur_food_form = "pouch"
+            cur_food_form = ""
+            if self.pet_data[0]["current_food_form"] == "dry":
+                cur_food_form = "cup"
+            elif self.pet_data[0]["current_food_form"] == "can":
+                cur_food_form = "can"
+            elif self.pet_data[0]["current_food_form"] == "pouch":
+                cur_food_form = "pouch"
                 
-    #         new_food_form = ""
-    #         if self.pet_data[0]["transitioning_food_one_form"] == "dry":
-    #             new_food_form = "cup"
-    #         elif self.pet_data[0]["transitioning_food_one_form"] == "can":
-    #             new_food_form = "can"
-    #         elif self.pet_data[0]["transitioning_food_one_form"] == "pouch":
-    #             new_food_form = "pouch"
+            new_food_form = ""
+            if self.pet_data[0]["transitioning_food_one_form"] == "dry":
+                new_food_form = "cup"
+            elif self.pet_data[0]["transitioning_food_one_form"] == "can":
+                new_food_form = "can"
+            elif self.pet_data[0]["transitioning_food_one_form"] == "pouch":
+                new_food_form = "pouch"
                 
-    #         # Loop over each day in transition period and calculate based on DER and percent of food feed
-    #         for day in trans_percents:
-    #             day_label = f"Day {day}"
+            # Loop over each day in transition period and calculate based on DER and percent of food feed
+            for day in trans_percents:
+                day_label = f"Day {day}"
 
-    #             old_food_percent = int(trans_percents[day] * 100)
-    #             new_food_percent = int(trans_percents[day] * 100)  
-    #             old_food_total = (old_food_amt * trans_percents[day]) / self.pet_data[0]["meals_per_day"]
-    #             old_food_whole_cans_or_cups = str(old_food_total).split(".")[0]
-    #             old_food_partial_amount = str(old_food_total).split(".")[1]
+                old_food_percent = int(trans_percents[day] * 100)
+                new_food_percent = int(trans_percents[day] * 100)  
+                old_food_total = (old_food_amt * trans_percents[day]) / self.pet_data[0]["meals_per_day"]
+                old_food_whole_cans_or_cups = str(old_food_total).split(".")[0]
+                old_food_partial_amount = str(old_food_total).split(".")[1]
                 
-    #             # Convert old food partial amount to volumetric
-    #             old_partial_volumetric = self.convert_decimal_to_volumetric(old_food_partial_amount)
-    #             old_food_whole_cans_or_cups = int(old_food_whole_cans_or_cups)
-    #             is_pouch = cur_food_form == "pouch"
-    #             old_is_half_tablespoon = old_partial_volumetric == "1/2 tablespoon"
-    #             old_food_form_plural = f"{cur_food_form}{'es' if is_pouch else 's'}"
+                # Convert old food partial amount to volumetric
+                old_partial_volumetric = self.convert_decimal_to_volumetric(old_food_partial_amount)
+                old_food_whole_cans_or_cups = int(old_food_whole_cans_or_cups)
+                is_pouch = cur_food_form == "pouch"
+                old_is_half_tablespoon = old_partial_volumetric == "1/2 tablespoon"
+                old_food_form_plural = f"{cur_food_form}{'es' if is_pouch else 's'}"
                 
-    #             if old_partial_volumetric == "1":
-    #                 # If partial volume is more than 0.86 cups add to whole volume
-    #                 old_food_whole_cans_or_cups += 1
-    #                 old_partial_volumetric = "0"
+                if old_partial_volumetric == "1":
+                    # If partial volume is more than 0.86 cups add to whole volume
+                    old_food_whole_cans_or_cups += 1
+                    old_partial_volumetric = "0"
                     
-    #             if old_food_whole_cans_or_cups == 1:
-    #                 if old_is_half_tablespoon and old_partial_volumetric != "0":
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
-    #                 elif not old_is_half_tablespoon and old_partial_volumetric != "0":
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
-    #                 else:
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
-    #             elif old_food_whole_cans_or_cups >= 1:
-    #                 if old_is_half_tablespoon and old_food_whole_cans_or_cups != "0":
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
-    #                 elif not old_is_half_tablespoon and old_partial_volumetric != "0":
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
-    #                 else:
-    #                     old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
-    #             elif old_food_whole_cans_or_cups == 0 and old_partial_volumetric != "0":
-    #                 if old_is_half_tablespoon:
-    #                     old_food_amt_rec = f"{old_partial_volumetric}"
-    #                 else:
-    #                     old_food_amt_rec = f"{old_partial_volumetric} {cur_food_form}"
-    #             else:
-    #                 # Under 1 whole can or cup amount
-    #                 old_food_amt_rec = f"{old_partial_volumetric}"
+                if old_food_whole_cans_or_cups == 1:
+                    if old_is_half_tablespoon and old_partial_volumetric != "0":
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
+                    elif not old_is_half_tablespoon and old_partial_volumetric != "0":
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
+                    else:
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
+                elif old_food_whole_cans_or_cups >= 1:
+                    if old_is_half_tablespoon and old_food_whole_cans_or_cups != "0":
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural} and {old_partial_volumetric}"
+                    elif not old_is_half_tablespoon and old_partial_volumetric != "0":
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} and {old_partial_volumetric} {old_food_form_plural}"
+                    else:
+                        old_food_amt_rec = f"{old_food_whole_cans_or_cups} {old_food_form_plural}"
+                elif old_food_whole_cans_or_cups == 0 and old_partial_volumetric != "0":
+                    if old_is_half_tablespoon:
+                        old_food_amt_rec = f"{old_partial_volumetric}"
+                    else:
+                        old_food_amt_rec = f"{old_partial_volumetric} {cur_food_form}"
+                else:
+                    # Under 1 whole can or cup amount
+                    old_food_amt_rec = f"{old_partial_volumetric}"
                     
                     
-    #             # Suggested by CoPilot      
-    #             if old_food_amt_rec.startswith("0 and "):
-    #                 old_food_amt_rec = old_food_amt_rec.replace("0 and ", "")
-    #             elif old_food_amt_rec.endswith(" and 0"):
-    #                 old_food_amt_rec = old_food_amt_rec.replace(" and 0", "")
+                # Suggested by CoPilot      
+                if old_food_amt_rec.startswith("0 and "):
+                    old_food_amt_rec = old_food_amt_rec.replace("0 and ", "")
+                elif old_food_amt_rec.endswith(" and 0"):
+                    old_food_amt_rec = old_food_amt_rec.replace(" and 0", "")
                     
-    #             new_food_total = (new_food_amt * trans_percents[day]) / self.pet_data[0]["meals_per_day"]
-    #             new_food_whole_cans_or_cups = str(new_food_total).split(".")[0]
-    #             new_food_partial_amount = str(new_food_total).split(".")[1]
+                new_food_total = (new_food_amt * trans_percents[day]) / self.pet_data[0]["meals_per_day"]
+                new_food_whole_cans_or_cups = str(new_food_total).split(".")[0]
+                new_food_partial_amount = str(new_food_total).split(".")[1]
                 
-    #             # Convert new food partial amount to volumetric
-    #             new_partial_volumetric = self.convert_decimal_to_volumetric(new_food_partial_amount)
-    #             new_is_pouch = new_food_form == "pouch"
-    #             new_is_half_tablespoon = new_partial_volumetric == "1/2 tablespoon"
-    #             new_food_form_plural = f"{new_food_form}{'es' if new_is_pouch else 's'}"
-    #             new_food_whole_cans_or_cups = int(new_food_whole_cans_or_cups)
+                # Convert new food partial amount to volumetric
+                new_partial_volumetric = self.convert_decimal_to_volumetric(new_food_partial_amount)
+                new_is_pouch = new_food_form == "pouch"
+                new_is_half_tablespoon = new_partial_volumetric == "1/2 tablespoon"
+                new_food_form_plural = f"{new_food_form}{'es' if new_is_pouch else 's'}"
+                new_food_whole_cans_or_cups = int(new_food_whole_cans_or_cups)
                 
-    #             if new_partial_volumetric == "1":
-    #                 # If partial volume is more than 0.86 cups add to whole volume
-    #                 new_food_whole_cans_or_cups += 1
-    #                 new_partial_volumetric = "0"
+                if new_partial_volumetric == "1":
+                    # If partial volume is more than 0.86 cups add to whole volume
+                    new_food_whole_cans_or_cups += 1
+                    new_partial_volumetric = "0"
                 
-    #             if new_food_whole_cans_or_cups == 1:
-    #                 if new_is_half_tablespoon and new_partial_volumetric != "0":
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form} and {new_partial_volumetric}"
-    #                 elif not new_is_half_tablespoon and new_partial_volumetric != "0":
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form}"
-    #                 else:
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form}"
-    #             elif new_food_whole_cans_or_cups >= 1:
-    #                 if new_is_half_tablespoon and new_partial_volumetric != "0":
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural} and {new_partial_volumetric}"
-    #                 elif not new_is_half_tablespoon and new_partial_volumetric != "0":
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form_plural}"
-    #                 else:
-    #                     new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural}"
-    #             elif new_food_whole_cans_or_cups == 0 and new_partial_volumetric != "0":
-    #                 if new_is_half_tablespoon:
-    #                     new_food_amt_rec = f"{new_partial_volumetric}"
-    #                 else:
-    #                     new_food_amt_rec = f"{new_partial_volumetric} {new_food_form_plural}"
-    #             else:
-    #                 # Under 1 whole can or cup amount
-    #                 new_food_amt_rec = f"{new_partial_volumetric}"
+                if new_food_whole_cans_or_cups == 1:
+                    if new_is_half_tablespoon and new_partial_volumetric != "0":
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form} and {new_partial_volumetric}"
+                    elif not new_is_half_tablespoon and new_partial_volumetric != "0":
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form}"
+                    else:
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form}"
+                elif new_food_whole_cans_or_cups >= 1:
+                    if new_is_half_tablespoon and new_partial_volumetric != "0":
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural} and {new_partial_volumetric}"
+                    elif not new_is_half_tablespoon and new_partial_volumetric != "0":
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} and {new_partial_volumetric} {new_food_form_plural}"
+                    else:
+                        new_food_amt_rec = f"{new_food_whole_cans_or_cups} {new_food_form_plural}"
+                elif new_food_whole_cans_or_cups == 0 and new_partial_volumetric != "0":
+                    if new_is_half_tablespoon:
+                        new_food_amt_rec = f"{new_partial_volumetric}"
+                    else:
+                        new_food_amt_rec = f"{new_partial_volumetric} {new_food_form_plural}"
+                else:
+                    # Under 1 whole can or cup amount
+                    new_food_amt_rec = f"{new_partial_volumetric}"
                     
-    #             # Suggested by CoPilot      
-    #             if new_food_amt_rec.startswith("0 and "):
-    #                 new_food_amt_rec = new_food_amt_rec.replace("0 and ", "")
-    #             elif new_food_amt_rec.endswith(" and 0"):
-    #                 new_food_amt_rec = new_food_amt_rec.replace(" and 0", "")
+                # Suggested by CoPilot      
+                if new_food_amt_rec.startswith("0 and "):
+                    new_food_amt_rec = new_food_amt_rec.replace("0 and ", "")
+                elif new_food_amt_rec.endswith(" and 0"):
+                    new_food_amt_rec = new_food_amt_rec.replace(" and 0", "")
 
-    #             old_food_percent = 1 - trans_percents[day]
-    #             new_food_percent = trans_percents[day]       
-    #             transitioning_food_amts_rec[day_label] = {f"Old Food {int(old_food_percent * 100)}%": old_food_amt_rec, 
-    #                                                     f"New Food {int(new_food_percent * 100)}%": new_food_amt_rec}
+                old_food_percent = 1 - trans_percents[day]
+                new_food_percent = trans_percents[day]       
+                transitioning_food_amts_rec[day_label] = {f"Old Food {int(old_food_percent * 100)}%": old_food_amt_rec, 
+                                                        f"New Food {int(new_food_percent * 100)}%": new_food_amt_rec}
         
 
-    #             print(old_food_percent, new_food_percent)
-    #             transitioning_food_amts_rec[day_label] = {f"Old Food {old_food_percent}%": old_food_amt_rec, 
-    #                                                   f"New Food {new_food_percent}%": new_food_amt_rec}
+                print(old_food_percent, new_food_percent)
+                transitioning_food_amts_rec[day_label] = {f"Old Food {old_food_percent}%": old_food_amt_rec, 
+                                                      f"New Food {new_food_percent}%": new_food_amt_rec}
 
-    #     return transitioning_food_amts_rec        
+        return transitioning_food_amts_rec        
