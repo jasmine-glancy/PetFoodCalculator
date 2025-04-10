@@ -244,7 +244,14 @@
       <td>{{ pet_data[0].der }} kcal/day</td>
       <td>{{ pet_data[0].der_modifier }}</td>
       <td>
-        {{ pet_data[0].current_food_kcal }}/{{ pet_data[0].current_food_form }}
+        {{ pet_data[0].current_food_kcal }} per
+        {% if pet_data[0].current_food_form == 1 %}
+          cup
+        {% elif pet_data[0].current_food_form == 2 %}
+          can
+        {% elif pet_data[0].current_food_form == 3 %}
+          pouch 
+        {% endif %}
       </td>
       <td>
         {{ pet_data[0].current_food_amt_rec }} ({{

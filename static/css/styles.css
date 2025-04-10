@@ -145,6 +145,10 @@ h1 {
     --bs-table-striped-bg: var(--pale_sky_blue);
 }
 
+    .table-sm {
+        font-size: 12px;
+    }
+
     #pets {
         margin-bottom: 10vw !important;
     }

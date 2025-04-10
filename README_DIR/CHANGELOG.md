@@ -6,7 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
-## [2.1.8-beta] - 2025-4-8
+## [2.1.10-beta] - 2025-4-9
+
+## Fix
+
+- Refactor: Adjust table size for edit page
+- UX/UI: Adjust caloric density cell to include "per cup", "per can", or "per pouch" depending on the form ID
+
+## [2.1.9-beta] - 2025-4-8
 
 ## Added
 
