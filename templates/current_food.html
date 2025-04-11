@@ -40,6 +40,14 @@
     </div>
   </div>
   <div class="row">
+    <div class="col" title="Switching Foods">
+      {{ current_food.food_transition.label(class_="food_label") }}
+    </div>
+    <div id="food_transition_dropdown" class="col" title="New Food Transition Dropdown">
+      {{ current_food.food_transition(class_="current_food_info") }}
+    </div>
+  </div>
+  <div class="row">
     <div class="col" title="Meals Per Day">
       {{ current_food.meals_per_day.label(class_="food_label") }}
     </div>

@@ -9,19 +9,19 @@ class NewSignalment(FlaskForm):
     pet_age = IntegerField("Pet's Age in Years:", validators=[DataRequired()])
     pet_age_months = IntegerField("Pet's Age in Months:", validators=[DataRequired()])
     pet_species = SelectField(u"Pet's Species:",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("Canine", "Canine"),
                                             ("Feline", "Feline")],
                                   validators=[DataRequired()],
                                   render_kw={"option": {"default": {"disabled": ""}},
                                              "id": "species"})
     pet_breed = SelectField(u"Pet's Breed*:",
-                                  choices=[("default", "Please make a selection")],
+                                  choices=[("default", "Please choose")],
                                   validators=[DataRequired()],
                                   render_kw={"option": {"default": {"disabled": ""}},
                                             "id": "breed"})
     pet_sex = SelectField(u"Pet's Sex:",
-                              choices=[("default", "Please make a selection"),
+                              choices=[("default", "Please choose"),
                               (1, "Female (Intact)"),
                               (2, "Female (Spayed)"),
                               (3, "Male (Intact)"),
@@ -33,7 +33,7 @@ class NewSignalment(FlaskForm):
 # Obtain pet weight and BCS
 class GetWeight(FlaskForm):
     pet_bcs = SelectField(u"Please Select Pet's Body Condition Score:", 
-                                choices=[("default", "Please make a selection"),
+                                choices=[("default", "Please choose"),
                                          ("1", "BCS 1"),                            
                                          ("2", "BCS 2"),
                                          ("3", "BCS 3"),
@@ -47,7 +47,7 @@ class GetWeight(FlaskForm):
                                 render_kw={"default": {"disabled": ""}})
     pet_weight = StringField("Pet's Weight:", validators=[DataRequired()])
     pet_units = SelectField(u"Is the weight you entered in pounds (lb) or kilograms (kg)?", 
-                                choices=[("default", "Please make a selection"),
+                                choices=[("default", "Please choose"),
                                          ("lbs", "Pounds"),                            
                                          ("kgs", "Kilograms")],
                                 validators=[DataRequired()],
@@ -56,14 +56,14 @@ class GetWeight(FlaskForm):
 # Obtain breeding and nursing status
 class ReproStatus(FlaskForm):
     pregnancy_status = SelectField(u"Is Your Pet Currently Pregnant?:",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("y", "Yes"),
                                             ("n", "No")],
                                   validators=[DataRequired()],
                                   render_kw={"default": {"disabled": ""},
                                              "id": "pregnancy_status"})
     weeks_gestation = SelectField(u"How Many Weeks Has Your Pet Been Pregnant?:",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("0", "0"),
                                             ("1", "1"),
                                             ("2", "2"),
@@ -77,7 +77,7 @@ class ReproStatus(FlaskForm):
                                   render_kw={"default": {"disabled": ""},
                                              "id": "gestating"})
     nursing_status = SelectField(u"Is Your Pet Currently Nursing?:",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("y", "Yes"),
                                             ("n", "No")],
                                   render_kw={"default": {"disabled": ""},
@@ -85,7 +85,7 @@ class ReproStatus(FlaskForm):
     litter_size = IntegerField(u"Please Enter the Litter Size:",
                                   render_kw={"id": "litter_size"})
     weeks_nursing = SelectField(u"How Many Weeks Has Your Pet Been Nursing?:",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("0", "0"),
                                             ("1", "1"),
                                             ("2", "2"),
@@ -130,11 +130,18 @@ class FoodForm(FlaskForm):
         "How many calories are in each cup (or can/pouch)* of your pet's current food?: ",
         validators=[DataRequired()])
     current_food_form = SelectField(u"What form of this diet do you feed?: ",
-                                  choices=[("default", "Please make a selection"),
+                                  choices=[("default", "Please choose"),
                                             ("1", "Dry"),
                                             ("2", "Canned"),
                                             ("3", "Semi-Moist Pouches")],
                                   render_kw={"default": {"disabled": ""}})
     meals_per_day = FloatField(
         "How many meals per day* does your pet get?: ",
+        validators=[DataRequired()])
+    food_transition = SelectField(
+        u"Are you planning on transitioning your pet to a new food?",
+        choices=[("default", "Please choose"),
+                 ("1", "Yes"),
+                 ("2", "No")],
+        render_kw={"default": {"disabled": ""}},
         validators=[DataRequired()])

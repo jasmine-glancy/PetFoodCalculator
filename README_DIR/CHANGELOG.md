@@ -6,9 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.11-beta] - 2025-4-10
+
+## Changed
+
+- Refactor: Changed "Please make a selection" to "Please choose" in dropdowns
+
+## Added
+
+- UX/UI: Add dropdown to transition your pet to a new food
+
 ## [2.1.10-beta] - 2025-4-9
 
-## Fix
+## Changed
 
 - Refactor: Adjust table size for edit page
 - UX/UI: Adjust caloric density cell to include "per cup", "per can", or "per pouch" depending on the form ID
