@@ -48,6 +48,14 @@
     </div>
   </div>
   <div class="row">
+    <div class="col" title="Sensitive Stomach">
+      {{ current_food.sensitive_stomach.label(class_="food_label") }}
+    </div>
+    <div id="sensitive_stomach_dropdown" class="col" title="New Food Transition Dropdown">
+      {{ current_food.sensitive_stomach(class_="current_food_info") }}
+    </div>
+  </div>
+  <div class="row">
     <div class="col" title="Meals Per Day">
       {{ current_food.meals_per_day.label(class_="food_label") }}
     </div>

@@ -1190,6 +1190,7 @@ def current_food():
         current_food_kcal = current_food.current_food_kcal.data
         current_food_form = current_food.current_food_form.data
         meals_per_day = current_food.meals_per_day.data
+        food_transition = current_food.food_transition.data
         
         # Ensure user enters at least one meal
         if meals_per_day < 1:
@@ -1205,10 +1206,9 @@ def current_food():
             return redirect(url_for("current_food", pet_id=pet_id))
         else:
             current_food_form = int(current_food_form)
+            food_transition = int(food_transition)
             
             try:
-                print(session["pet_name"])
-                print(session["user_id"])
                     
                 db.execute(
                     "UPDATE pets SET meals_per_day = :meals, current_food_kcal = :current_kcal, current_food_form = :current_food_form WHERE pet_id = :pet_id AND owner_id = :user_id",
@@ -1220,16 +1220,20 @@ def current_food():
                 return redirect(url_for("current_food", pet_id=pet_id))
                         
             
-            # Otherwise, create new session variables
+            # Create new session variables
             session["meals_per_day"] = meals_per_day
             session["current_food_kcal"] = current_food_kcal
-            session["current_food_form"] = int(current_food_form)
+            session["current_food_form"] = current_food_form
+            session["food_transition"] = food_transition
                 
 
-            # TODO: If the user wants a diet transition or to feed two different diets, redirect to new_food
+            # If the user wants a diet transition, redirect to new_food
+            if food_transition == 1:
+                return redirect(url_for('new_food', pet_id=pet_id))
             
-            # If user doesn't want a transition, calculate RER
-            return redirect(url_for('rer', pet_id=pet_id))
+            elif food_transition == 2:
+                # If user doesn't want a transition, calculate RER
+                return redirect(url_for('rer', pet_id=pet_id))
         
     return render_template("current_food.html", current_food=current_food, pet_id=pet_id)
     

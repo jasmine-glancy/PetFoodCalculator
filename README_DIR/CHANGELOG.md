@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.12-beta] - 2025-4-12
+
+## Added
+
+- UX/UI: Add dropdown options for pets with a sensitive stomach
+- Feature: Set up variables for sensitive stomach
+
 ## [2.1.11-beta] - 2025-4-10
 
 ## Changed
@@ -14,7 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Added
 
-- UX/UI: Add dropdown to transition your pet to a new food
+- UX/UI: Add dropdown option to transition your pet to a new food
 
 ## [2.1.10-beta] - 2025-4-9
 

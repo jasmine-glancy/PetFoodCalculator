@@ -145,3 +145,10 @@ class FoodForm(FlaskForm):
                  ("2", "No")],
         render_kw={"default": {"disabled": ""}},
         validators=[DataRequired()])
+    sensitive_stomach = SelectField(
+        u"Does your pet have a sensitive stomach?",
+        choices=[("default", "Please choose"),
+                 ("1", "Yes"),
+                 ("2", "No")],
+        render_kw={"default": {"disabled": ""}},
+        validators=[DataRequired()])
