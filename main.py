@@ -360,9 +360,9 @@ def pet_info_continued(pet_id):
                 print(pet_sex, type(pet_sex))   
                 
                 # Set flags to see if a pet is between pediatric and sexually mature ages
-                is_pediatric = "n"
-                not_pediatric_not_mature = False
-                sexually_mature = False
+                is_pediatric = 0
+                not_pediatric_not_mature = 0
+                sexually_mature = 0
                 # Search for pet breed code in breed database
                 if species == "Canine":
                     breed_id_result = db.execute(
@@ -387,69 +387,69 @@ def pet_info_continued(pet_id):
                             # Puppies under 4 months old have a DER modifier of * 3.0 factor_id 13
                             print("DER Modifier * 3.0")
                             der_factor_id = 13
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age >= 0.33 and pet_age <= 0.66:
                             # Toy/small/medium breed puppies between 4 and 8 months of age have a DER modifier of * 2.5
                             print("DER Modifier * 2.5")
                             der_factor_id = 15
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 0.66 and pet_age <= 1:
                             # Toy/small/medium breed puppies between 8 and 12 months of age have a DER modifier of * 1.8-2.0
                             print("DER Modifier * 1.8-2.0")
                             der_factor_id = 18
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 1 and pet_age < 2:
                             # Toy/small/medium breed dogs that aren't pediatric but aren't sexually matue
-                            not_pediatric_not_mature = True
+                            not_pediatric_not_mature = 1
                         else:
                             # Pets over 2 years old
-                            sexually_mature = True
+                            sexually_mature = 1
                                 
                     elif breed_size == "Large":
                         if pet_age < 0.33:
                             # Large breed puppies under 4 months old have a DER modifier of * 3.0 factor_id 13
                             print("DER Modifier * 3.0")
                             der_factor_id = 13
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 0.33 and pet_age <= 0.91:
                             # Large breed puppies between 4 and 11 months old have a DER modifier of * 2.5
                             print("DER Modifier * 2.5")
                             der_factor_id = 16
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 0.91 and pet_age <= 1.5:
                             # Large breed puppies between 11 and 18 months old have a DER modifier of * 1.8-2.0
                             print("DER Modifier * 1.8-2.0")
                             der_factor_id = 18
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 1.5 and pet_age < 2:
                             # Large breed dogs that aren't pediatric but aren't sexually matue
-                            not_pediatric_not_mature = True
+                            not_pediatric_not_mature = 1
                         else:
                             # Pets over 2 years old
-                            sexually_mature = True
+                            sexually_mature = 1
                             
                     elif breed_size == "X-Large":
                         if pet_age < 0.33:
                             # X-Large breed puppies under 6 months old have a DER modifier of * 3.0 factor_id 13
                             der_factor_id = 13
                             print("DER Modifier * 3.0")
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         if pet_age > 0.5 and pet_age <= 1:
                             # X-Large breed puppies between 6 and 12 months old have a DER modifier of * 2.5
                             print("DER Modifier * 2.5")
                             der_factor_id = 17
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 1 and pet_age <= 1.5:
                             # X-Large breed puppies between 12 and 18 months old have a DER modifier of * 1.8-2.0
                             print("DER Modifier * 1.8-2.0")
                             der_factor_id = 20
-                            is_pediatric = "y"
+                            is_pediatric = 1
                         elif pet_age > 1.5 and pet_age < 2:
                             # X-Large breed dogs that aren't pediatric but aren't sexually matue
-                            not_pediatric_not_mature = True
+                            not_pediatric_not_mature = 1
                         else:
                             # Pets over 2 years old
-                            sexually_mature = True
+                            sexually_mature = 1
                             
                             
                     # List for condensed conditionals suggested by CoPilot
@@ -502,23 +502,23 @@ def pet_info_continued(pet_id):
                         # Kittens under 4 months old or between 7 and 10 months old have a DER modifier of * 2.0
                         print("DER Modifier * 2.0")
                         der_factor_id = 13
-                        is_pediatric = "y"
+                        is_pediatric = 1
                     elif pet_age > 0.33 and pet_age <= 0.5:
                         #Kittens between 5 and 6 months old have a DER modifier of * 2.5
                         print("DER Modifier * 2.5")
                         der_factor_id = 14
-                        is_pediatric = "y"
+                        is_pediatric = 1
                     elif pet_age > 0.83 and pet_age <= 1:
                         # Kittens between 10 and 12 months old have a DER modifier of * 1.8-2.0
                         print("DER Modifier * 1.8-2.0")
                         der_factor_id = 15
-                        is_pediatric = "y"
+                        is_pediatric = 1
                     elif pet_age > 1 and pet_age < 2:
                         # Kittens that aren't pediatric but aren't sexually matue
-                        not_pediatric_not_mature = True
+                        not_pediatric_not_mature = 1
                     elif pet_age >= 2 and pet_age < 7:
                         # Pets over 2 years old
-                        sexually_mature = True
+                        sexually_mature = 1
                     elif pet_age >= 7 and pet_age <= 11:
                         # Cats between 7 and 11 years of age have a DER modifier of * 1.1-1.4
                         print("DER Modifier * 1.1-1.4")
@@ -605,7 +605,7 @@ def repro_status(pet_id):
             return redirect(url_for("repro_status", pet_id=pet_id))
             
             
-        if pregnancy_status == "y":
+        if pregnancy_status == 1:
             
             if species == "Canine":
                 # If pet is pregnant and canine, ask how many weeks along she is
@@ -960,7 +960,7 @@ def pet_condition(pet_id):
         
         if species == "Canine":
             
-            if pregnancy_status != "y" and is_nursing != "y" and is_pediatric != "y":
+            if pregnancy_status != 1 and is_nursing != 1 and is_pediatric != 1:
                 # Only update DER factor id if pet isn't nursing or pregnant
                 if bcs <= 4:
                     # Change DER factor id to weight gain 
@@ -977,7 +977,7 @@ def pet_condition(pet_id):
             obese_prone_breed = fi.check_obesity_risk()
                 
             print(obese_prone_breed)
-            if obese_prone_breed == "y" and pregnancy_status != "y" and is_nursing != "y" and is_pediatric != "y":
+            if obese_prone_breed == 1 and pregnancy_status != 1 and is_nursing != 1 and is_pediatric != 1:
                 der_factor_id = 3
                 
             try:
@@ -1008,7 +1008,7 @@ def pet_condition(pet_id):
         
         elif species == "Feline":
             
-            if pregnancy_status != "y" and is_nursing != "y" and is_pediatric != "y":
+            if pregnancy_status != 1 and is_nursing != 1 and is_pediatric != 1:
                 if bcs <= 4:
                     # Change DER factor id to weight gain 
                     der_factor_id = 16
@@ -1023,7 +1023,7 @@ def pet_condition(pet_id):
             obese_prone_breed = fi.check_obesity_risk()
                 
             print(obese_prone_breed)
-            if obese_prone_breed == "y" and pregnancy_status != "y" and is_nursing != "y" and is_pediatric != "y":
+            if obese_prone_breed == 1 and pregnancy_status != 1 and is_nursing != 1 and is_pediatric != 1:
                 der_factor_id = 3
             
             try:
@@ -1091,8 +1091,8 @@ def activity(pet_id):
         
         
         # Pets that aren't pregnant, aren't nursing, and are obese prone, condition suggested by CoPilot
-        not_preg_or_nursing_non_obese = pregnancy_status != "y" and is_nursing != "y" and obese_prone_breed != "y"
-        not_preg_or_nursing = pregnancy_status != "y" and is_nursing != "y"
+        not_preg_or_nursing_non_obese = pregnancy_status != 1 and is_nursing != 1 and obese_prone_breed != "y"
+        not_preg_or_nursing = pregnancy_status != 1 and is_nursing != 1
         
         # Check if a pet is pediatric
         is_pediatric = fi.check_if_pediatric()
@@ -1103,21 +1103,21 @@ def activity(pet_id):
             # Sedentary: 0-30 minutes of light activity daily
             activity_level = 1
             
-            if not_preg_or_nursing_non_obese and is_pediatric == "n":
+            if not_preg_or_nursing_non_obese and is_pediatric == 0:
                 der_factor_id = 3
         elif light_work_hours >= 0.5 and light_work_hours <= 1 and heavy_work_hours == 0 or \
             light_work_hours >= 0.5 and light_work_hours <= 1 and heavy_work_hours < 1:
             # Low activity: 30 minutes to 1 hour (i.e. walking on lead)
             activity_level = 2
             
-            if not_preg_or_nursing_non_obese and is_pediatric == "n":
+            if not_preg_or_nursing_non_obese and is_pediatric == 0:
                 der_factor_id = 21
         elif light_work_hours >= 1 and light_work_hours <= 2 and heavy_work_hours == 0 or \
             heavy_work_hours > 0 and heavy_work_hours < 3:
             # Moderate activity: 1-2 hours of low impact activity
             activity_level = 3
             
-            if not_preg_or_nursing and is_pediatric == "n":
+            if not_preg_or_nursing and is_pediatric == 0:
                 # Modify DER factor ID even for obese prone breeds if the dog gets adequate activity
                 der_factor_id = 22
                 
@@ -1125,14 +1125,14 @@ def activity(pet_id):
             # Moderate activity: 1-3 hours of high impact activity (i.e. running off-lead, playing ball, playing off-lead with other dogs)
             activity_level = 3
             
-            if not_preg_or_nursing and is_pediatric == "n":
+            if not_preg_or_nursing and is_pediatric == 0:
                 # Modify DER factor ID even for obese prone breeds if the dog gets adequate activity
                 der_factor_id = 22
         elif heavy_work_hours >= 3 and light_work_hours >= 1:
             # Working and performance: 3+ hours (i.e. working dog)
             activity_level = 4
             
-            if not_preg_or_nursing and is_pediatric == "n":
+            if not_preg_or_nursing and is_pediatric == 0:
                 # Modify DER factor ID even for obese prone breeds if the dog gets adequate activity
                 der_factor_id = 23
                     
@@ -1191,6 +1191,7 @@ def current_food():
         current_food_form = current_food.current_food_form.data
         meals_per_day = current_food.meals_per_day.data
         food_transition = current_food.food_transition.data
+        sensitive_stomach = current_food.sensitive_stomach.data
         
         # Ensure user enters at least one meal
         if meals_per_day < 1:
@@ -1200,31 +1201,45 @@ def current_food():
         print(current_food_kcal)
         print(meals_per_day)
         print(current_food_form)
+        print(food_transition)
 
         if current_food_form == "default":
             flash("Please choose from the current food form dropdown.")
             return redirect(url_for("current_food", pet_id=pet_id))
         else:
-            current_food_form = int(current_food_form)
-            food_transition = int(food_transition)
+            
+            if sensitive_stomach == 0:
+                # If the pet has a "strong" stomach, use a shorter transition
+                transition_length = 7
+                 
+            elif sensitive_stomach == 1:
+                # Use a longer transition if the pet has a sensitive stomach
+                transition_length = 14
             
             try:
                     
                 db.execute(
-                    "UPDATE pets SET meals_per_day = :meals, current_food_kcal = :current_kcal, current_food_form = :current_food_form WHERE pet_id = :pet_id AND owner_id = :user_id",
-                    meals=meals_per_day, current_kcal=current_food_kcal, current_food_form=current_food_form, pet_id=pet_id, user_id=session["user_id"]
+                    "UPDATE pets SET meals_per_day = :meals, current_food_kcal = :current_kcal, current_food_form = :current_food_form, sensitive_stomach = :sensitive_stomach, food_transition = :food_transition, transition_length = :transition_length WHERE pet_id = :pet_id AND owner_id = :user_id",
+                    meals=meals_per_day, current_kcal=current_food_kcal, 
+                    current_food_form=current_food_form, sensitive_stomach=sensitive_stomach,
+                    food_transition=food_transition, transition_length=transition_length,
+                    pet_id=pet_id, user_id=session["user_id"]
                 )
                     
             except Exception as e:
                 flash(f"Unable to update data, Exception: {e}")
                 return redirect(url_for("current_food", pet_id=pet_id))
-                        
+            
+
+            
             
             # Create new session variables
             session["meals_per_day"] = meals_per_day
             session["current_food_kcal"] = current_food_kcal
             session["current_food_form"] = current_food_form
             session["food_transition"] = food_transition
+            session["sensitive_stomach"] = sensitive_stomach
+            session["transition_length"] = transition_length
                 
 
             # If the user wants a diet transition, redirect to new_food
@@ -1285,8 +1300,8 @@ def rer(pet_id):
     is_nursing = fi.check_if_nursing()
     is_pregnant = fi.check_if_pregnant()
     
-    if obese_prone == "y" or is_pediatric == "y" \
-        or is_nursing == "y" or is_pregnant == "y":
+    if obese_prone == 1 or is_pediatric == 1 \
+        or is_nursing == 1 or is_pregnant == 1:
         # If pet is an obese prone breed, set max treat kcal/day at 8% of RER
         treat_kcals = int(rer * 0.08)
     else:

@@ -65,7 +65,7 @@
                         </b>
                     </th>
                 {% endif %}  
-                {% if pet_data[0].weeks_gestating != None and pet_data[0].is_pregnant != "n" and pet_data[0].weeks_gestating != 0 %}
+                {% if pet_data[0].weeks_gestating != None and pet_data[0].is_pregnant != 0 and pet_data[0].weeks_gestating != 0 %}
                     <th>
                         <b>
                             {{ pet_data[0].name}}'s Gestation Length
@@ -79,7 +79,7 @@
                         </b>
                     </th>
                 {% endif %}  
-                {% if pet_data[0].litter_size != None and pet_data[0].is_nursing != "n" %}
+                {% if pet_data[0].litter_size != None and pet_data[0].is_nursing != 0 %}
                     <th>
                         <b>
                             Current Litter Size
@@ -188,7 +188,7 @@
                         </a>
                     </td>
                 {% endif %}
-                {% if pet_data[0].is_pregnant == "y" %}
+                {% if pet_data[0].is_pregnant == 1 %}
                     <td>
                         Yes
 
@@ -196,7 +196,7 @@
                             <button type="button" class="btn btn-secondary btn-sm">Edit</button>
                         </a>
                     </td>
-                {% elif pet_data[0].is_pregnant == "n" %}
+                {% elif pet_data[0].is_pregnant == 0 %}
                     <td>
                         No
 
@@ -205,7 +205,7 @@
                         </a>
                     </td>
                 {% endif %}  
-                {% if pet_data[0].weeks_gestating != None and pet_data[0].is_pregnant != "n" and pet_data[0].weeks_gestating != 0 %}
+                {% if pet_data[0].weeks_gestating != None and pet_data[0].is_pregnant != 0 and pet_data[0].weeks_gestating != 0 %}
                     <td>
                         {{ pet_data[0].weeks_gestating }} weeks
 
@@ -231,7 +231,7 @@
                         </a>
                     </td>
                 {% endif %}  
-                {% if pet_data[0].litter_size != None and pet_data[0].is_nursing != "n" %}
+                {% if pet_data[0].litter_size != None and pet_data[0].is_nursing != 0 %}
                     <td>
                         {{ pet_data[0].litter_size }} 
                         {% if pet_data[0].species == "Canine" %}

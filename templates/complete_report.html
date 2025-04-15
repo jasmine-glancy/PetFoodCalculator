@@ -58,7 +58,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
 
     <!-- Reproductive status conditionals -->
     {{ pet_data[0].breed }} ({{ pet_data[0].species }}). {% if
-    pet_data[0].is_pregnant == "y" and pet_data[0].species == "Canine" %}
+    pet_data[0].is_pregnant == 1 and pet_data[0].species == "Canine" %}
     <!-- If pet is pregnant and canine, inform user of gestation length -->
     {{ pet_data[0].name }} is currently pregnant and is in her {% if
     pet_data[0].weeks_gestating > 0 and pet_data[0].weeks_gestating != None %}
@@ -78,9 +78,9 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     pet_data[0].weeks_gestating }}th week of pregnancy (within the last 21
     days). {% endif %} {% endif %} {% endif %} {% if pet_data[0].is_pregnant ==
     "y" and pet_data[0].species == "Feline" %} {{ pet_data[0].name }} is
-    currently pregnant. {% endif %} {% if pet_data[0].is_pregnant == "n" %} {{
+    currently pregnant. {% endif %} {% if pet_data[0].is_pregnant == 0 %} {{
     pet_data[0].name }} is not currently pregnant {% endif %} {% if
-    pet_data[0].is_nursing == "y" %}
+    pet_data[0].is_nursing == 1 %}
     <!-- If pet is a nursing female -->
     but she is actively nursing a litter of {% if pet_data[0].litter_size !=
     None and pet_data[0].litter_size != 1 %} {{ pet_data[0].litter_size }}
@@ -91,7 +91,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     <!-- Return litter size and species -->
     {% if pet_data[0].species == "Canine" %} puppy. {% elif pet_data[0].species
     == "Feline" %} kitten. {% endif %} {% endif %} {% elif
-    pet_data[0].is_nursing == "n" %} and is not currently nursing a litter. {%
+    pet_data[0].is_nursing == 0 %} and is not currently nursing a litter. {%
     endif %}
 
     <!-- Give RER and DER information -->
@@ -111,10 +111,10 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   </div>
 
   <!-- Return the formula used to calculate DER -->
-  {% if pet_data[0].species == "Feline" %} {% if pet_data[0].is_pregnant == "y"
+  {% if pet_data[0].species == "Feline" %} {% if pet_data[0].is_pregnant == 1
   %}
   <div class="large_padding"></div>
-  {% endif %} {% if pet_data[0].is_nursing == "y" %}
+  {% endif %} {% if pet_data[0].is_nursing == 1 %}
   <div class="final_formula_nursing">
     DER = {{ pet_data[0].name }}'s {{ notes }}
     <br />
@@ -127,7 +127,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   </div>
   {% else %}
   <div class="final_formula_fel">
-    {% if pet_data[0].is_pregnant == "y" or pet_data[0].bcs < 6 %}
+    {% if pet_data[0].is_pregnant == 1 or pet_data[0].bcs < 6 %}
     <div class="quarter_padding"></div>
     {% endif %} DER = {{ pet_data[0].name }}'s RER x DER Modifier
     <br />
@@ -144,7 +144,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   <div class="large_padding"></div>
   {% endif %} {% endif %} {% else %}
   <div class="final_formula">
-    {% if pet_data[0].is_pregnant == "y" and pet_data[0].weeks_gestating > 6 %}
+    {% if pet_data[0].is_pregnant == 1 and pet_data[0].weeks_gestating > 6 %}
     <div class="mid_padding"></div>
     {% elif pet_data[0].species == "Canine" %} {% if pet_data[0].is_pregnant ==
     "y" %}
@@ -161,13 +161,13 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     {% if notes != None %} ({{ life_stage|trim }}, {{ notes }}) {% else %} ({{
     life_stage|trim }}) {% endif %}
   </div>
-  {% endif %} {% if pet_data[0].is_pregnant == "y" %} {% if pet_data[0].species
+  {% endif %} {% if pet_data[0].is_pregnant == 1 %} {% if pet_data[0].species
   == "Feline" %} {% if pet_data[0].weeks_gestating == None or
   pet_data[0].weeks_gestating <= 6 %}
   <div class="large_padding"></div>
   {% endif %} {% elif pet_data[0].species == "Canine" %}
   <div class="smaller_padding"></div>
-  {% endif %} {% elif pet_data[0].is_pediatric == "y" %} {% if
+  {% endif %} {% elif pet_data[0].is_pediatric == 1 %} {% if
   pet_data[0].species == "Feline" %}
   <div class="xlarge_padding"></div>
   {% elif pet_data[0].species == "Canine" %} {% if pet_data[0].activity_level ==
@@ -182,25 +182,25 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
 
   <div class="food_and_exercise">
     <div class="feeding">
-      {% if pet_data[0].species == "Feline" and pet_data[0].is_nursing != "y" %}
-      {% if pet_data[0].is_pediatric != "y" %}
+      {% if pet_data[0].species == "Feline" and pet_data[0].is_nursing != 1 %}
+      {% if pet_data[0].is_pediatric != 1 %}
       <div class="large_padding"></div>
       {% elif pet_data[0].age_in_years >= 7 %}
       <div class="xlarge_padding"></div>
-      {% elif pet_data[0].is_pediatric == "y" %}
+      {% elif pet_data[0].is_pediatric == 1 %}
       <div class="mid_padding"></div>
       {% else %}
       <div class="smaller_padding"></div>
       {% endif %} {% elif pet_data[0].species == "Canine" %} {% if
       pet_data[0].bcs > 6 %}
       <div class="mid_padding"></div>
-      {% elif pet_data[0].is_pediatric == "y" or pet_data[0].is_pregnant == "y"
+      {% elif pet_data[0].is_pediatric == 1 or pet_data[0].is_pregnant == 1
       %}
       <div class="smaller_padding"></div>
-      {% elif pet_data[0].is_pregnant != "y" and pet_data[0].activity_level == 3
+      {% elif pet_data[0].is_pregnant != 1 and pet_data[0].activity_level == 3
       or pet_data[0].activity_level == 4 %}
       <div class="xlarge_padding"></div>
-      {% endif %} {% elif pet_data[0].is_nursing == "y" %}
+      {% endif %} {% elif pet_data[0].is_nursing == 1 %}
       <div class="smaller_padding"></div>
       {% endif %}
       <!-- Return amount to feed per day and per meal  -->
@@ -215,7 +215,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       pet_data[0].current_food_amt_rec }} of {% if pet_data[0].sex == 3 or
       pet_data[0].sex == 4 %} {{ possessive_pronoun }} {% else %} {{
       object_pronoun }} {% endif %} current diet. {% endif %} {% if
-      pet_data[0].is_nursing != "y" %} It is recommended to provide fresh, clean
+      pet_data[0].is_nursing != 1 %} It is recommended to provide fresh, clean
       water for {{ pet_data[0].name }} daily. {% elif pet_data[0].is_nursing ==
       "y" %}
       <!-- Water requirements increase significantly during nursing -->
@@ -264,7 +264,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       possessive_pronoun }} {% else %} {{ object_pronoun }} {% endif %} water
       bowl, as many cats instinctively prefer to eat away from their water
       source. If {{ pet_data[0].name }} prefers drinking running water, there
-      are water fountains you can get buy. {% if pet_data[0].is_pediatric == "y"
+      are water fountains you can get buy. {% if pet_data[0].is_pediatric == 1
       %}
       <div class="smaller_padding"></div>
       <h2>Rechecking Weight</h2>
@@ -371,8 +371,8 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     </div>
     {% endif %}
     <div class="reproduction_recs">
-      {% if pet_data[0].is_pregnant == "y" and pet_data[0].activity_level ==
-      "Light" or pet_data[0].is_pregnant == "y" and pet_data[0].activity_level
+      {% if pet_data[0].is_pregnant == 1 and pet_data[0].activity_level ==
+      "Light" or pet_data[0].is_pregnant == 1 and pet_data[0].activity_level
       == "Sedentary" %}
       <!-- If dog is pregnant, provide gestation specific recommendations -->
       {% if pet_data[0].weeks_gestating >= 6 %}
@@ -435,7 +435,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       <div class="smaller_padding"></div>
       It is recommended to revisit this calculator in one week to recalculate {{
       pet_data[0].name }}'s feeding amounts for the third trimester. {% endif %}
-      {% endif %} {% elif pet_data[0].is_nursing == "y" %}
+      {% endif %} {% elif pet_data[0].is_nursing == 1 %}
       <div class="smaller_padding"></div>
       <h2>Weight Loss While Nursing</h2>
       <div class="smaller_padding"></div>
@@ -448,8 +448,8 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     </div>
 
     {% if pet_data[0].activity_level != 3 and pet_data[0].activity_level != 4
-    and pet_data[0].is_pregnant != "y" and pet_data[0].is_nursing != "y" and
-    pet_data[0].is_pediatric != "y" %}
+    and pet_data[0].is_pregnant != 1 and pet_data[0].is_nursing != 1 and
+    pet_data[0].is_pediatric != 1 %}
     <!-- If dog is not already getting moderate to heavy exercise, and is not pregnant or nursing -->
     <div class="exercise">
       <h2>Exercise</h2>
@@ -464,8 +464,8 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     {% endif %}
 
     <!-- If dog is overweight or obese, provide additional exercise/feeding technique recs -->
-    {% if pet_data[0].bcs > 6 and pet_data[0].is_pediatric != "y" and
-    pet_data[0].is_pregnant != "y" and pet_data[0].is_nursing != "y" %}
+    {% if pet_data[0].bcs > 6 and pet_data[0].is_pediatric != 1 and
+    pet_data[0].is_pregnant != 1 and pet_data[0].is_nursing != 1 %}
     <div class="exercise">
       If {{ pet_data[0].name }} struggles with speed eating, consider trying
       commercial puzzle feeders or using a mini-muffin tin to encourage {{
@@ -530,7 +530,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     {% elif pet_data[0].species == "Feline" %}
     <div class="feline_recs">
       <div class="reproduction_recs">
-        {% if pet_data[0].is_nursing == "y" %}
+        {% if pet_data[0].is_nursing == 1 %}
         <div class="smaller_padding"></div>
         <h2>Food Choice</h2>
         <div class="smaller_padding"></div>
@@ -558,7 +558,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
         endif %} Kitten food and diets formulated for nursing are calorically
         dense, meaning {{ pet_data[0].name }} will be able to eat less to feel
         satiated and to support her kittens' dynamic needs. {% elif
-        pet_data[0].is_pregnant == "y" %}
+        pet_data[0].is_pregnant == 1 %}
         <!-- If pet is a pregnant cat, provide recommendations -->
         <div class="smaller_padding"></div>
         <h2>Food Choice and Frequency</h2>
@@ -579,8 +579,8 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
         after the kittens are born. {% endif %}
       </div>
       <div class="exercise" id="feline_exercise">
-        {% if pet_data[0].is_pregnant != "y" and pet_data[0].is_nursing != "y"
-        and pet_data[0].is_pediatric != "y" %}
+        {% if pet_data[0].is_pregnant != 1 and pet_data[0].is_nursing != 1
+        and pet_data[0].is_pediatric != 1 %}
         <h2>Exercise</h2>
         <div class="smaller_padding"></div>
         <!-- Recommend enrichment and exercise resources for all cats -->
@@ -638,7 +638,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     {% endif %}
   </div>
 
-  {% if pet_data[0].is_pediatric == "y" %} {% if pet_data[0].species == "Feline"
+  {% if pet_data[0].is_pediatric == 1 %} {% if pet_data[0].species == "Feline"
   %}
   <div class="kitten_exercise">
     <h2>Exercise</h2>
@@ -687,7 +687,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     you can encourage {{ pet_data[0].name }} to go up and down them for exercise
     by moving where you feed {{ object_pronoun }}.
   </div>
-  {% endif %} {% endif%} {% if pet_data[0].is_nursing == "y" and
+  {% endif %} {% endif%} {% if pet_data[0].is_nursing == 1 and
   pet_data[0].species == "Canine" %}
   <div class="wider_reproduction_recs">
     <div class="smaller_padding"></div>
@@ -710,7 +710,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     meaning {{ pet_data[0].name }} will be able to eat less to feel satiated and
     to support her puppies' dynamic needs.
   </div>
-  {% endif %} {% if pet_data[0].is_pregnant == "y" or pet_data[0].is_nursing ==
+  {% endif %} {% if pet_data[0].is_pregnant == 1 or pet_data[0].is_nursing ==
   "y" %}
 
   <!-- Supplement disclaimer -->
@@ -737,8 +737,8 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   {% endif %}
 
   <div class="wider_reproduction_recs">
-    {% if pet_data[0].is_pregnant == "y" and pet_data[0].activity_level == 3 or
-    pet_data[0].is_pregnant == "y" and pet_data[0].activity_level == 4 %}
+    {% if pet_data[0].is_pregnant == 1 and pet_data[0].activity_level == 3 or
+    pet_data[0].is_pregnant == 1 and pet_data[0].activity_level == 4 %}
     <!-- If dog is pregnant, provide gestation specific recommendations -->
     {% if pet_data[0].weeks_gestating >= 6 %}
     <!-- If a dog is 6 weeks pregnant, recommend specifics 
@@ -899,9 +899,9 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     <div class="smaller_padding"></div>
   </div>
   {% endif %} {% endif %} {% if pet_data[0].bcs >= 6 or pet_data[0].is_pediatric
-  == "y" or pet_data[0].is_pregnant == "y" or pet_data[0].is_nursing == "y" %}
-  {% if pet_data[0].bcs >= 6 or pet_data[0].is_pregnant == "y" %} <div class="{%
-  if pet_data[0].is_pregnant == "y" and pet_data[0].weeks_gestating == None or
+  == "y" or pet_data[0].is_pregnant == 1 or pet_data[0].is_nursing == 1 %}
+  {% if pet_data[0].bcs >= 6 or pet_data[0].is_pregnant == 1 %} <div class="{%
+  if pet_data[0].is_pregnant == 1 and pet_data[0].weeks_gestating == None or
   pet_data[0].bcs >= 6 or pet_data[0].weeks_gestating > 6 %}wider_treats{% else
   %}limit_treats{% endif %}">
   <!-- recommend treat amounts, |round|int suggested by CoPilot -->
@@ -912,7 +912,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   is 8% of {% if pet_data[0].sex == 3 or pet_data[0].sex == 4 %} {{
   possessive_pronoun }} {% else %} {{ object_pronoun }} {% endif %} RER.
 </div>
-{% elif pet_data[0].is_pediatric == "y" %}
+{% elif pet_data[0].is_pediatric == 1 %}
 <div class="treats">
   <!-- recommend treat amounts, |round|int suggested by CoPilot -->
   <h2>Treats</h2>
