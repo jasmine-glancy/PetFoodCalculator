@@ -117,6 +117,13 @@ h1 {
         justify-content: flex-end;
         padding-right: 10px;
         padding-left: 10px;
+        font-size: 23px;
+    }
+
+    h5 {
+        font-size: 20px;
+        justify-content: space-evenly;
+        padding-top: 2vh;
     }
 
     .fr_name {
@@ -361,7 +368,8 @@ h1 {
     }
 
     .no_reports {
-        width: 80%;
+        display: grid;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -603,7 +611,7 @@ a:hover {
     --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem #568b3fa4;
     margin-top: 2vw;
     margin-bottom: 2vw;
-    display: block;
+    display: grid;
 }
 
     .accordion-button {
@@ -622,7 +630,7 @@ a:hover {
     }
 
         .accordion-body {
-            font-size: 30px;
+            font-size: 15px;
         }
 
         .accordion-body a:hover {
@@ -636,6 +644,8 @@ a:hover {
         }
 
 .bcs {
+    display: flex; 
+    align-items: stretch; 
     margin-left: auto;
     margin-right: auto;
 }
@@ -668,15 +678,30 @@ a:hover {
 
 
 /* Cards for BCS */
+
+.card-row {
+    
+    display: flex; 
+    align-items: stretch;
+    gap: 5px;
+}
+
 .card {
+    flex: 1;
     display: flex;
-    width: 15vw;
+    flex-direction: column;
+    width: 20vw;
     padding: 5px;
-    min-height: 20vw;
+    
+}
+
+.card-body {    
+    justify-content: space-between;
 }
 
 .card-img-top {
     display: block;
+    margin-top: 2vh;
     margin-left: auto;
     margin-right: auto;
     width: 10vw;
@@ -688,9 +713,10 @@ a:hover {
 }
 
 .card-text {
-    flex: 1;
-    height: 17vw;
-    font-size: 15px;
+    font-size: 12px;    
+    align-items: center; 
+    justify-content: center; 
+    text-align: justify;
 }
 
 /* Error messages */

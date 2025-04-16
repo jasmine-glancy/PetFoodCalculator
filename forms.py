@@ -15,11 +15,6 @@ class NewSignalment(FlaskForm):
                                   validators=[DataRequired()],
                                   render_kw={"option": {"default": {"disabled": ""}},
                                              "id": "species"})
-    pet_breed = SelectField(u"Pet's Breed*:",
-                                  choices=[("default", "Please choose")],
-                                  validators=[DataRequired()],
-                                  render_kw={"option": {"default": {"disabled": ""}},
-                                            "id": "breed"})
     pet_sex = SelectField(u"Pet's Sex:",
                               choices=[("default", "Please choose"),
                               (1, "Female (Intact)"),
