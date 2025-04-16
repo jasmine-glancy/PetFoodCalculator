@@ -147,3 +147,14 @@ class FoodForm(FlaskForm):
                  (1, "Yes")],
         render_kw={"default": {"disabled": ""}},
         validators=[DataRequired()])
+    
+class NewFoodForm(FlaskForm):
+    new_food_kcal = FloatField(
+        "How many calories are in each cup (or can/pouch)* of your pet's new food?: ",
+        validators=[DataRequired()])
+    new_food_form = SelectField(u"What form of this diet do you feed?: ",
+                                  choices=[("default", "Please choose"),
+                                            (1, "Dry"),
+                                            (2, "Canned"),
+                                            (3, "Semi-Moist Pouches")],
+                                  render_kw={"default": {"disabled": ""}})

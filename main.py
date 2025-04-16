@@ -6,7 +6,7 @@ from calculate_food import CalculateFood
 from cs50 import SQL
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_bootstrap import Bootstrap
-from forms import NewSignalment, GetWeight, ReproStatus, LoginForm, RegisterForm, WorkForm, FoodForm
+from forms import NewSignalment, GetWeight, ReproStatus, LoginForm, RegisterForm, WorkForm, FoodForm, NewFoodForm
 from find_info import FindInfo
 from helpers import clear_variable_list, login_required
 import os
@@ -1198,21 +1198,25 @@ def current_food():
             flash("Please enter a number equal to or greater than 1.")
             return redirect(url_for("current_food", pet_id=pet_id))
         
+        if food_transition != "default" and sensitive_stomach != "default":
+            food_transition = int(food_transition)
+            sensitive_stomach = int(sensitive_stomach)
+            
         print(current_food_kcal)
         print(meals_per_day)
         print(current_food_form)
         print(food_transition)
-
+        print(sensitive_stomach)
+        
         if current_food_form == "default":
             flash("Please choose from the current food form dropdown.")
             return redirect(url_for("current_food", pet_id=pet_id))
         else:
             
-            if sensitive_stomach == 0:
-                # If the pet has a "strong" stomach, use a shorter transition
-                transition_length = 7
-                 
-            elif sensitive_stomach == 1:
+            # If the pet has a "strong" stomach, use a shorter transition
+            transition_length = 7
+
+            if sensitive_stomach == 1:
                 # Use a longer transition if the pet has a sensitive stomach
                 transition_length = 14
             
@@ -1242,13 +1246,15 @@ def current_food():
             session["transition_length"] = transition_length
                 
 
-            # If the user wants a diet transition, redirect to new_food
-            if food_transition == 1:
-                return redirect(url_for('new_food', pet_id=pet_id))
-            
-            elif food_transition == 2:
+            if food_transition == 0:
                 # If user doesn't want a transition, calculate RER
                 return redirect(url_for('rer', pet_id=pet_id))
+            
+            elif food_transition == 1:
+                # If the user wants a diet transition, redirect to new_food
+                return redirect(url_for('new_food', pet_id=pet_id))
+
+                
         
     return render_template("current_food.html", current_food=current_food, pet_id=pet_id)
     
@@ -1790,11 +1796,45 @@ def wip_reports():
     return render_template("wip_reports.html", wip_reports=wip_reports)
 
 
-@app.route("/new_food")
+@app.route("/new_food", methods=["GET", "POST"])
 @login_required
 def new_food():
     """If the user wants to transition their pet to a new food or feed two diets, redirect to this page"""
     
+    new_food = NewFoodForm()
     pet_id = request.args.get('pet_id', type=int)
     
-    return render_template("new_food.html", pet_id=pet_id)
+    if request.method == "POST":
+        new_food_kcal = new_food.new_food_kcal.data
+        new_food_form = new_food.new_food_form.data
+        
+        print(new_food_kcal)
+        print(new_food_form)
+        
+        # Update the database if successful
+        try:
+            db.execute(
+                "UPDATE pets SET second_food_kcal = :new_food_kcal, second_food_form = :new_food_form WHERE pet_id = :pet_id AND owner_id = :user_id",
+                new_food_kcal=new_food_kcal, new_food_form=new_food_form,
+                pet_id=pet_id, user_id=session["user_id"]
+            )
+            
+            session["new_food_kcal"] = new_food_kcal
+            session["new_food_form"] = new_food_form
+            
+            return redirect(url_for("transition_schedule", pet_id=pet_id))
+        
+        except Exception as e:
+            flash(f"Can't add new food information, exception: {e}")
+            return redirect(url_for("new_food", pet_id=pet_id))
+        
+    return render_template("new_food.html", pet_id=pet_id, new_food=new_food)
+
+@app.route("/transition_schedule")
+@login_required
+def transition_schedule():
+    """Provides volumetric and gram recommendations to transition a pet to a new food"""
+    
+    pet_id = request.args.get('pet_id', type=int)
+    
+    return render_template("transition_schedule.html", pet_id=pet_id)

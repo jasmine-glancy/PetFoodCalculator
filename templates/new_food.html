@@ -1,5 +1,59 @@
-{% extends 'base.html' %} {% block title %}Part 6: New Food{% endblock %} 
+{% extends 'base.html' %} {% block title %}Part 6.5: New Food{% endblock %} 
 {% block content %}
 
+<h1>Part 6.5: New Food</h1>
+
+<!-- Progress bar -->
+<div
+  class="progress"
+  role="progressbar"
+  aria-label="bar"
+  aria-valuenow="0"
+  aria-valuemin="0"
+  aria-valuemax="100"
+>
+  <div class="progress-bar" style="width: 70%">70%</div>
+</div>
+
+<!-- Load in WTF Form -->
+<form action="{{ url_for('new_food', pet_id=pet_id) }}" method="POST">
+    <div class="row">
+      <div class="col" title="Current Food Calories">
+        {{ new_food.new_food_kcal.label(class_="food_label") }}
+      </div>
+      <div class="col" title="Current Food Calorie Input">
+        {{ new_food.new_food_kcal(class_="current_food_info") }}
+      </div>
+    </div>
+    <div class="row">
+      * This information can be found on the back or side of most bags of food.
+      Most times, kcal/cup, kcal/can or kcal/pouch is found near or opposite of
+      the ingredients or guaranteed analysis panels. It may also explicitly be
+      labeled as "calorie content".
+    </div>
+    <div class="row">
+      <div class="col" title="Current Food Form">
+        {{ new_food.new_food_form.label(class_="food_label") }}
+      </div>
+      <div id="food_form_dropdown" class="col" title="Current Food Form Dropdown">
+        {{ new_food.new_food_form(class_="current_food_info") }}
+      </div>
+    </div>
+
+    <div class="button-container">
+      <a href="{{ url_for('current_food', pet_id=pet_id) }}">
+        <button type="button" class="btn btn-secondary btn-lg">
+          Go Back To Part 6: Current Food
+        </button>
+      </a>
+  
+      <!-- Divider solution suggested by Michael Allen on Stack Overflow -->
+      <div class="divider"></div>
+  
+      <button type="submit" class="btn btn-secondary btn-lg">
+        Go to Next Part
+      </button>
+    </div>
+  </form>
 
 {% endblock %}
