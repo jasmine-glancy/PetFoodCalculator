@@ -1855,9 +1855,10 @@ def transition_schedule():
             if pet_has_sensitive_stomach == 0:
                 table_cells = int(rec_transition_max + 1)
             elif pet_has_sensitive_stomach == 1:
-                table_cells = int(rec_transition_max + 1)
-            
+                table_cells = int(rec_transition_max + 2)
+                
             days_by_2 = range(1, table_cells, 2)
+            
             print(rec_transition_max)
             print(days_by_2)
         return render_template("transition_schedule.html", pet_id=pet_id,

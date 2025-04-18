@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.13-beta] - 2025-4-17
+
+## Added
+
+- UX/UI: Add tables for sensitive and non-sensitive pets to transition from one food to another
+- UX/UI: Adjust CSS for the transition page and add placeholder transition numbers
+  
 ## [2.1.12-beta] - 2025-4-12
 
 ## Added

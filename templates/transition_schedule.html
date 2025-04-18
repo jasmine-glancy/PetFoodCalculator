@@ -6,26 +6,74 @@
 
     <!--TODO: Calculate amounts for non-sensitive stomachs-->
 
-    <table>
+    <table class="new_diet_transition">
         {% for day in days_by_2 %}
             <tr>
-                {% if day == 7 %}
-                    <td>
-                        {{ day }}
-                    </td>
-                
-                {% else %}
-                    <td>
+                <th class="{% if loop.index0 is even %}trans-even-row{% else %}trans-odd-row{% endif %}">
+                    {% if day > rec_transition_max or day == rec_transition_max %}
+                        {{ day }}+
+                    {% else %}
                         {{ day }} - {{ day + 1 }}
+                    {% endif %}
+                </th>
+                {% if pet_has_sensitive_stomach == 1 and day >= 1 and day < 3 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 15 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 85 old
                     </td>
                 
+                {% elif pet_has_sensitive_stomach == 0 and day >= 1 and day < 3 or pet_has_sensitive_stomach == 1 and day >= 3 and day < 5 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 25 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 75 old
+                    </td>
+
+                {% elif pet_has_sensitive_stomach == 1 and day >= 5 and day < 7 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 33 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 66 old
+                    </td>
+
+                {% elif pet_has_sensitive_stomach == 0 and day >= 3 and day < 5 or pet_has_sensitive_stomach == 1 and day >= 7 and day < 9 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 50 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 50 old
+                    </td>
+
+                {% elif pet_has_sensitive_stomach == 1 and day >= 9 and day < 11 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 66 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 33 old
+                    </td>
+                {% elif pet_has_sensitive_stomach == 0 and day >= 5 and day < 6 or pet_has_sensitive_stomach == 1 and day >= 11 and day < 13 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 75 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 25 old
+                    </td>
+                {% elif pet_has_sensitive_stomach == 1 and day >= 13 and day < 15 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 85 new
+                    </td>
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}">
+                        % 15 old
+                    </td>
+                {% elif pet_has_sensitive_stomach == 0 and day == rec_transition_max or pet_has_sensitive_stomach == 1 and day == 15 %}
+                    <td class="{% if loop.index0 is even %}even-row{% else %}odd-row{% endif %}" colspan="2">
+                        % 100 new
+                    </td>
                 {% endif %}
-                <td>
-                    % new
-                </td>
-                <td>
-                    % old
-                </td>
             </tr>
 
         {% endfor %}

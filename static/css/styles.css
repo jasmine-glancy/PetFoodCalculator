@@ -273,9 +273,22 @@ h1 {
             max-width: fit-content;
         }
         
-        .even-row, .table_info.even-row {
+        .even-row, .table_info.even-row, .th.even-row {
             background-color: var(--pale_white_green);
         }
+            .trans-even-row {
+                background-color: #b4e6c4;
+                background: linear-gradient(180deg, #7bd397, #bdffd0, #7bd397);
+                background-size: 50% 100%;
+                animation: linear-gradient 10s linear infinite;
+            }            
+            
+            .trans-odd-row {
+                background: linear-gradient(180deg, #bdffd0, #8be7a8, #bdffd0);
+                background-size: 50% 100%;
+                animation: linear-gradient 10s linear infinite;
+            }
+
 
         .odd-row {
             background-color: var(--lighter_white_green);
@@ -373,6 +386,26 @@ h1 {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .new_diet_transition {
+        color: var(--deep_blue_green);
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1vw;
+        font-size: 30px;
+        border: 1px solid rgba(17, 63, 51, 0.397);
+    }
+
+    .new_diet_transition th {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .new_diet_transition td {
+        text-align: center;
+    }
+
 
 #species {
     font-size: 20px;
