@@ -1837,4 +1837,35 @@ def transition_schedule():
     
     pet_id = request.args.get('pet_id', type=int)
     
+    # Get the max transition length and sensitive stomach status
+    try:
+        transition = db.execute(
+            "SELECT sensitive_stomach, transition_length FROM pets WHERE pet_id = :pet_id AND owner_id = :user_id",
+            pet_id=pet_id, user_id=session["user_id"]
+        )
+        
+        if not transition:
+            flash("Can't find recommended transition information.")
+        
+        else:
+            pet_has_sensitive_stomach = transition[0]["sensitive_stomach"]
+            rec_transition_max = int(transition[0]["transition_length"])
+            print(f"Sensitive stomach: {pet_has_sensitive_stomach}", f"Recommended max transition in days: {rec_transition_max}")
+
+            if pet_has_sensitive_stomach == 0:
+                table_cells = int(rec_transition_max + 1)
+            elif pet_has_sensitive_stomach == 1:
+                table_cells = int(rec_transition_max + 1)
+            
+            days_by_2 = range(1, table_cells, 2)
+            print(rec_transition_max)
+            print(days_by_2)
+        return render_template("transition_schedule.html", pet_id=pet_id,
+                               pet_has_sensitive_stomach=pet_has_sensitive_stomach,
+                               rec_transition_max=rec_transition_max,
+                               days_by_2=days_by_2) 
+    except Exception as e:
+        flash(f"User info not found. Exception: {e}")
+        
+    
     return render_template("transition_schedule.html", pet_id=pet_id)

@@ -1,5 +1,44 @@
 {% extends 'base.html' %} {% block title %}Transition Schedule{% endblock %} 
 {% block content %}
 
-Testing
+<h1>Transition Schedule</h1>
+
+
+    <!--TODO: Calculate amounts for non-sensitive stomachs-->
+
+    <table>
+        {% for day in days_by_2 %}
+            <tr>
+                {% if day == 7 %}
+                    <td>
+                        {{ day }}
+                    </td>
+                
+                {% else %}
+                    <td>
+                        {{ day }} - {{ day + 1 }}
+                    </td>
+                
+                {% endif %}
+                <td>
+                    % new
+                </td>
+                <td>
+                    % old
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    
+
+
+<!--{% if rec_transition_max %}
+    {{ rec_transition_max }}
+{% endif %}-->
+
+<!-- 4 cells for non-sensitive stomachs-->
+<!--8 cells for sensitive stomachs-->
+
+<!--Transition schedule should come after DER -->
 {% endblock %}
