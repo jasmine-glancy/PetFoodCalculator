@@ -59,11 +59,19 @@
     </button>
   </a>
 
-  <a href="{{ url_for('completed_report', pet_id=pet_id) }}">
-    <button type="submit" class="btn btn-secondary btn-lg">
-      Go to Final Report
-    </button>
-  </a>
+  {% if wants_transition == 0 %}
+    <a href="{{ url_for('completed_report', pet_id=pet_id) }}">
+      <button type="submit" class="btn btn-secondary btn-lg">
+        Go to Final Report
+      </button>
+    </a>
+  {% elif wants_transition == 1 %}
+    <a href="{{ url_for('transition_schedule', pet_id=pet_id) }}">
+      <button type="submit" class="btn btn-secondary btn-lg">
+        Go to Next Part
+      </button>
+    </a>
+  {% endif %}
 </div>
 
 {% endblock %}

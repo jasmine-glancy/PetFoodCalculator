@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.14-beta] - 2025-4-19
+
+## Changed
+
+- Refactor: Change apostrophes to double quotes where applicable for uniformity
+- Refactor: Moved transition calculator to after the DER route
+
+## Added
+
+- Feature: Added a function in find_info which queries the database to find whether the user wants to transition their pet's food to a new one
+
 ## [2.1.13-beta] - 2025-4-17
 
 ## Added

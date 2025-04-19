@@ -60,7 +60,7 @@ def new_pet_calc():
     # Clear variables (except user ID)
     clear_variable_list()
     
-    return redirect(url_for('pet_info'))
+    return redirect(url_for("pet_info"))
 
 
 @app.route("/recalculate_for_pet")
@@ -71,7 +71,7 @@ def recalculate_pet():
     # Clear variables (except user ID)
     clear_variable_list()
     
-    return redirect(url_for('finished_reports'))
+    return redirect(url_for("finished_reports"))
 
             
 @app.route("/login", methods=["GET", "POST"])
@@ -89,12 +89,12 @@ def login():
         
         if not user_lookup:
             flash("Username not found.")
-            return redirect(url_for('login'))
+            return redirect(url_for("login"))
         
         # Ensure username exists and password is correct
         elif not check_password_hash(user_lookup[0]["password"], request.form.get("password")):
             flash("Invalid password.")
-            return redirect(url_for('login'))
+            return redirect(url_for("login"))
         
         else:
             
@@ -259,7 +259,7 @@ def pet_info():
         print(pet_id, species, pet_name)        
             
         if pet_id is not None:
-            return redirect(url_for('pet_info_continued', pet_id=pet_id))
+            return redirect(url_for("pet_info_continued", pet_id=pet_id))
         else:
             flash("Pet ID is not available. Please try again.")
             return redirect(url_for("pet_info", pet_id=id))
@@ -282,7 +282,7 @@ def pet_info_continued(pet_id):
         species = fi.login_check_for_species()
     except Exception as e:
         flash(f"Couldn't find ID, Exception: {e}")
-        return redirect(url_for('pet_info_continued', pet_id=pet_id)) 
+        return redirect(url_for("pet_info_continued", pet_id=pet_id)) 
     else:
         # AKC Breeds by Size csv courtesy of MeganSorenson of Github 
         # # # https://github.com/MeganSorenson/American-Kennel-Club-Breeds-by-Size-Dataset/blob/main/AmericanKennelClubBreedsBySize.xlsx
@@ -315,16 +315,16 @@ def pet_info_continued(pet_id):
             # Show an error message if the user doesn't choose a breed or sex
             if pet_breed == None and pet_sex == "default":
                 flash("Please choose a breed and your pet's reproductive status from the dropdown menus.")
-                return redirect(url_for('pet_info_continued', pet_id=pet_id))
+                return redirect(url_for("pet_info_continued", pet_id=pet_id))
             elif pet_breed == None and pet_sex != "default":
                 flash("Please choose a breed from the dropdown menus.")
-                return redirect(url_for('pet_info_continued', pet_id=pet_id))
+                return redirect(url_for("pet_info_continued", pet_id=pet_id))
             elif pet_breed != None and pet_sex == "default":
                 flash("Please choose your pet's reproductive status from the dropdown menus.")
-                return redirect(url_for('pet_info_continued', pet_id=pet_id))    
+                return redirect(url_for("pet_info_continued", pet_id=pet_id))    
             elif pet_age_years < 0 or pet_age_months < 0:
                 flash("Please enter 0 or a number greater than zero.")
-                return redirect(url_for('pet_info_continued', pet_id=pet_id))    
+                return redirect(url_for("pet_info_continued", pet_id=pet_id))    
             else:
                 pet_sex = int(pet_sex)
                 print(pet_age_years, pet_age_months)
@@ -563,10 +563,10 @@ def pet_info_continued(pet_id):
                 
                 if pet_age >= 2 and pet_sex == 1:
                     # If the pet is a mature intact female, redirect to pregnancy questions
-                    return redirect(url_for('repro_status', pet_id=pet_id))
+                    return redirect(url_for("repro_status", pet_id=pet_id))
                 else:
                     # redirect to pet body condition score questions
-                    return redirect(url_for('pet_condition', pet_id=pet_id))
+                    return redirect(url_for("pet_condition", pet_id=pet_id))
         return render_template("get_signalment_part_2.html", form=form, pet_breed=pet_breed, species=species, pet_id=pet_id)
 
 
@@ -585,7 +585,7 @@ def repro_status(pet_id):
         species = fi.login_check_for_species()
     except Exception as e:
         flash(f"Couldn't find ID, Exception: {e}")
-        return redirect(url_for('repro_status', pet_id=pet_id)) 
+        return redirect(url_for("repro_status", pet_id=pet_id)) 
      
     if request.method == "POST":
         pregnancy_status = repro.pregnancy_status.data
@@ -609,7 +609,7 @@ def repro_status(pet_id):
             
             if species == "Canine":
                 # If pet is pregnant and canine, ask how many weeks along she is
-                return redirect(url_for('gestation_duration', pet_id=pet_id))
+                return redirect(url_for("gestation_duration", pet_id=pet_id))
             else: 
                 # If pet is pregnant and feline, DER factor is * 1.6-2.0
                 der_factor_id = 7
@@ -629,10 +629,10 @@ def repro_status(pet_id):
 
             # Update session variable
             session["der_factor_id"] = der_factor_id
-            return redirect(url_for('pet_condition', species=species, pet_id=pet_id))
+            return redirect(url_for("pet_condition", species=species, pet_id=pet_id))
         else:
             # If pet is not pregnant, ask if she is currently nursing a litter
-            return redirect(url_for('lactation_status', pet_id=pet_id))
+            return redirect(url_for("lactation_status", pet_id=pet_id))
     
     return render_template("get_reproductive_status.html", repro=repro, pet_id=pet_id)
 
@@ -687,7 +687,7 @@ def gestation_duration(pet_id):
         # Update DER factor ID variable
         session["der_factor_id"] = der_factor_id
         
-        return redirect(url_for('pet_condition', pet_id=pet_id))
+        return redirect(url_for("pet_condition", pet_id=pet_id))
     
     return render_template("gestation_duration.html", repro=repro, pet_id=pet_id)
 
@@ -724,7 +724,7 @@ def litter_size(pet_id):
           
         if species == "Feline":
             # If the pet is a nursing feline, ask for weeks of lactation
-            return redirect(url_for('lactation_duration', pet_id=pet_id))
+            return redirect(url_for("lactation_duration", pet_id=pet_id))
         elif species == "Canine":
             # If pet is a nursing canine, DER modifier changes based on litter size
             if litter_size == 1:
@@ -758,7 +758,7 @@ def litter_size(pet_id):
         # Update DER factor ID variable
         session["der_factor_id"] = der_factor_id  
             
-        return redirect(url_for('pet_condition', pet_id=pet_id))
+        return redirect(url_for("pet_condition", pet_id=pet_id))
     
     return render_template("get_litter_size.html", repro=repro, pet_id=pet_id)
 
@@ -796,11 +796,11 @@ def lactation_status(pet_id):
 
         if lactation_status == "y":
             # If pet is lactating, ask for litter size
-            return redirect(url_for('litter_size', pet_id=pet_id))
+            return redirect(url_for("litter_size", pet_id=pet_id))
             
         else:
             # If pet is not lactating, next page is get_weight
-            return redirect(url_for('pet_condition', pet_id=pet_id))
+            return redirect(url_for("pet_condition", pet_id=pet_id))
     
     return render_template("get_lactation_status.html", repro=repro, pet_id=pet_id)
     
@@ -846,7 +846,7 @@ def lactation_duration(pet_id):
                 )
         except Exception as e:
             flash(f"Unable to update nursing timeframe data, Exception: {e}")
-            return redirect(url_for('lactation_duration', pet_id=pet_id))
+            return redirect(url_for("lactation_duration", pet_id=pet_id))
         
         # Stores nursing duration variable in session
         session["duration_of_nursing"] = duration_of_nursing
@@ -854,7 +854,7 @@ def lactation_duration(pet_id):
         # Update session variable
         session["der_factor_id"] = der_factor_id
         
-        return redirect(url_for('pet_condition', pet_id=pet_id))
+        return redirect(url_for("pet_condition", pet_id=pet_id))
     
     return render_template("lactation_duration.html", repro=repro, pet_id=pet_id)
 
@@ -1004,7 +1004,7 @@ def pet_condition(pet_id):
             session["der_factor_id"] = der_factor_id  
             
             # Gets a dog's activity level if applicable 
-            return redirect(url_for('activity', pet_id=pet_id))  
+            return redirect(url_for("activity", pet_id=pet_id))  
         
         elif species == "Feline":
             
@@ -1051,7 +1051,7 @@ def pet_condition(pet_id):
             session["der_factor_id"] = der_factor_id  
                 
             # Take cat owners to the pre-confirmation page
-            return redirect(url_for('confirm_data', pet_id=pet_id))
+            return redirect(url_for("confirm_data", pet_id=pet_id))
     
     return render_template("get_weight_and_bcs.html", form=form, species=species, pet_id=pet_id)
 
@@ -1158,7 +1158,7 @@ def activity(pet_id):
         # Update DER factor ID variable
         session["der_factor_id"] = der_factor_id  
         
-        return redirect(url_for('confirm_data', pet_id=pet_id))
+        return redirect(url_for("confirm_data", pet_id=pet_id))
     
     return render_template("get_work_level.html", work=work, pet_id=pet_id)
 
@@ -1248,11 +1248,11 @@ def current_food():
 
             if food_transition == 0:
                 # If user doesn't want a transition, calculate RER
-                return redirect(url_for('rer', pet_id=pet_id))
+                return redirect(url_for("rer", pet_id=pet_id))
             
             elif food_transition == 1:
                 # If the user wants a diet transition, redirect to new_food
-                return redirect(url_for('new_food', pet_id=pet_id))
+                return redirect(url_for("new_food", pet_id=pet_id))
 
                 
         
@@ -1264,7 +1264,7 @@ def current_food():
 @login_required
 def rer(pet_id):
     """Calculates the minimum number of calories a pet needs at rest per day"""
-
+    
     # Use find_info to find DER start and end range
     fi = FindInfo(session["user_id"])
     
@@ -1344,7 +1344,7 @@ def rer(pet_id):
         
     print (f"Low end: {der_low_end} type: {type(der_low_end)} High end: {der_high_end} type: {type(der_high_end)} ")
     if request.method == "POST":    
-        return redirect(url_for('der'))
+        return redirect(url_for("der"))
     
     return render_template("rer.html",
                            rer=rer,
@@ -1603,6 +1603,7 @@ def der(pet_id):
         flash(f"Unable to update data, Exception: {e}")
         return redirect(url_for("der", pet_id=pet_id))
 
+    wants_transition = fi.wants_transition(pet_id)
     
     return render_template("der.html",
                            pet_id=pet_id,
@@ -1622,7 +1623,8 @@ def der(pet_id):
                            der_modifier=der_modifier,
                            species=species,
                            is_nursing=is_nursing,
-                           weeks_nursing=weeks_nursing)
+                           weeks_nursing=weeks_nursing,
+                           wants_transition=wants_transition)
 
 
 @app.route("/completed_report", methods=["GET", "POST"])
@@ -1822,7 +1824,7 @@ def new_food():
             session["new_food_kcal"] = new_food_kcal
             session["new_food_form"] = new_food_form
             
-            return redirect(url_for("transition_schedule", pet_id=pet_id))
+            return redirect(url_for("rer", pet_id=pet_id))
         
         except Exception as e:
             flash(f"Can't add new food information, exception: {e}")
@@ -1837,6 +1839,9 @@ def transition_schedule():
     
     pet_id = request.args.get('pet_id', type=int)
     
+    cf = CalculateFood(session["user_id"], pet_id)
+    transition = cf.transition_food_calculator()
+    print(transition)
     # Get the max transition length and sensitive stomach status
     try:
         transition = db.execute(

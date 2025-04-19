@@ -530,3 +530,13 @@ class FindInfo():
         # Return whatever max treat kcal variable ends up being found 
         return self.rec_treat_kcal_per_day  
         
+    def wants_transition(self, pet_id):
+        try:
+            if self.pet_data and "food_transition" in self.pet_data[0]:
+                self.wants_diet_transition = self.pet_data[0]["food_transition"]
+                print(f"Wants transition: {self.wants_diet_transition}")
+        except Exception as e:
+            flash(f"Can't determine if the user wants a diet transition. Exception: {e}")
+        
+        return self.wants_diet_transition       
+                
