@@ -95,7 +95,7 @@ class ReproStatus(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField("Username:", validators=[DataRequired()])
     password = StringField("Password:", validators=[DataRequired()])
-    submit = SubmitField("Log in")
+    submit = SubmitField("Log In")
 
 # Obtain registration info
 class RegisterForm(FlaskForm):

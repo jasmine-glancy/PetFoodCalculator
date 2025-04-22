@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
+## [2.1.15-beta] - 2025-4-22
+
+## Changed
+
+- Refactor: Renamed "Login" to "Log In"
+
+## Fixed
+
+- Adjusted Log In and Registration buttons to have an equal distance on the home page if viewed from the desktop
+
+## Added
+
+- Feature: Added a function in find_info which queries the database to find whether the user wants to transition their pet's food to a new one
+  
 ## [2.1.14-beta] - 2025-4-19
 
 ## Changed

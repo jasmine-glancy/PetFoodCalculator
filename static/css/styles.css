@@ -480,9 +480,10 @@ a:hover {
     }
 
     .button-homepage {
-        gap: 60%;
+        gap: 45vw;
         padding-left: 2%;
     }
+
 
     .button-homepage-logged-in {
         gap: 5%;
