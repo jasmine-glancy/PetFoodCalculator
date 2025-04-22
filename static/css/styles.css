@@ -524,6 +524,15 @@ a:hover {
             
         }
 
+        #login-button {
+            width: 100%;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2vh;
+            margin-top: 5vh;
+            font-size: 20px;
+        }
     /* Divider solution suggested by Michael Allen on Slack */
 
     .divider, .smaller_divider {
@@ -646,11 +655,24 @@ a:hover {
     margin-top: 2vw;
     margin-bottom: 2vw;
     display: grid;
+    width: 100%;
 }
+
+    .resources {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
 
     .accordion-button {
         --bs-accordion-active-color: var(--darker_lime_transparent); 
         padding-left: 2vw;
+    }
+
+    .accordion-button.research {
+        text-align: center; 
+        justify-content: center;
     }
 
     .accordion-button:not(.collapsed) {
