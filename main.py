@@ -583,6 +583,7 @@ def repro_status(pet_id):
         
         # Use login check from find_info to verify species
         species = fi.login_check_for_species()
+        print(species)
     except Exception as e:
         flash(f"Couldn't find ID, Exception: {e}")
         return redirect(url_for("repro_status", pet_id=pet_id)) 
@@ -593,7 +594,7 @@ def repro_status(pet_id):
         # Store new info as session variables
         session["pregnancy_status"] = pregnancy_status
         
-        print(pregnancy_status)
+        print(type(pregnancy_status))
         
         try:
             db.execute(
@@ -605,7 +606,7 @@ def repro_status(pet_id):
             return redirect(url_for("repro_status", pet_id=pet_id))
             
             
-        if pregnancy_status == 1:
+        if pregnancy_status == "1":
             
             if species == "Canine":
                 # If pet is pregnant and canine, ask how many weeks along she is
@@ -772,7 +773,7 @@ def lactation_status(pet_id):
     
     # Use login check from find_info to verify species
     fi = FindInfo(session["user_id"], pet_id) 
-    species = fi.login_check_for_species()
+    fi.login_check_for_species()
     
     if request.method == "POST":
         lactation_status = repro.nursing_status.data
@@ -859,18 +860,19 @@ def lactation_duration(pet_id):
     return render_template("lactation_duration.html", repro=repro, pet_id=pet_id)
 
 
-@app.route("/get-weight/<int:pet_id>", methods=["GET", "POST"])
+@app.route("/get-weight", methods=["GET", "POST"])
 @login_required
-def pet_condition(pet_id):
+def pet_condition():
     """Gets the pet's weight and body condition score"""
     
     form = GetWeight() 
-
+    pet_id = request.args.get("pet_id")
+    
     fi = FindInfo(session["user_id"], pet_id) 
     species = fi.login_check_for_species()
     
         
-    print(f"user_id: {session['user_id']}, pet_id: {id}")     
+    print(f"user_id: {session['user_id']}, pet_id: {pet_id}")     
     # Use login check from find_info to verify species
     species = fi.login_check_for_species()
     
@@ -981,7 +983,6 @@ def pet_condition(pet_id):
                 der_factor_id = 3
                 
             try:
-                print(session["pet_name"])
                 print(session["user_id"])
 
                 db.execute(
@@ -997,7 +998,7 @@ def pet_condition(pet_id):
                         
             except Exception as e:
                 flash(f"Unable to update canine BCS data, Exception: {e}")
-                return render_template("get_weight_and_bcs.html", form=form)
+                return render_template("get_weight_and_bcs.html", form=form, species=species)
                     
                 
             # Update DER factor ID variable
@@ -1027,7 +1028,6 @@ def pet_condition(pet_id):
                 der_factor_id = 3
             
             try:
-                print(session["pet_name"])
                 print(session["user_id"])
 
                 db.execute(
@@ -1065,7 +1065,7 @@ def activity(pet_id):
     
     # Use login check from find_info to verify species
     fi = FindInfo(session["user_id"], pet_id) 
-    species = fi.login_check_for_species()
+    fi.login_check_for_species()
     
     if request.method == "POST":
         light_work_minutes = work.light_work_minutes.data
@@ -1139,7 +1139,6 @@ def activity(pet_id):
         print(activity_level)
         
         try:
-            print(session["pet_name"])
             print(session["user_id"])
             print(activity_level)
             db.execute(
@@ -1260,13 +1259,15 @@ def current_food():
     
     
 
-@app.route("/rer/<int:pet_id>", methods=["GET", "POST"])
+@app.route("/rer", methods=["GET", "POST"])
 @login_required
-def rer(pet_id):
+def rer():
     """Calculates the minimum number of calories a pet needs at rest per day"""
     
+    pet_id = request.args.get('pet_id', type=int)
+    
     # Use find_info to find DER start and end range
-    fi = FindInfo(session["user_id"])
+    fi = FindInfo(session["user_id"], pet_id)
     
     # Use login check from helpers.py to verify reproductive status
     sex = fi.find_repro_status()
@@ -1288,6 +1289,7 @@ def rer(pet_id):
     
     object_pronoun = fi.find_pronouns(pet_data[0]["sex"])["object_pronoun"]
     possessive_pronoun = fi.find_pronouns(pet_data[0]["sex"])["possessive_pronoun"]
+    subject_pronoun = fi.find_pronouns(pet_data[0]["sex"])["subject_pronoun"]
     print(rer)
 
     print(f"Object pronoun {object_pronoun}", f"Possessive Pronoun: {possessive_pronoun}")
@@ -1295,6 +1297,7 @@ def rer(pet_id):
     # Store as a session variable
     session["object_pronoun"] = object_pronoun
     session["possessive_pronoun"] = possessive_pronoun
+    session["subject_pronoun"] = subject_pronoun
     
     # Find pet's current weight so the user can know what formula was used to find their pet's RER
     pet_data = fi.pet_data_dictionary(session["user_id"], pet_id)
@@ -1319,11 +1322,8 @@ def rer(pet_id):
     session["rec_treat_kcal_per_day"] = treat_kcals
     
     try:
-                    
-        print(session["pet_name"])
         print(session["user_id"])
-                
-                            
+                 
         db.execute(
             "UPDATE pets SET rer = :rer, rec_treat_kcal_per_day = :treat_kcals WHERE pet_id = :pet_id AND owner_id = :user_id",
             rer=rer, pet_id=pet_id, user_id=session["user_id"], treat_kcals=treat_kcals
@@ -1348,9 +1348,10 @@ def rer(pet_id):
     
     return render_template("rer.html",
                            rer=rer,
-                           name=session["pet_name"],
+                           name=pet_data[0]["name"],
                            object_pronoun=object_pronoun,
                            possessive_pronoun=possessive_pronoun,
+                           subject_pronoun=subject_pronoun,
                            weight=pet_data[0]["weight"],
                            converted_weight=pet_data[0]["converted_weight"],
                            units=pet_data[0]["units"],
@@ -1361,11 +1362,13 @@ def rer(pet_id):
                            pet_id=pet_id)
     
     
-@app.route("/der/<int:pet_id>", methods=["GET", "POST"])
+@app.route("/der", methods=["GET", "POST"])
 @login_required
-def der(pet_id):
+def der():
     """Calculates the daily energy rate and total food amount of the current diet to feed"""
     
+    pet_id = request.args.get('pet_id', type=int)
+        
     # Import food calculator
     cf = CalculateFood(session["user_id"], pet_id)
     
@@ -1409,7 +1412,8 @@ def der(pet_id):
                         possessive_pronoun=possessive_pronoun)
       
     # Use find_info to verify DER factor ID and food form
-    current_food_form = fi.find_food_form()
+    current_food_form = int(fi.find_food_form())
+    print(f"Current food form: {current_food_form} type: {type(current_food_form)}")
     der_factor_id = fi.der_factor()
     
     print(der_factor_id)
@@ -1473,7 +1477,7 @@ def der(pet_id):
         if is_half_tablespoon and daily_partial_volumetric != "0":
             daily_amount_to_feed = f"{whole_cans_or_cups} {food_form} and {daily_partial_volumetric} per day"
         elif not is_half_tablespoon and daily_partial_volumetric != "0":
-            daily_amount_to_feed = f"{whole_cans_or_cups} and {daily_partial_volumetric} {food_form} per day"
+            daily_amount_to_feed = f"{whole_cans_or_cups} and {daily_partial_volumetric} {food_form_plural} per day"
         else:
             daily_amount_to_feed = f"{whole_cans_or_cups} {food_form} per day"
     elif whole_cans_or_cups >= 1:
@@ -1487,7 +1491,9 @@ def der(pet_id):
         if is_half_tablespoon:
             daily_amount_to_feed = f"{daily_partial_volumetric} per day"
         else:
-            daily_amount_to_feed = f"{daily_partial_volumetric} {food_form_plural} per day"
+            daily_amount_to_feed = f"{daily_partial_volumetric} {food_form} per day"
+    elif whole_cans_or_cups == 0 and daily_partial_volumetric == "0":
+        daily_amount_to_feed = "Error calculating food totals"
     else:
         # Under 1 whole can or cup amount
         daily_amount_to_feed = f"{daily_partial_volumetric} per day"
@@ -1532,32 +1538,32 @@ def der(pet_id):
             
         if whole_cans_or_cups == 1:
             if is_half_tablespoon and meal_partial_volumetric != "0":
-                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form} and {meal_partial_volumetric}"
+                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form} and {meal_partial_volumetric} per meal"
             elif not is_half_tablespoon and meal_partial_volumetric != "0":
-                total_amount_per_meal = f"{meal_whole_cans_or_cups} and {meal_partial_volumetric} {food_form}"
+                total_amount_per_meal = f"{meal_whole_cans_or_cups} and {meal_partial_volumetric} {food_form} per meal"
             else:
                 total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form}"
         elif whole_cans_or_cups >= 1:
             if is_half_tablespoon and meal_partial_volumetric != "0":
-                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form_plural} and {meal_partial_volumetric}"
+                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form_plural} and {meal_partial_volumetric} per meal"
             elif not is_half_tablespoon and meal_partial_volumetric != "0":
-                total_amount_per_meal = f"{meal_whole_cans_or_cups} and {meal_partial_volumetric} {food_form_plural}"
+                total_amount_per_meal = f"{meal_whole_cans_or_cups} and {meal_partial_volumetric} {food_form_plural} per meal"
             else:
-                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form_plural}"
+                total_amount_per_meal = f"{meal_whole_cans_or_cups} {food_form_plural} per meal"
         elif whole_cans_or_cups == 0 and meal_partial_volumetric != "0":
             if is_half_tablespoon:
                 total_amount_per_meal = f"{meal_partial_volumetric}"
             else:
-                total_amount_per_meal = f"{meal_partial_volumetric} {food_form_plural}"
+                total_amount_per_meal = f"{meal_partial_volumetric} {food_form} per meal"
         elif whole_cans_or_cups == 0 and meal_partial_volumetric == "0":
             total_amount_per_meal = "0"
         else:
             # Under 1 whole can or cup amount
-            total_amount_per_meal = f"{daily_partial_volumetric}"
+            total_amount_per_meal = f"{meal_partial_volumetric}"
     else:
         # If the user asks for 1 meal per day amounts, total_amount_per_meal = daily amount
         per_meal = daily_amount_to_feed.split("day")[0]
-        total_amount_per_meal = f"{per_meal}meal"
+        total_amount_per_meal = f"{per_meal} meal"
     
     # Suggested by CoPilot    
     if total_amount_per_meal.startswith("0 and "):
@@ -1577,7 +1583,6 @@ def der(pet_id):
         
     
     try:          
-        print(session["pet_name"])
         print(session["user_id"])
                                    
         # If the pet has a completed report, don't update date_of_first_report

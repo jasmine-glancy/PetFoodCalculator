@@ -12,10 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Refactor: Renamed "Login" to "Log In"
 - UI/UX: Make Log In button bigger and center it below the login form
+- UI: Add edit buttons in the confirmation report to a footer for uniformity
 
 ## Fixed
 
-- Adjusted Log In and Registration buttons to have an equal distance on the home page if viewed from the desktop
+- UI/UX: Adjusted Log In and Registration buttons to have an equal distance on the home page if viewed from the desktop
+- Bug: Units were not displaying (i.e "2 and 1/2 s per day" instead of "2 and 1/2 cups per day")
+- Bug: Pets that are recommended more than one cup/can/pouch of food are displayed as "1 and (partial unit) cups/cans/pouches" per day
+- Bug: Adjusted routing information for pets that are already calculated for
   
 ## [2.1.14-beta] - 2025-4-19
 

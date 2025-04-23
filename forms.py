@@ -73,8 +73,8 @@ class ReproStatus(FlaskForm):
                                              "id": "gestating"})
     nursing_status = SelectField(u"Is Your Pet Currently Nursing?:",
                                   choices=[("default", "Please choose"),
-                                            ("y", "Yes"),
-                                            ("n", "No")],
+                                            (0, "No"),
+                                            (1, "Yes")],
                                   render_kw={"default": {"disabled": ""},
                                              "id": "nursing_status"})
     litter_size = IntegerField(u"Please Enter the Litter Size:",

@@ -264,7 +264,7 @@ class FindInfo():
             return breed_id
         
     
-    def check_if_pediatric(self) -> str:
+    def check_if_pediatric(self) -> int:
         """Checks if the pet is pediatric"""
         
         try:
@@ -287,7 +287,7 @@ class FindInfo():
         return self.pediatric_status   
         
         
-    def find_repro_status(self) -> str:
+    def find_repro_status(self) -> int:
         """Returns the reproductive status of the pet"""
         
         try:
@@ -308,7 +308,7 @@ class FindInfo():
         return self.pet_sex
                 
 
-    def check_if_pregnant(self) -> str:
+    def check_if_pregnant(self) -> int:
         """Checks if the pet is pregnant"""
     
         try:
@@ -329,7 +329,7 @@ class FindInfo():
         return self.is_pregnant  
 
 
-    def check_if_nursing(self) -> str:
+    def check_if_nursing(self) -> int:
         """Checks if the pet is nursing"""
         
         try:
@@ -371,7 +371,7 @@ class FindInfo():
         return self.litter_size  
     
 
-    def check_obesity_risk(self) -> str:
+    def check_obesity_risk(self) -> int:
         """Checks if a pet's breed has a predisposed risk to obesity"""
         
         breed_id = self.find_breed_id()
@@ -472,7 +472,7 @@ class FindInfo():
         return self.svg
             
             
-    def find_food_form(self) -> str:
+    def find_food_form(self) -> int:
         """Find the form of the pet's current diet e.g dry, canned, pouch"""
         
         try:
@@ -499,6 +499,7 @@ class FindInfo():
         if sex == 1 or sex == 2:
             # Subject pronoun is she
             object_pronoun = "her"
+            possessive_pronoun = "hers"
             subject_pronoun = "she"
         elif sex == 3 or sex == 4:
             # Subject pronoun is he
@@ -530,7 +531,7 @@ class FindInfo():
         # Return whatever max treat kcal variable ends up being found 
         return self.rec_treat_kcal_per_day  
         
-    def wants_transition(self, pet_id):
+    def wants_transition(self, pet_id) -> int:
         try:
             if self.pet_data and "food_transition" in self.pet_data[0]:
                 self.wants_diet_transition = self.pet_data[0]["food_transition"]

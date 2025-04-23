@@ -153,8 +153,21 @@ h1 {
 }
 
     .table-sm {
-        font-size: 12px;
+        font-size: 15px;
+        border: 1px solid var(--pale_white_green);
+        vertical-align: bottom;
     }
+
+        .table.table-sm th {
+            padding-bottom: 1vw;
+            padding-top: 1vh;
+            max-width: 25em;
+            vertical-align: bottom;
+        } 
+
+        .feeding_info_report td {
+            padding-bottom: 2vh;
+        }
 
     #pets {
         margin-bottom: 10vw !important;
@@ -233,11 +246,6 @@ h1 {
         margin-left: 2.5vw;
     }
 
-        .table.table-sm td {
-            align-items: center; /* Vertically center the content */
-            justify-content: center; /* Horizontally center the content */
-            text-align: center;
-        }
 
     .human_food_container, .human_food {
         margin-bottom: 1vw;
@@ -465,10 +473,11 @@ a:hover {
 
     .btn-sm {
         color: #cdfcc7;
-        min-height: 75px;
+        min-height: 2em;
         font-weight: 500;
         background-color: var(--darker_lime);
         border-color: var(--darker_lime);
+        margin-bottom: 1vw;
         --bs-btn-active-color: var(--darker_lime_transparent);
         --bs-btn-active-border-color: var(--darker_lime_transparent);
         --bs-btn-hover-bg: var(--darker_lime_transparent);
@@ -832,6 +841,10 @@ a:hover {
         margin-left: 1vw;
         margin-right: 0.5vw;
         padding-left: 0.5vw;
+    }
+
+    .weight_input {
+        width: 11em;
     }
 
     .hf-form-label, .hf_input {
