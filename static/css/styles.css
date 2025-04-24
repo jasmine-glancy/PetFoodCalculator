@@ -533,7 +533,7 @@ a:hover {
             
         }
 
-        #login-button {
+        #login-button, #registration-button {
             width: 100%;
             display: flex;
             margin-left: auto;
