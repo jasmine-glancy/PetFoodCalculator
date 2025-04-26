@@ -489,9 +489,15 @@ a:hover {
     }
 
     .button-homepage {
-        gap: 45vw;
+        gap: 38vw;
         padding-left: 2%;
     }
+    
+        @media (min-width: 1900px) {
+            .button-homepage {
+                gap: 45vw;
+            }
+        }
 
 
     .button-homepage-logged-in {
