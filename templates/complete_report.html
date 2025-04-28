@@ -4,7 +4,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
 {% block content %}
 
 <div class="report_wrapper">
-  <div class="report_title">
+  <div class="{{ 'left_title' if pet_data[0].breed == 'Chihuahua' else 'report_title' }}">
     {% if pet_data[0].name %}
     <h2>{{ pet_data[0].name }}'s Final Report</h2>
     {% else %}
@@ -20,7 +20,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   >
     <img
       src="{{ url_for('static', filename=svg) }}"
-      class="pet_pic"
+      class="{{ 'larger_pet_pic' if pet_data[0].breed == 'Domestic Mediumhair' else 'adjusted_abyssinian' if pet_data[0].breed == 'Abyssinian' else 'pet_pic' }}"
       alt="A picture of your pet's breed"
     />
   </div>

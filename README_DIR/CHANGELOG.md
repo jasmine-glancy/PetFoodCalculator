@@ -10,9 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Fixed
 
 - UX: Adjusted final report CSS to work across multiple monitor sizes for labrador retrievers that aren't pregnant, nursing, pediatric, or obese.
-- UX: Styled the following SVGs:
+- UX: Styled the following SVGs for medium and large monitors:
   - Afghan Hound (dog)
   - Chihuahua (dog)
+  - Abyssinian (cat)
   - American Wirehair (cat)
   - European Shorthair (cat)
 
