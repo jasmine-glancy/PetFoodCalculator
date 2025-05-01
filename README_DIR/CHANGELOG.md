@@ -5,7 +5,16 @@ All notable changes to this project from 2024-10-30 onward will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased Pet Food Calculator
+
+## [2.1.16-beta] - 2025-4-30
+
+
+## Fixed
+
+- UX: Adjusted confirmation table and pathing for lactating cats
+  
 ## [2.1.16-beta] - 2025-4-27
+
 
 ## Fixed
 

@@ -153,15 +153,19 @@ h1 {
 }
 
     .table-sm {
-        font-size: 15px;
+        width: 102%;
+        font-size: 12px;
+        gap: 2%;
+        table-layout: fixed;
         border: 1px solid var(--pale_white_green);
         vertical-align: bottom;
     }
 
         .table.table-sm th {
-            padding-bottom: 1vw;
-            padding-top: 1vh;
+            padding-bottom: 2em;
+            padding-top: 2em;
             max-width: 25em;
+            font-size: 11px;
             vertical-align: bottom;
         } 
 

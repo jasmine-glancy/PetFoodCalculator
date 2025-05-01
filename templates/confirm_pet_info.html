@@ -163,10 +163,6 @@
                 {% elif pet_data[0].is_pregnant == 0 %}
                     <td>
                         No
-
-                        <a href="{{ url_for('repro_status', pet_id=pet_id) }}">
-                            <button type="button" class="btn btn-secondary btn-sm">Edit</button>
-                        </a>
                     </td>
                 {% endif %}  
                 {% if pet_data[0].weeks_gestating != None and pet_data[0].is_pregnant != 0 and pet_data[0].weeks_gestating != 0 %}
@@ -174,11 +170,11 @@
                         {{ pet_data[0].weeks_gestating }} weeks
                     </td>
                 {% endif %}  
-                {% if pet_data[0].is_nursing != None and pet_data[0].is_nursing == "y" %}
+                {% if pet_data[0].is_nursing != None and pet_data[0].is_nursing == 1 %}
                     <td>
                         Yes
                     </td>
-                {% elif pet_data[0].is_nursing != None and pet_data[0].is_nursing == "n" %}
+                {% elif pet_data[0].is_nursing != None and pet_data[0].is_nursing == 0 %}
                     <td>
                         No
                     </td>

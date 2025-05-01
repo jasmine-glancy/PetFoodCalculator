@@ -795,7 +795,7 @@ def lactation_status(pet_id):
                 
           
 
-        if lactation_status == "y":
+        if lactation_status == "1":
             # If pet is lactating, ask for litter size
             return redirect(url_for("litter_size", pet_id=pet_id))
             
