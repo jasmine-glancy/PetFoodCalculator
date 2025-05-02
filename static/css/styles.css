@@ -899,13 +899,24 @@ a:hover {
     }
 
     .final_formula_nursing {
-        position: absolute;
+        position: relative;
         text-align: center;
-        top: 425px;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    @media (max-width: 1900px) {
+        .final_formula_nursing {
+            margin-top: 6rem;
+        }
+    }
+
+    @media (min-width: 1901px) {
+        .final_formula_nursing {
+            margin-top: 1em;
+        }
     }
 
     .final_formula_fel {
