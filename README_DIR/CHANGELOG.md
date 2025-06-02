@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Fixed:
 
 - UX: Styled American Bobtail SVG for medium and large monitors
+- UX: Adjust max width for feline DER formula and notes
 
 ## [2.1.17-beta] - 2025-4-30
 
