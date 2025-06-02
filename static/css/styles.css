@@ -1136,22 +1136,13 @@ a:hover {
             max-height: 150px;
         }
 
-        .pet_pic, .larger_pet_pic, .larger_bobtail_pic, .adjusted_abyssinian {
-            margin-left: 2%;
+        .larger_pet_pic, .larger_bobtail_pic {
             margin-right: auto;
-            margin-top: 1.5%;   
             width: 95%;
         }
 
             @media (max-width: 1900px) {
-                .larger_bobtail_pic {
-                    margin-top: 17%;
-                    margin-left: 10%;
-                    height: 100%;
-                }
-            }
 
-            @media (min-width: 1901px) {
                 .pet_pic {
                     margin-top: 18%;
                     margin-left: 10%;
@@ -1159,9 +1150,32 @@ a:hover {
                 }
 
                 .larger_pet_pic {
-                    margin-top: 22.5%;
+                    margin-top: 20%;
+                }
+
+                .larger_bobtail_pic {
+                    margin-top: 17%;
                     margin-left: 10%;
-                    width: 300%;
+                    height: 100%;
+                }
+
+                .adjusted_abyssinian {
+                    margin-top: 21.5%;
+                    margin-left: 15%;
+                    width: 125%;
+                }
+            }
+
+            @media (min-width: 1901px) {
+                .pet_pic {
+                    margin-top: 3%;
+                    margin-left: 10%;
+                    width: 105%;
+                }
+
+                .larger_pet_pic {
+                    margin-left: 2%;
+                    width: 250%;
                 }
 
                 .larger_bobtail_pic {
@@ -1171,7 +1185,7 @@ a:hover {
                 }
 
                 .adjusted_abyssinian {
-                    margin-top: 21.5%;
+                    margin-top: 6%;
                     margin-left: 15%;
                     width: 125%;
                 }
