@@ -4,7 +4,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
 {% block content %}
 
 <div class="report_wrapper">
-  <div class="{{ 'left_title' if pet_data[0].breed == 'Chihuahua' else 'report_title' }}">
+  <div class="{{ 'left_title' if pet_data[0].breed == 'Chihuahua' else 'smaller_title' if pet_data[0].breed == 'American Bobtail' else 'report_title' }}">
     {% if pet_data[0].name %}
     <h2>{{ pet_data[0].name }}'s Final Report</h2>
     {% else %}
@@ -20,12 +20,12 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
   >
     <img
       src="{{ url_for('static', filename=svg) }}"
-      class="{{ 'larger_pet_pic' if pet_data[0].breed == 'Domestic Mediumhair' else 'adjusted_abyssinian' if pet_data[0].breed == 'Abyssinian' else 'pet_pic' }}"
+      class="{{ 'larger_bobtail_pic' if pet_data[0].breed == 'American Bobtail' else 'larger_pet_pic' if pet_data[0].breed == 'Domestic Mediumhair' else 'adjusted_abyssinian' if pet_data[0].breed == 'Abyssinian' else 'pet_pic' }}"
       alt="A picture of your pet's breed"
     />
   </div>
   <div
-    class="{{ 'k9_line' if pet_data[0].species == 'Canine' else 'k9_line_shortened' if pet_data[0].breed == 'German Shorthaired Pointer' else 'fel_line' if pet_data[0].species == 'Feline' }}"
+    class="{{ 'k9_line' if pet_data[0].species == 'Canine' else 'smaller_fel_line' if pet_data[0].breed == 'American Bobtail' else 'k9_line_shortened' if pet_data[0].breed == 'German Shorthaired Pointer' else 'fel_line' if pet_data[0].species == 'Feline' }}"
   ></div>
 </div>
 
@@ -147,7 +147,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     {% if pet_data[0].is_pregnant == 1 and pet_data[0].weeks_gestating > 6 %}
     <div class="mid_padding"></div>
     {% elif pet_data[0].species == "Canine" %} {% if pet_data[0].is_pregnant ==
-    "y" %}
+    1 %}
     <div class="smaller_padding"></div>
     {% elif pet_data[0].bcs >= 6 %}
     <div class="mid_padding"></div>
@@ -160,6 +160,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     <!-- Return any notes regarding life stage -->
     {% if notes != None %} ({{ life_stage|trim }}, {{ notes }}) {% else %} ({{
     life_stage|trim }}) {% endif %}
+    <div class="bottom_padding"></div>
   </div>
   {% endif %} {% if pet_data[0].is_pregnant == 1 %} {% if pet_data[0].species
   == "Feline" %} {% if pet_data[0].weeks_gestating == None or
@@ -217,7 +218,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       object_pronoun }} {% endif %} current diet. {% endif %} {% if
       pet_data[0].is_nursing != 1 %} It is recommended to provide fresh, clean
       water for {{ pet_data[0].name }} daily. {% elif pet_data[0].is_nursing ==
-      "y" %}
+      1 %}
       <!-- Water requirements increase significantly during nursing -->
       {{ pet_data[0].name }}'s water requirement is drastically increased while
       she is nursing, so please be sure to provide an ample supply! {% if
@@ -331,7 +332,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       decrease in quality. Additionally, leaving it out longer can allow pests
       and bacteria to contaminate {{ pet_data[0].name }}'s food. {% endif %} {%
       elif pet_data[0].species == "Canine" %} {% if pet_data[0].is_pediatric ==
-      "y" %}
+      1 %}
       <div class="smaller_padding"></div>
       <h2>Rechecking Weight</h2>
       <div class="smaller_padding"></div>
@@ -353,7 +354,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
       tired in the middle of play). {% endif %} {% endif %}
     </div>
     {% if pet_data[0].species == "Canine" %} {% if pet_data[0].is_pregnant !=
-    "y" and pet_data[0].activity_level == 3 or pet_data[0].activity_level == 4
+    1 and pet_data[0].activity_level == 3 or pet_data[0].activity_level == 4
     %}
     <div class="exercise">
       <!-- If dog is active, provide additional recommendations-->
@@ -602,7 +603,7 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
 
     <div
       class="card"
-      id="{{ 'preg_fel_final_report' if pet_data[0].is_pregnant == 'y' or (pet_data[0].bcs > 6 and pet_data[0].age_in_years >= 7) else 'final_report_young_obese' if pet_data[0].bcs > 6 and pet_data[0].is_pediatric == 'n' and (pet_data[0].age_in_years < 7 or pet_data[0].bcs < 6) else 'final_report' }}"
+      id="{{ 'preg_fel_final_report' if pet_data[0].is_pregnant == 1 or (pet_data[0].bcs > 6 and pet_data[0].age_in_years >= 7) else 'final_report_young_obese' if pet_data[0].bcs > 6 and pet_data[0].is_pediatric == 0 and (pet_data[0].age_in_years < 7 or pet_data[0].bcs < 6) else 'final_report' }}"
     >
       <img
         src="{{ url_for('static', filename='assets/img/fel_puzzle_toy.png') }}"
@@ -899,11 +900,11 @@ pet_data[0].name }}'s Final Report {% else %} Pet's Final Report {% endif %} {% 
     <div class="smaller_padding"></div>
   </div>
   {% endif %} {% endif %} {% if pet_data[0].bcs >= 6 or pet_data[0].is_pediatric
-  == "y" or pet_data[0].is_pregnant == 1 or pet_data[0].is_nursing == 1 %}
-  {% if pet_data[0].bcs >= 6 or pet_data[0].is_pregnant == 1 %} <div class="{%
-  if pet_data[0].is_pregnant == 1 and pet_data[0].weeks_gestating == None or
-  pet_data[0].bcs >= 6 or pet_data[0].weeks_gestating > 6 %}wider_treats{% else
-  %}limit_treats{% endif %}">
+  == 1 or pet_data[0].is_pregnant == 1 or pet_data[0].is_nursing == 1 %}
+  {% if pet_data[0].bcs >= 6 or pet_data[0].is_pregnant == 1 %} 
+  <div class="'wider_treats' if pet_data[0].is_pregnant == 1 and pet_data[0].weeks_gestating == None or
+  pet_data[0].bcs >= 6 or pet_data[0].weeks_gestating >= 6 else
+  'limit_treats'">
   <!-- recommend treat amounts, |round|int suggested by CoPilot -->
   <h2>Treats</h2>
   <div class="smaller_padding"></div>

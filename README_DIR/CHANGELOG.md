@@ -6,8 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased Pet Food Calculator
 
-## [2.1.16-beta] - 2025-4-30
+## [2.1.18-beta] - 2025-6-01
 
+## Changed
+
+- Text: Adjust button text on incomplete reports page
+
+## Fixed:
+
+- UX: Styled American Bobtail SVG for medium and large monitors
+
+## [2.1.17-beta] - 2025-4-30
 
 ## Fixed
 
